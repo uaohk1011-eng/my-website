@@ -89,7 +89,7 @@
             min-height: 44px;
             min-width: 44px;
         }
-        
+
         .nav-btn:active {
             transform: scale(0.95);
             opacity: 0.8;
@@ -142,17 +142,17 @@
             background: #45a049;
             transform: translateY(-2px);
         }
-        
+
         .action-btn:active {
             transform: scale(0.95);
             opacity: 0.8;
         }
-        
+
         .action-btn:active {
             transform: scale(0.95);
             opacity: 0.8;
         }
-        
+
         .action-btn:active {
             transform: scale(0.95);
             opacity: 0.8;
@@ -787,6 +787,195 @@
             border-left: 3px solid #4CAF50;
         }
 
+        /* 開支記錄專用樣式 */
+        .add-expense-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-expense-btn:hover {
+            background: #45a049;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+        }
+
+        .add-expense-btn:active {
+            transform: scale(0.95);
+        }
+
+        .expense-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .expense-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+            animation: slideIn 0.3s ease;
+        }
+
+        .expense-item.group-expense {
+            border-color: #4CAF50;
+            background: #F1F8F4;
+        }
+
+        .expense-item.personal-expense {
+            border-color: #2196F3;
+            background: #F0F7FF;
+        }
+
+        .expense-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .expense-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .expense-item-header select,
+        .expense-item-header input {
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+
+        .expense-item-header select:focus,
+        .expense-item-header input:focus {
+            outline: none;
+            border-color: #2196F3;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+
+        .delete-expense-btn {
+            background: #F44336;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .delete-expense-btn:hover {
+            background: #D32F2F;
+            transform: scale(1.05);
+        }
+
+        .expense-item-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .expense-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .expense-field label {
+            font-size: 11px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .expense-field input,
+        .expense-field select {
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .expense-field.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .person-summary-card {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid #2196F3;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .person-summary-card h6 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1976D2;
+            margin: 0 0 8px 0;
+        }
+
+        .person-summary-card .amount-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .person-summary-card .amount-row .label {
+            font-weight: 600;
+        }
+
+        .person-summary-card .amount-row .value {
+            font-weight: 700;
+            color: #2196F3;
+        }
+
+        .split-result-card {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border-left: 4px solid #FF9800;
+        }
+
+        .split-result-card.positive {
+            border-left-color: #4CAF50;
+            background: #F1F8F4;
+        }
+
+        .split-result-card.negative {
+            border-left-color: #F44336;
+            background: #FFEBEE;
+        }
+
+        .split-result-card .person-name {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .split-result-card .amount {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .split-result-card .description {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 12px;
@@ -959,7 +1148,7 @@
                 transform: scale(0.95);
                 transition: transform 0.1s ease;
             }
-            
+
             /* 增大按鈕觸控區域 */
             .nav-btn,
             .action-btn {
@@ -999,7 +1188,7 @@
                 transform: scale(0.95);
                 transition: transform 0.1s ease;
             }
-            
+
             /* 增大按鈕觸控區域 */
             .nav-btn,
             .action-btn {
@@ -1039,7 +1228,7 @@
                 transform: scale(0.95);
                 transition: transform 0.1s ease;
             }
-            
+
             /* 增大按鈕觸控區域 */
             .nav-btn,
             .action-btn {
@@ -1075,7 +1264,7 @@
                 transform: scale(0.95);
                 transition: transform 0.1s ease;
             }
-            
+
             /* 增大按鈕觸控區域 */
             .nav-btn,
             .action-btn {
@@ -1115,7 +1304,7 @@
                 transform: scale(0.95);
                 transition: transform 0.1s ease;
             }
-            
+
             /* 增大按鈕觸控區域 */
             .nav-btn,
             .action-btn {
@@ -1155,7 +1344,7 @@
                 transform: scale(0.95);
                 transition: transform 0.1s ease;
             }
-            
+
             /* 增大按鈕觸控區域 */
             .nav-btn,
             .action-btn {
@@ -1191,7 +1380,7 @@
                 transform: scale(0.95);
                 transition: transform 0.1s ease;
             }
-            
+
             /* 增大按鈕觸控區域 - iOS推薦最小44px */
             .nav-btn,
             .action-btn {
@@ -1230,7 +1419,7 @@
                 transform: scale(0.95);
                 transition: transform 0.1s ease;
             }
-            
+
             /* 增大按鈕觸控區域 */
             .nav-btn,
             .action-btn {
@@ -1271,7 +1460,7 @@
                 transform: scale(0.95);
                 transition: transform 0.1s ease;
             }
-            
+
             /* 增大按鈕觸控區域 */
             .nav-btn,
             .action-btn {
@@ -1318,7 +1507,7 @@
                 transform: scale(0.95);
                 transition: transform 0.1s ease;
             }
-            
+
             /* 增大按鈕觸控區域 */
             .nav-btn,
             .action-btn {
@@ -1428,8 +1617,238 @@
                 transform: none;
             }
         }
+
+        /* 開支記錄專用樣式 */
+        .add-expense-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .add-expense-btn:hover {
+            background: #45a049;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+        }
+
+        .expense-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .expense-item {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+            animation: slideIn 0.3s ease;
+        }
+
+        .expense-item.group-expense {
+            border-left: 4px solid #4CAF50;
+        }
+
+        .expense-item.personal-expense {
+            border-left: 4px solid #2196F3;
+        }
+
+        .expense-item:hover {
+            border-color: #2196F3;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .expense-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .expense-item-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .expense-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .expense-field label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .expense-field select,
+        .expense-field input {
+            padding: 8px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .expense-field select:focus,
+        .expense-field input:focus {
+            outline: none;
+            border-color: #2196F3;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+
+        .expense-field select:hover,
+        .expense-field input:hover {
+            border-color: #90CAF9;
+        }
+
+        .delete-expense-btn {
+            background: #F44336;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .delete-expense-btn:hover {
+            background: #D32F2F;
+            transform: scale(1.05);
+        }
+
+        .expense-converted {
+            background: #E3F2FD;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #1976D2;
+            margin-top: 8px;
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .person-summary-card {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .person-summary-card:hover {
+            border-color: #2196F3;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.15);
+        }
+
+        .person-name {
+            font-weight: 700;
+            font-size: 16px;
+            color: #1976D2;
+            margin-bottom: 8px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .summary-total {
+            font-weight: 700;
+            font-size: 16px;
+            color: #2E7D32;
+            padding-top: 8px;
+            border-top: 2px solid #e0e0e0;
+            margin-top: 8px;
+        }
+
+        .split-summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .split-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .split-total {
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            padding: 16px 0;
+            border-top: 2px solid rgba(255,255,255,0.3);
+            margin-top: 12px;
+        }
+
+        .settlement-card {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .settlement-person {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .settlement-amount {
+            font-size: 18px;
+            font-weight: 700;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .settlement-amount.positive {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .settlement-amount.negative {
+            background: #FFEBEE;
+            color: #C62828;
+        }
+
+        .settlement-amount.zero {
+            background: #E3F2FD;
+            color: #1976D2;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
-<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}</style><style id="kgp-selected-style">
+<style id="kgp-selected-style">
   [data-kgp-selected]::before {
     content: '';
     position: absolute;
@@ -1490,7 +1909,7 @@
         <div class="header-content">
             <h1 class="title">日本關西8天自駕遊行程表 🇯🇵</h1>
             <p class="subtitle">2026年1月25日 - 2月1日 | 4人同遊</p>
-            
+
             <div class="nav-buttons" id="dayNav">
                 <button class="nav-btn" onclick="scrollToDay(1)">Day 1</button>
                 <button class="nav-btn" onclick="scrollToDay(2)">Day 2</button>
@@ -1519,14 +1938,11 @@
                 <button class="action-btn secondary" onclick="toggleSidebar('finance')">
                     <i class="fas fa-wallet"></i> 財務總覽
                 </button>
-                <button class="action-btn" style="background: #9C27B0;" onclick="toggleSidebar('expense')">
-                    <i class="fas fa-calculator"></i> 花費記錄
+                <button class="action-btn" style="background: #9C27B0;" onclick="toggleSidebar('expenses')">
+                    <i class="fas fa-money-bill-wave"></i> 開支記錄
                 </button>
-                <button class="action-btn" style="background: #FF9800;" onclick="toggleSidebar('settlement')">
-                    <i class="fas fa-hand-holding-usd"></i> 費用結算
-                </button>
-            </div>
 
+            </div>
 
         </div>
     </div>
@@ -1537,7 +1953,7 @@
             <div class="day-header day-1">
                 <div>
                     <h2 class="day-title">Day 1 - 抵達大阪</h2>
-                    <p class="day-date">1月25日（星期六）</p>
+                    <p class="day-date">1月25日（星期日）</p>
                 </div>
             </div>
 
@@ -1658,7 +2074,7 @@
             <div class="day-header day-2">
                 <div>
                     <h2 class="day-title">Day 2 - 京都任天堂 → 津市</h2>
-                    <p class="day-date">1月26日（星期日）</p>
+                    <p class="day-date">1月26日（星期一）</p>
                 </div>
             </div>
 
@@ -1692,7 +2108,7 @@
 
             <div class="timeline-item">
                 <div class="time-badge">🎮 12:00 任天堂博物館</div>
-                
+
                 <!-- 鮮明預約提醒框 -->
                 <div style="background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 3px solid #FF9800; box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
@@ -1704,7 +2120,7 @@
                         🚗 需時約1小時車程
                     </div>
                 </div>
-                
+
                 <div class="location-box">
                     <div class="location-name">
                         <i class="fas fa-gamepad"></i> 任天堂博物館
@@ -1727,7 +2143,7 @@
                                 📍 坐標：34.89297, 135.78436
                             </div>
                         </div>
-                        
+
                         <!-- 停車場選項A -->
                         <div style="background: #E8F5E9; padding: 16px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid #4CAF50;">
                             <div style="font-weight: 700; font-size: 16px; color: #2E7D32; margin-bottom: 12px;">
@@ -1835,7 +2251,7 @@
             <div class="day-header day-3">
                 <div>
                     <h2 class="day-title">Day 3 - Hotel Vison 遊玩</h2>
-                    <p class="day-date">1月27日（星期一）</p>
+                    <p class="day-date">1月27日（星期二）</p>
                 </div>
             </div>
 
@@ -1965,13 +2381,13 @@
             <div class="day-header day-4">
                 <div>
                     <h2 class="day-title">Day 4 - 海女體驗 + 水族館/神宮 + 日落</h2>
-                    <p class="day-date">1月28日（星期二）</p>
+                    <p class="day-date">1月28日（星期三）</p>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">🦞 11:30 海女小屋</div>
-                
+
                 <!-- 鮮明預約提醒框 -->
                 <div style="background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 3px solid #FF9800; box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
@@ -1984,7 +2400,7 @@
                         💰 現場付款：JPY 30,800（約 HKD 1,694）
                     </div>
                 </div>
-                
+
                 <div class="location-box">
                     <div class="location-name">
                         <i class="fas fa-fish"></i> 海女小屋相差竈
@@ -2019,7 +2435,7 @@
 
             <div class="timeline-item">
                 <div class="time-badge">🏛️ 中午行程（二選一）</div>
-                
+
                 <div class="location-box" style="margin-bottom: 12px;">
                     <div class="location-name">
                         <i class="fas fa-torii-gate"></i> 選項A：伊勢神宮內宮 + 托福橫丁
@@ -2085,7 +2501,7 @@
 
             <div class="timeline-item">
                 <div class="time-badge">🌅 17:00前 日落（二選一）</div>
-                
+
                 <!-- 鮮明日落提醒 -->
                 <div style="background: linear-gradient(135deg, #FF5252 0%, #F44336 100%); color: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 3px solid #C62828; box-shadow: 0 4px 12px rgba(198, 40, 40, 0.3);">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
@@ -2097,7 +2513,7 @@
                         🌅 日落時間約17:00-17:30，錯過將無法觀賞
                     </div>
                 </div>
-                
+
                 <div class="location-box" style="margin-bottom: 12px;">
                     <div class="location-name">
                         <i class="fas fa-sun"></i> 選項A：二見興玉神社
@@ -2210,7 +2626,7 @@
             <div class="day-header day-5">
                 <div>
                     <h2 class="day-title">Day 5 - BBQ + 回大阪</h2>
-                    <p class="day-date">1月29日（星期三）</p>
+                    <p class="day-date">1月29日（星期四）</p>
                 </div>
             </div>
 
@@ -2334,7 +2750,7 @@
             <div class="day-header day-6">
                 <div>
                     <h2 class="day-title">Day 6 - 梅田自由活動</h2>
-                    <p class="day-date">1月30日（星期四）</p>
+                    <p class="day-date">1月30日（星期五）</p>
                 </div>
             </div>
 
@@ -2376,7 +2792,7 @@
 
             <div class="timeline-item">
                 <div class="time-badge">🎭 19:30 晚餐秀</div>
-                
+
                 <!-- 鮮明預約提醒框 -->
                 <div style="background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 3px solid #FF9800; box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
@@ -2406,7 +2822,7 @@
                         <div style="margin-top: 8px; color: #666;">
                             <i class="fas fa-map-marker-alt"></i> 大阪府大阪市北区曽根崎新地1-3-8 ぐらんぱれ壱番館4F
                         </div>
-                        
+
                         <!-- 建議交通方式 -->
                         <div style="margin-top: 16px; padding: 16px; background: #E3F2FD; border-radius: 8px; border-left: 4px solid #2196F3;">
                             <div style="font-weight: 700; font-size: 16px; color: #1976D2; margin-bottom: 12px;">
@@ -2464,7 +2880,7 @@
             <div class="day-header day-7">
                 <div>
                     <h2 class="day-title">Day 7 - 大阪自由活動</h2>
-                    <p class="day-date">1月31日（星期五）</p>
+                    <p class="day-date">1月31日（星期六）</p>
                 </div>
             </div>
 
@@ -2502,7 +2918,7 @@
             <div class="day-header day-8">
                 <div>
                     <h2 class="day-title">Day 8 - 離開日本</h2>
-                    <p class="day-date">2月1日（星期六）</p>
+                    <p class="day-date">2月1日（星期日）</p>
                 </div>
             </div>
 
@@ -3178,7 +3594,7 @@
             <h4 class="reminder-section-title">
                 <i class="fas fa-calculator"></i> 整體旅程預算
             </h4>
-            
+
             <div style="background: #E8F5E9; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
                 <div style="font-weight: 700; font-size: 16px; color: #4CAF50; margin-bottom: 12px;">
                     <i class="fas fa-check-circle"></i> 已付款項總計（4人）
@@ -3195,7 +3611,7 @@
                     已付小計：HKD 13,541
                 </div>
             </div>
-            
+
             <div style="background: #FFF3E0; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
                 <div style="font-weight: 700; font-size: 16px; color: #F57C00; margin-bottom: 12px;">
                     <i class="fas fa-exclamation-triangle"></i> 未付款項總計（4人）
@@ -3210,12 +3626,12 @@
                     未付小計：JPY 137,000 (約 HKD 7,535)
                 </div>
             </div>
-            
+
             <div style="background: #E8EAF6; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
                 <div style="font-weight: 700; font-size: 16px; color: #3F51B5; margin-bottom: 12px;">
                     <i class="fas fa-calculator"></i> 預計額外開支（4人估算）
                 </div>
-                
+
                 <div style="margin-bottom: 16px;">
                     <div style="font-weight: 600; font-size: 14px; color: #5C6BC0; margin-bottom: 8px;">
                         🚇 交通費用（4人）
@@ -3232,7 +3648,7 @@
                         <strong style="color: #3F51B5;">小計：約 HKD 2,783</strong>
                     </div>
                 </div>
-                
+
                 <div style="margin-bottom: 16px;">
                     <div style="font-weight: 600; font-size: 14px; color: #5C6BC0; margin-bottom: 8px;">
                         🍜 餐飲開支（4人總計，寬鬆預算）
@@ -3249,7 +3665,7 @@
                         <strong style="color: #3F51B5;">小計：約 HKD 14,795</strong>
                     </div>
                 </div>
-                
+
                 <div style="margin-bottom: 12px;">
                     <div style="font-weight: 600; font-size: 14px; color: #5C6BC0; margin-bottom: 8px;">
                         🎫 景點門票及雜費（4人）
@@ -3262,12 +3678,12 @@
                         <strong style="color: #3F51B5;">小計：約 HKD 5,430</strong>
                     </div>
                 </div>
-                
+
                 <div style="margin-top: 12px; padding-top: 12px; border-top: 2px solid #C5CAE9; font-size: 18px; font-weight: 700; color: #283593;">
                     額外開支總計：約 HKD 23,008
                 </div>
             </div>
-            
+
             <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 12px; color: white; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);">
                 <div style="font-weight: 700; font-size: 18px; margin-bottom: 16px; text-align: center;">
                     <i class="fas fa-chart-line"></i> 旅程總預算（4人）
@@ -3282,7 +3698,7 @@
                     人均：約 HKD 10,691/人
                 </div>
             </div>
-            
+
             <div style="margin-top: 16px; padding: 16px; background: #f9f9f9; border-radius: 8px; border-left: 4px solid #2196F3;">
                 <div style="font-weight: 700; font-size: 14px; color: #1976D2; margin-bottom: 8px;">
                     <i class="fas fa-info-circle"></i> 財務明細說明
@@ -3476,170 +3892,6 @@
         </div>
     </div>
 
-    <!-- Expense Tracker Sidebar -->
-    <div class="sidebar" id="expenseSidebar">
-        <div class="sidebar-header">
-            <h3 class="sidebar-title">💰 花費記錄</h3>
-            <button class="close-btn" onclick="closeSidebar()">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-
-        <div class="reminder-section">
-            <h4 class="reminder-section-title">
-                <i class="fas fa-chart-line"></i> 預算 vs 實際
-            </h4>
-            <div style="background: #E3F2FD; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="color: #666;">總預算:</span>
-                    <span style="font-weight: 700; color: #1976D2;">HKD 42,764</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="color: #666;">實際支出:</span>
-                    <span style="font-weight: 700; color: #F57C00;" id="totalActual">HKD 13,541</span>
-                </div>
-                <!-- 細項說明 -->
-                <div style="font-size: 11px; color: #999; padding: 8px; background: #F5F5F5; border-radius: 6px; margin-bottom: 8px;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                        <span>✅ 已付費用：</span>
-                        <span style="font-weight: 600;" id="prepaidDisplay">HKD 13,541</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between;">
-                        <span>📝 已記錄花費：</span>
-                        <span style="font-weight: 600;" id="recordedExpenseDisplay">HKD 0</span>
-                    </div>
-                </div>
-                <div style="display: flex; justify-content: space-between; padding-top: 8px; border-top: 2px solid #BBDEFB;">
-                    <span style="color: #666;">剩餘預算:</span>
-                    <span style="font-weight: 700; color: #4CAF50;" id="remainingBudget">HKD 29,223</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="reminder-section">
-            <h4 class="reminder-section-title">
-                <i class="fas fa-receipt"></i> 每日花費記錄
-            </h4>
-            <div id="expenseList">
-                <!-- Day 1 -->
-                <div class="expense-day-section" data-day="1">
-                    <div style="font-weight: 700; color: #202020; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-                        <span>Day 1</span>
-                        <button onclick="addExpenseEntry(1)" style="padding: 4px 12px; background: #4CAF50; color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.2s;">
-                            <i class="fas fa-plus"></i> 新增
-                        </button>
-                    </div>
-                    <div class="expense-entries" id="expenseEntries1"></div>
-                    <div style="margin-top: 8px; padding: 8px; background: #E8F5E9; border-radius: 6px; text-align: right; font-size: 13px;">
-                        <strong>Day 1 小計：</strong> <span id="dayTotal1" style="color: #2E7D32; font-weight: 700;">HKD 0</span>
-                    </div>
-                </div>
-
-                <!-- Day 2 -->
-                <div class="expense-day-section" data-day="2">
-                    <div style="font-weight: 700; color: #202020; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-                        <span>Day 2</span>
-                        <button onclick="addExpenseEntry(2)" style="padding: 4px 12px; background: #4CAF50; color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.2s;">
-                            <i class="fas fa-plus"></i> 新增
-                        </button>
-                    </div>
-                    <div class="expense-entries" id="expenseEntries2"></div>
-                    <div style="margin-top: 8px; padding: 8px; background: #E8F5E9; border-radius: 6px; text-align: right; font-size: 13px;">
-                        <strong>Day 2 小計：</strong> <span id="dayTotal2" style="color: #2E7D32; font-weight: 700;">HKD 0</span>
-                    </div>
-                </div>
-
-                <!-- Day 3 -->
-                <div class="expense-day-section" data-day="3">
-                    <div style="font-weight: 700; color: #202020; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-                        <span>Day 3</span>
-                        <button onclick="addExpenseEntry(3)" style="padding: 4px 12px; background: #4CAF50; color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.2s;">
-                            <i class="fas fa-plus"></i> 新增
-                        </button>
-                    </div>
-                    <div class="expense-entries" id="expenseEntries3"></div>
-                    <div style="margin-top: 8px; padding: 8px; background: #E8F5E9; border-radius: 6px; text-align: right; font-size: 13px;">
-                        <strong>Day 3 小計：</strong> <span id="dayTotal3" style="color: #2E7D32; font-weight: 700;">HKD 0</span>
-                    </div>
-                </div>
-
-                <!-- Day 4 -->
-                <div class="expense-day-section" data-day="4">
-                    <div style="font-weight: 700; color: #202020; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-                        <span>Day 4</span>
-                        <button onclick="addExpenseEntry(4)" style="padding: 4px 12px; background: #4CAF50; color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.2s;">
-                            <i class="fas fa-plus"></i> 新增
-                        </button>
-                    </div>
-                    <div class="expense-entries" id="expenseEntries4"></div>
-                    <div style="margin-top: 8px; padding: 8px; background: #E8F5E9; border-radius: 6px; text-align: right; font-size: 13px;">
-                        <strong>Day 4 小計：</strong> <span id="dayTotal4" style="color: #2E7D32; font-weight: 700;">HKD 0</span>
-                    </div>
-                </div>
-
-                <!-- Day 5 -->
-                <div class="expense-day-section" data-day="5">
-                    <div style="font-weight: 700; color: #202020; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-                        <span>Day 5</span>
-                        <button onclick="addExpenseEntry(5)" style="padding: 4px 12px; background: #4CAF50; color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.2s;">
-                            <i class="fas fa-plus"></i> 新增
-                        </button>
-                    </div>
-                    <div class="expense-entries" id="expenseEntries5"></div>
-                    <div style="margin-top: 8px; padding: 8px; background: #E8F5E9; border-radius: 6px; text-align: right; font-size: 13px;">
-                        <strong>Day 5 小計：</strong> <span id="dayTotal5" style="color: #2E7D32; font-weight: 700;">HKD 0</span>
-                    </div>
-                </div>
-
-                <!-- Day 6 -->
-                <div class="expense-day-section" data-day="6">
-                    <div style="font-weight: 700; color: #202020; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-                        <span>Day 6</span>
-                        <button onclick="addExpenseEntry(6)" style="padding: 4px 12px; background: #4CAF50; color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.2s;">
-                            <i class="fas fa-plus"></i> 新增
-                        </button>
-                    </div>
-                    <div class="expense-entries" id="expenseEntries6"></div>
-                    <div style="margin-top: 8px; padding: 8px; background: #E8F5E9; border-radius: 6px; text-align: right; font-size: 13px;">
-                        <strong>Day 6 小計：</strong> <span id="dayTotal6" style="color: #2E7D32; font-weight: 700;">HKD 0</span>
-                    </div>
-                </div>
-
-                <!-- Day 7 -->
-                <div class="expense-day-section" data-day="7">
-                    <div style="font-weight: 700; color: #202020; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-                        <span>Day 7</span>
-                        <button onclick="addExpenseEntry(7)" style="padding: 4px 12px; background: #4CAF50; color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.2s;">
-                            <i class="fas fa-plus"></i> 新增
-                        </button>
-                    </div>
-                    <div class="expense-entries" id="expenseEntries7"></div>
-                    <div style="margin-top: 8px; padding: 8px; background: #E8F5E9; border-radius: 6px; text-align: right; font-size: 13px;">
-                        <strong>Day 7 小計：</strong> <span id="dayTotal7" style="color: #2E7D32; font-weight: 700;">HKD 0</span>
-                    </div>
-                </div>
-
-                <!-- Day 8 -->
-                <div class="expense-day-section" data-day="8">
-                    <div style="font-weight: 700; color: #202020; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-                        <span>Day 8</span>
-                        <button onclick="addExpenseEntry(8)" style="padding: 4px 12px; background: #4CAF50; color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.2s;">
-                            <i class="fas fa-plus"></i> 新增
-                        </button>
-                    </div>
-                    <div class="expense-entries" id="expenseEntries8"></div>
-                    <div style="margin-top: 8px; padding: 8px; background: #E8F5E9; border-radius: 6px; text-align: right; font-size: 13px;">
-                        <strong>Day 8 小計：</strong> <span id="dayTotal8" style="color: #2E7D32; font-weight: 700;">HKD 0</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <button onclick="resetExpenses()" class="reset-expenses-btn" style="width: 100%; padding: 12px; background: #EF5350; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 16px; -webkit-tap-highlight-color: rgba(244, 67, 54, 0.2); -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; touch-action: manipulation; -webkit-appearance: none; appearance: none; min-height: 44px;">
-            <i class="fas fa-redo"></i> 重置所有記錄
-        </button>
-    </div>
-
 
 
     <!-- Currency Converter Sidebar -->
@@ -3747,7 +3999,7 @@
             <h4 class="reminder-section-title">
                 <i class="fas fa-car"></i> 自駕路線詳情（Day 2-5）
             </h4>
-            
+
             <div style="background: #E3F2FD; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
                 <div style="font-weight: 700; color: #1976D2; margin-bottom: 8px;">Day 2 路線</div>
                 <div style="color: #666; font-size: 14px; line-height: 1.8;">
@@ -3814,250 +4066,328 @@
         </div>
     </div>
 
-    <!-- Settlement Sidebar -->
-    <div class="sidebar" id="settlementSidebar">
+    <!-- Expenses Sidebar -->
+    <div class="sidebar" id="expensesSidebar">
         <div class="sidebar-header">
-            <h3 class="sidebar-title">💰 費用結算</h3>
+            <h3 class="sidebar-title">💰 開支記錄</h3>
             <button class="close-btn" onclick="closeSidebar()">
                 <i class="fas fa-times"></i>
             </button>
         </div>
 
+        <!-- 頂部: 各人總開支摘要 -->
         <div class="reminder-section">
             <h4 class="reminder-section-title">
-                <i class="fas fa-chart-pie"></i> 總費用統計
+                <i class="fas fa-users"></i> 各人總開支摘要
             </h4>
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 12px; color: white; text-align: center; margin-bottom: 16px;">
-                <div style="font-size: 14px; margin-bottom: 8px; opacity: 0.9;">旅程總費用（4人）</div>
-                <div style="font-size: 36px; font-weight: 700;" id="totalTripCost">HKD 0</div>
-                <div style="font-size: 14px; margin-top: 8px; opacity: 0.9;">
-                    已付 + 未付 + 已記錄花費
+            <div style="display: grid; gap: 12px;" id="expenseSummaryCards">
+                <!-- Kaho實際消費卡片 -->
+                <div class="person-summary-card" style="background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%); border-left: 4px solid #2196F3;">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                        <i class="fas fa-male" style="font-size: 24px; color: #1976D2;"></i>
+                        <h6 style="font-size: 18px; font-weight: 700; color: #1976D2; margin: 0;">Kaho</h6>
+                    </div>
+                    <div style="background: white; padding: 12px; border-radius: 8px;">
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #E0E0E0;">
+                            <span style="color: #666; font-size: 14px;">共同開支</span>
+                            <span style="font-weight: 600; color: #1976D2;" id="kahoCommonExpense">HKD 0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #E0E0E0;">
+                            <span style="color: #666; font-size: 14px;">個人消費</span>
+                            <span style="font-weight: 600; color: #FF9800;" id="kahoPersonalExpense">HKD 0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 8px 0; margin-top: 4px;">
+                            <span style="color: #202020; font-size: 16px; font-weight: 700;">總消費</span>
+                            <span style="font-weight: 700; color: #4CAF50; font-size: 18px;" id="kahoTotal">HKD 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dicken實際消費卡片 -->
+                <div class="person-summary-card" style="background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); border-left: 4px solid #4CAF50;">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                        <i class="fas fa-user" style="font-size: 24px; color: #2E7D32;"></i>
+                        <h6 style="font-size: 18px; font-weight: 700; color: #2E7D32; margin: 0;">Dicken</h6>
+                    </div>
+                    <div style="background: white; padding: 12px; border-radius: 8px;">
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #E0E0E0;">
+                            <span style="color: #666; font-size: 14px;">共同開支</span>
+                            <span style="font-weight: 600; color: #2E7D32;" id="dickenCommonExpense">HKD 0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #E0E0E0;">
+                            <span style="color: #666; font-size: 14px;">個人消費</span>
+                            <span style="font-weight: 600; color: #FF9800;" id="dickenPersonalExpense">HKD 0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 8px 0; margin-top: 4px;">
+                            <span style="color: #202020; font-size: 16px; font-weight: 700;">總消費</span>
+                            <span style="font-weight: 700; color: #4CAF50; font-size: 18px;" id="dickenTotal">HKD 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 泰氏夫婦實際消費卡片 -->
+                <div class="person-summary-card" style="background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%); border-left: 4px solid #9C27B0;">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                        <i class="fas fa-users" style="font-size: 24px; color: #7B1FA2;"></i>
+                        <h6 style="font-size: 18px; font-weight: 700; color: #7B1FA2; margin: 0;">泰氏夫婦</h6>
+                    </div>
+                    <div style="background: white; padding: 12px; border-radius: 8px;">
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #E0E0E0;">
+                            <span style="color: #666; font-size: 14px;">共同開支</span>
+                            <span style="font-weight: 600; color: #7B1FA2;" id="taiCommonExpense">HKD 0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #E0E0E0;">
+                            <span style="color: #666; font-size: 14px;">個人消費</span>
+                            <span style="font-weight: 600; color: #FF9800;" id="taiPersonalExpense">HKD 0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 8px 0; margin-top: 4px;">
+                            <span style="color: #202020; font-size: 16px; font-weight: 700;">總消費</span>
+                            <span style="font-weight: 700; color: #4CAF50; font-size: 18px;" id="taiTotal">HKD 0</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- 中段: 開支輸入表單 -->
         <div class="reminder-section">
             <h4 class="reminder-section-title">
-                <i class="fas fa-check-circle"></i> 已付款項
-            </h4>
-            <div style="background: #E8F5E9; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
-                <div style="font-weight: 700; margin-bottom: 12px; color: #2E7D32;">機票（各自已付）</div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 6px; padding-left: 12px;">
-                    <span style="color: #666;">Kaho：</span>
-                    <span style="font-weight: 600; color: #2E7D32;">HKD 780</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 6px; padding-left: 12px;">
-                    <span style="color: #666;">Dicken：</span>
-                    <span style="font-weight: 600; color: #2E7D32;">HKD 780</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 12px; padding-left: 12px;">
-                    <span style="color: #666;">泰氏夫婦（2人）：</span>
-                    <span style="font-weight: 600; color: #2E7D32;">HKD 1,560</span>
-                </div>
-                
-                <div style="font-weight: 700; margin-bottom: 12px; margin-top: 16px; color: #2E7D32;">住宿（Kaho已付）</div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 6px; padding-left: 12px;">
-                    <span style="color: #666;">第一晚：</span>
-                    <span style="font-weight: 600; color: #2E7D32;">HKD 903.1</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 6px; padding-left: 12px;">
-                    <span style="color: #666;">第二晚：</span>
-                    <span style="font-weight: 600; color: #2E7D32;">HKD 764</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 6px; padding-left: 12px;">
-                    <span style="color: #666;">第三到四晚：</span>
-                    <span style="font-weight: 600; color: #2E7D32;">HKD 3,746.28</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 12px; padding-left: 12px;">
-                    <span style="color: #666;">第五六七晚：</span>
-                    <span style="font-weight: 600; color: #2E7D32;">HKD 4,281.82</span>
-                </div>
-                
-                <div style="font-weight: 700; margin-bottom: 12px; margin-top: 16px; color: #2E7D32;">任天堂博物館（泰氏夫婦已付）</div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 12px; padding-left: 12px;">
-                    <span style="color: #666;">門票 JPY 13,200：</span>
-                    <span style="font-weight: 600; color: #2E7D32;">HKD 726</span>
-                </div>
-                
-                <div style="display: flex; justify-content: space-between; padding-top: 12px; margin-top: 12px; border-top: 2px solid #C8E6C9;">
-                    <span style="font-weight: 700; font-size: 16px;">已付總計：</span>
-                    <span style="font-weight: 700; color: #2E7D32; font-size: 18px;" id="totalPrepaid">HKD 13,541</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="reminder-section">
-            <h4 class="reminder-section-title">
-                <i class="fas fa-clock"></i> 未付款項
-            </h4>
-            <div style="background: #FFF3E0; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="color: #666;">租車費用：</span>
-                    <span style="font-weight: 700; color: #F57C00;">HKD 2,585</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="color: #666;">海女小屋：</span>
-                    <span style="font-weight: 700; color: #F57C00;">HKD 1,694</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="color: #666;">Burlesque Osaka：</span>
-                    <span style="font-weight: 700; color: #F57C00;">HKD 1,936</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="color: #666;">Grill Eight BBQ：</span>
-                    <span style="font-weight: 700; color: #F57C00;">HKD 1,320</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; padding-top: 8px; border-top: 2px solid #FFE0B2;">
-                    <span style="font-weight: 700;">未付總計：</span>
-                    <span style="font-weight: 700; color: #F57C00; font-size: 18px;" id="totalUnpaid">HKD 7,535</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="reminder-section">
-            <h4 class="reminder-section-title">
-                <i class="fas fa-users"></i> 各人支出統計
+                <i class="fas fa-edit"></i> 新增開支記錄
             </h4>
             
-            <div id="personExpenseStats">
-                <!-- Kaho -->
-                <div style="background: white; padding: 16px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid #2196F3;">
-                    <div style="font-weight: 700; font-size: 16px; color: #1976D2; margin-bottom: 12px;">
-                        👤 Kaho
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px;">
-                        <span style="color: #666;">預付款項：</span>
-                        <span id="Kaho-prepaid" style="font-weight: 600;">HKD 0</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px;">
-                        <span style="color: #666;">旅途花費：</span>
-                        <span id="Kaho-recorded" style="font-weight: 600;">HKD 0</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; padding-top: 8px; border-top: 2px solid #E3F2FD;">
-                        <span style="font-weight: 700;">總支出：</span>
-                        <span id="Kaho-total" style="font-weight: 700; color: #1976D2; font-size: 18px;">HKD 0</span>
-                    </div>
-                    <div style="font-size: 11px; color: #999; margin-top: 8px; padding-top: 8px; border-top: 1px solid #E3F2FD;">
-                        💡 總支出 = 預付款項 + 旅途花費
-                    </div>
+            <!-- Kaho輸入區 -->
+            <div style="background: #E3F2FD; padding: 16px; border-radius: 12px; margin-bottom: 16px; border-left: 4px solid #2196F3;">
+                <div style="font-weight: 700; font-size: 16px; color: #1976D2; margin-bottom: 12px; cursor: pointer;" onclick="toggleExpenseInput('kaho')">
+                    <i class="fas fa-chevron-down" id="kahoToggle"></i> 👨 Kaho
                 </div>
-
-                <!-- Dicken -->
-                <div style="background: white; padding: 16px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid #4CAF50;">
-                    <div style="font-weight: 700; font-size: 16px; color: #2E7D32; margin-bottom: 12px;">
-                        👤 Dicken
+                <div id="kahoInput" style="display: grid; gap: 10px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div>
+                            <label style="font-size: 12px; color: #666; font-weight: 600;">日期</label>
+                            <input type="date" id="kahoDate" style="width: 100%; padding: 8px; border: 2px solid #2196F3; border-radius: 6px; font-size: 14px;">
+                        </div>
+                        <div>
+                            <label style="font-size: 12px; color: #666; font-weight: 600;">支付類別</label>
+                            <select id="kahoCategory" style="width: 100%; padding: 8px; border: 2px solid #2196F3; border-radius: 6px; font-size: 14px;">
+                                <option value="膳食">膳食</option>
+                                <option value="雜費">雜費</option>
+                                <option value="門票">門票</option>
+                                <option value="其他" selected>其他</option>
+                            </select>
+                        </div>
                     </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px;">
-                        <span style="color: #666;">預付款項：</span>
-                        <span id="Dicken-prepaid" style="font-weight: 600;">HKD 0</span>
+                    <div>
+                        <label style="font-size: 12px; color: #666; font-weight: 600;">支付性質</label>
+                        <div style="display: flex; gap: 8px;" id="kahoNatureButtons">
+                            <button type="button" class="nature-btn active" data-nature="個人消費" onclick="selectNature('kaho', '個人消費')" style="flex: 1; padding: 8px; border: 2px solid #2196F3; background: #2196F3; color: white; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 14px;">
+                                個人消費
+                            </button>
+                            <button type="button" class="nature-btn" data-nature="團體消費" onclick="selectNature('kaho', '團體消費')" style="flex: 1; padding: 8px; border: 2px solid #E0E0E0; background: white; color: #666; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 14px;">
+                                團體消費
+                            </button>
+                        </div>
                     </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px;">
-                        <span style="color: #666;">旅途花費：</span>
-                        <span id="Dicken-recorded" style="font-weight: 600;">HKD 0</span>
+                    <div>
+                        <label style="font-size: 12px; color: #666; font-weight: 600;">貨幣</label>
+                        <div style="display: flex; gap: 8px;" id="kahoCurrencyButtons">
+                            <button type="button" class="currency-btn active" data-currency="HKD" onclick="selectCurrency('kaho', 'HKD')" style="flex: 1; padding: 8px; border: 2px solid #4CAF50; background: #4CAF50; color: white; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 14px;">
+                                HKD
+                            </button>
+                            <button type="button" class="currency-btn" data-currency="JPY" onclick="selectCurrency('kaho', 'JPY')" style="flex: 1; padding: 8px; border: 2px solid #E0E0E0; background: white; color: #666; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 14px;">
+                                JPY
+                            </button>
+                        </div>
                     </div>
-                    <div style="display: flex; justify-content: space-between; padding-top: 8px; border-top: 2px solid #E8F5E9;">
-                        <span style="font-weight: 700;">總支出：</span>
-                        <span id="Dicken-total" style="font-weight: 700; color: #2E7D32; font-size: 18px;">HKD 0</span>
+                    <div>
+                        <label style="font-size: 12px; color: #666; font-weight: 600;">金額</label>
+                        <input type="number" id="kahoAmount" placeholder="輸入金額" style="width: 100%; padding: 8px; border: 2px solid #2196F3; border-radius: 6px; font-size: 14px;">
                     </div>
-                    <div style="font-size: 11px; color: #999; margin-top: 8px; padding-top: 8px; border-top: 1px solid #E8F5E9;">
-                        💡 總支出 = 預付款項 + 旅途花費
-                    </div>
-                </div>
-
-                <!-- 泰氏夫婦 -->
-                <div style="background: white; padding: 16px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid #FF9800;">
-                    <div style="font-weight: 700; font-size: 16px; color: #F57C00; margin-bottom: 12px;">
-                        👤 泰氏夫婦
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px;">
-                        <span style="color: #666;">預付款項：</span>
-                        <span id="泰氏夫婦-prepaid" style="font-weight: 600;">HKD 0</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px;">
-                        <span style="color: #666;">旅途花費：</span>
-                        <span id="泰氏夫婦-recorded" style="font-weight: 600;">HKD 0</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; padding-top: 8px; border-top: 2px solid #FFF3E0;">
-                        <span style="font-weight: 700;">總支出：</span>
-                        <span id="泰氏夫婦-total" style="font-weight: 700; color: #F57C00; font-size: 18px;">HKD 0</span>
-                    </div>
-                    <div style="font-size: 11px; color: #999; margin-top: 8px; padding-top: 8px; border-top: 1px solid #FFF3E0;">
-                        💡 總支出 = 預付款項 + 旅途花費
-                    </div>
+                    <button class="add-expense-btn" onclick="addExpense('kaho')">
+                        <i class="fas fa-plus"></i> 添加記錄
+                    </button>
                 </div>
             </div>
-            
-            <div style="background: #E3F2FD; padding: 12px; border-radius: 8px; font-size: 12px; color: #1976D2; margin-top: 12px;">
-                <i class="fas fa-info-circle"></i> <strong>說明：</strong>「預付款項」是指出發前已支付的費用（機票、住宿、門票等），「旅途花費」是指旅途中通過花費記錄功能記錄的支出。
+
+            <!-- Dicken輸入區 -->
+            <div style="background: #E8F5E9; padding: 16px; border-radius: 12px; margin-bottom: 16px; border-left: 4px solid #4CAF50;">
+                <div style="font-weight: 700; font-size: 16px; color: #2E7D32; margin-bottom: 12px; cursor: pointer;" onclick="toggleExpenseInput('dicken')">
+                    <i class="fas fa-chevron-down" id="dickenToggle"></i> 👨 Dicken
+                </div>
+                <div id="dickenInput" style="display: grid; gap: 10px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div>
+                            <label style="font-size: 12px; color: #666; font-weight: 600;">日期</label>
+                            <input type="date" id="dickenDate" style="width: 100%; padding: 8px; border: 2px solid #4CAF50; border-radius: 6px; font-size: 14px;">
+                        </div>
+                        <div>
+                            <label style="font-size: 12px; color: #666; font-weight: 600;">支付類別</label>
+                            <select id="dickenCategory" style="width: 100%; padding: 8px; border: 2px solid #4CAF50; border-radius: 6px; font-size: 14px;">
+                                <option value="膳食">膳食</option>
+                                <option value="雜費">雜費</option>
+                                <option value="門票">門票</option>
+                                <option value="其他" selected>其他</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label style="font-size: 12px; color: #666; font-weight: 600;">支付性質</label>
+                        <div style="display: flex; gap: 8px;" id="dickenNatureButtons">
+                            <button type="button" class="nature-btn active" data-nature="個人消費" onclick="selectNature('dicken', '個人消費')" style="flex: 1; padding: 8px; border: 2px solid #4CAF50; background: #4CAF50; color: white; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 14px;">
+                                個人消費
+                            </button>
+                            <button type="button" class="nature-btn" data-nature="團體消費" onclick="selectNature('dicken', '團體消費')" style="flex: 1; padding: 8px; border: 2px solid #E0E0E0; background: white; color: #666; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 14px;">
+                                團體消費
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label style="font-size: 12px; color: #666; font-weight: 600;">貨幣</label>
+                        <div style="display: flex; gap: 8px;" id="dickenCurrencyButtons">
+                            <button type="button" class="currency-btn active" data-currency="HKD" onclick="selectCurrency('dicken', 'HKD')" style="flex: 1; padding: 8px; border: 2px solid #4CAF50; background: #4CAF50; color: white; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 14px;">
+                                HKD
+                            </button>
+                            <button type="button" class="currency-btn" data-currency="JPY" onclick="selectCurrency('dicken', 'JPY')" style="flex: 1; padding: 8px; border: 2px solid #E0E0E0; background: white; color: #666; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 14px;">
+                                JPY
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label style="font-size: 12px; color: #666; font-weight: 600;">金額</label>
+                        <input type="number" id="dickenAmount" placeholder="輸入金額" style="width: 100%; padding: 8px; border: 2px solid #4CAF50; border-radius: 6px; font-size: 14px;">
+                    </div>
+                    <button class="add-expense-btn" onclick="addExpense('dicken')">
+                        <i class="fas fa-plus"></i> 添加記錄
+                    </button>
+                </div>
+            </div>
+
+            <!-- 泰氏夫婦輸入區 -->
+            <div style="background: #F3E5F5; padding: 16px; border-radius: 12px; border-left: 4px solid #9C27B0;">
+                <div style="font-weight: 700; font-size: 16px; color: #7B1FA2; margin-bottom: 12px; cursor: pointer;" onclick="toggleExpenseInput('tai')">
+                    <i class="fas fa-chevron-down" id="taiToggle"></i> 👫 泰氏夫婦
+                </div>
+                <div id="taiInput" style="display: grid; gap: 10px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div>
+                            <label style="font-size: 12px; color: #666; font-weight: 600;">日期</label>
+                            <input type="date" id="taiDate" style="width: 100%; padding: 8px; border: 2px solid #9C27B0; border-radius: 6px; font-size: 14px;">
+                        </div>
+                        <div>
+                            <label style="font-size: 12px; color: #666; font-weight: 600;">支付類別</label>
+                            <select id="taiCategory" style="width: 100%; padding: 8px; border: 2px solid #9C27B0; border-radius: 6px; font-size: 14px;">
+                                <option value="膳食">膳食</option>
+                                <option value="雜費">雜費</option>
+                                <option value="門票">門票</option>
+                                <option value="其他" selected>其他</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label style="font-size: 12px; color: #666; font-weight: 600;">支付性質</label>
+                        <div style="display: flex; gap: 8px;" id="taiNatureButtons">
+                            <button type="button" class="nature-btn active" data-nature="個人消費" onclick="selectNature('tai', '個人消費')" style="flex: 1; padding: 8px; border: 2px solid #9C27B0; background: #9C27B0; color: white; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 14px;">
+                                個人消費
+                            </button>
+                            <button type="button" class="nature-btn" data-nature="團體消費" onclick="selectNature('tai', '團體消費')" style="flex: 1; padding: 8px; border: 2px solid #E0E0E0; background: white; color: #666; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 14px;">
+                                團體消費
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label style="font-size: 12px; color: #666; font-weight: 600;">貨幣</label>
+                        <div style="display: flex; gap: 8px;" id="taiCurrencyButtons">
+                            <button type="button" class="currency-btn active" data-currency="HKD" onclick="selectCurrency('tai', 'HKD')" style="flex: 1; padding: 8px; border: 2px solid #4CAF50; background: #4CAF50; color: white; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 14px;">
+                                HKD
+                            </button>
+                            <button type="button" class="currency-btn" data-currency="JPY" onclick="selectCurrency('tai', 'JPY')" style="flex: 1; padding: 8px; border: 2px solid #E0E0E0; background: white; color: #666; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 14px;">
+                                JPY
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label style="font-size: 12px; color: #666; font-weight: 600;">金額</label>
+                        <input type="number" id="taiAmount" placeholder="輸入金額" style="width: 100%; padding: 8px; border: 2px solid #9C27B0; border-radius: 6px; font-size: 14px;">
+                    </div>
+                    <button class="add-expense-btn" onclick="addExpense('tai')">
+                        <i class="fas fa-plus"></i> 添加記錄
+                    </button>
+                </div>
             </div>
         </div>
 
+        <!-- 底部: 各人記錄明細 -->
         <div class="reminder-section">
             <h4 class="reminder-section-title">
-                <i class="fas fa-balance-scale"></i> 費用攤分結算
+                <i class="fas fa-list-alt"></i> 各人記錄明細
             </h4>
             
-            <div style="background: #E3F2FD; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
-                    <span style="color: #666;">每人應付金額：</span>
-                    <span id="perPersonCost" style="font-weight: 700; color: #1976D2; font-size: 20px;">HKD 0</span>
-                </div>
-                <div style="font-size: 12px; color: #666; text-align: center;">
-                    （總費用 ÷ 4人，泰氏夫婦計2人）
+            <!-- Kaho記錄 -->
+            <div style="background: #E3F2FD; padding: 12px; border-radius: 8px; margin-bottom: 12px;">
+                <div style="font-weight: 700; color: #1976D2; margin-bottom: 8px;">👨 Kaho</div>
+                <div id="kahoRecordsList" class="expense-list">
+                    <div style="text-align: center; color: #999; font-size: 13px; padding: 8px;">暫無記錄</div>
                 </div>
             </div>
 
-            <div id="settlementDetails" style="background: #FFFDE7; padding: 16px; border-radius: 8px;">
-                <div style="font-weight: 700; margin-bottom: 12px; color: #F57C00;">
-                    💸 誰應該付錢給誰：
+            <!-- Dicken記錄 -->
+            <div style="background: #E8F5E9; padding: 12px; border-radius: 8px; margin-bottom: 12px;">
+                <div style="font-weight: 700; color: #2E7D32; margin-bottom: 8px;">👨 Dicken</div>
+                <div id="dickenRecordsList" class="expense-list">
+                    <div style="text-align: center; color: #999; font-size: 13px; padding: 8px;">暫無記錄</div>
                 </div>
-                <div id="settlementTransactions">
-                    <!-- 動態生成結算交易 -->
+            </div>
+
+            <!-- 泰氏夫婦記錄 -->
+            <div style="background: #F3E5F5; padding: 12px; border-radius: 8px;">
+                <div style="font-weight: 700; color: #7B1FA2; margin-bottom: 8px;">👫 泰氏夫婦</div>
+                <div id="taiRecordsList" class="expense-list">
+                    <div style="text-align: center; color: #999; font-size: 13px; padding: 8px;">暫無記錄</div>
                 </div>
             </div>
         </div>
 
-        <button onclick="calculateSettlement()" class="recalculate-settlement-btn" style="width: 100%; padding: 12px; background: #FF9800; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 16px; -webkit-tap-highlight-color: rgba(255, 152, 0, 0.2); -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; touch-action: manipulation; -webkit-appearance: none; appearance: none; min-height: 44px;">
-            <i class="fas fa-sync-alt"></i> 重新計算結算
-        </button>
-        
-        <button 
-            id="resetSettlementBtn"
-            type="button"
-            onclick="resetSettlement()"
-            style="
-                width: 100%;
-                padding: 12px;
-                background: #f44336;
-                color: white;
-                border: none;
-                border-radius: 8px;
-                font-weight: 600;
-                cursor: pointer;
-                margin-top: 12px;
-                font-size: 14px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                min-height: 48px;
-                -webkit-tap-highlight-color: rgba(244, 67, 54, 0.3);
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                user-select: none;
-                touch-action: manipulation;
-                -webkit-appearance: none;
-                appearance: none;
-                position: relative;
-                z-index: 10;
-                pointer-events: auto;
-            "
-        >
-            <i class="fas fa-redo"></i>
-            <span>重置記錄</span>
-        </button>
+        <!-- 底部: 自動攤分結算 -->
+        <div class="reminder-section">
+            <h4 class="reminder-section-title">
+                <i class="fas fa-calculator"></i> 自動攤分結算
+            </h4>
+            
+            <!-- 攤分摘要 -->
+            <div class="split-summary">
+                <div class="split-row">
+                    <span>已付款總額:</span>
+                    <span id="totalPrePaid" style="font-weight: 700;">HKD 10,421.2</span>
+                </div>
+                <div class="split-row">
+                    <span>團體消費總額:</span>
+                    <span id="totalGroupExpense" style="font-weight: 700;">HKD 0</span>
+                </div>
+                <div class="split-row">
+                    <span>總計:</span>
+                    <span id="grandTotal" style="font-weight: 700;">HKD 10,421.2</span>
+                </div>
+                <div class="split-total">
+                    人均應分攤: <span id="perPersonAmount">HKD 2,605.3</span>
+                </div>
+            </div>
+
+            <!-- 各人應分攤金額明細 -->
+            <div id="shouldPayBreakdown">
+                <!-- 將由JavaScript動態生成 -->
+            </div>
+
+            <!-- 結算結果 -->
+            <div id="settlementResults">
+                <!-- 將由JavaScript動態生成 -->
+            </div>
+
+            <button class="add-expense-btn" style="width: 100%; background: #FF9800;" onclick="calculateSettlement()">
+                <i class="fas fa-sync-alt"></i> 重新計算
+            </button>
+        </div>
     </div>
 
+    
     <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
         <i class="fas fa-arrow-up"></i>
     </button>
@@ -4065,21 +4395,20 @@
     <script>
         // 全局變數
         const exchangeRate = 0.055; // 1 JPY = 0.055 HKD
-        let expenseData = {};
-        
+
         // Scroll to specific day
         function scrollToDay(day) {
             const element = document.getElementById(`day${day}`);
             if (element) {
                 // iOS兼容的滾動方式
                 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                
+
                 if (isIOS) {
                     // iOS設備使用計算offset的方式
                     const headerHeight = document.querySelector('.header')?.offsetHeight || 200;
                     const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
                     const offsetPosition = elementPosition - headerHeight - 20;
-                    
+
                     window.scrollTo({
                         top: offsetPosition,
                         behavior: 'smooth'
@@ -4088,7 +4417,7 @@
                     // 其他設備使用scrollIntoView
                     element.scrollIntoView({ behavior: `smooth`, block: `start` });
                 }
-                
+
                 // Update active button
                 document.querySelectorAll(`.nav-btn`).forEach(btn => btn.classList.remove(`active`));
                 if (typeof event !== 'undefined' && event.target) {
@@ -4102,26 +4431,22 @@
 
         function toggleSidebar(type) {
             console.log(`toggleSidebar called with type: ${type}`);
-            
+
             const remindersSidebar = document.getElementById(`remindersSidebar`);
             const financeSidebar = document.getElementById(`financeSidebar`);
             const mapcodeSidebar = document.getElementById(`mapcodeSidebar`);
-            const expenseSidebar = document.getElementById(`expenseSidebar`);
-
             const currencySidebar = document.getElementById(`currencySidebar`);
             const routeSidebar = document.getElementById(`routeSidebar`);
-            const settlementSidebar = document.getElementById(`settlementSidebar`);
+            const expensesSidebar = document.getElementById(`expensesSidebar`);
             const overlay = document.getElementById(`overlay`);
 
             console.log(`Elements found:`, {
                 remindersSidebar: !!remindersSidebar,
                 financeSidebar: !!financeSidebar,
                 mapcodeSidebar: !!mapcodeSidebar,
-                expenseSidebar: !!expenseSidebar,
-
                 currencySidebar: !!currencySidebar,
                 routeSidebar: !!routeSidebar,
-                settlementSidebar: !!settlementSidebar,
+                expensesSidebar: !!expensesSidebar,
                 overlay: !!overlay
             });
 
@@ -4129,11 +4454,9 @@
             remindersSidebar.classList.remove(`open`);
             financeSidebar.classList.remove(`open`);
             mapcodeSidebar.classList.remove(`open`);
-            if (expenseSidebar) expenseSidebar.classList.remove(`open`);
-
             if (currencySidebar) currencySidebar.classList.remove(`open`);
             if (routeSidebar) routeSidebar.classList.remove(`open`);
-            if (settlementSidebar) settlementSidebar.classList.remove(`open`);
+            if (expensesSidebar) expensesSidebar.classList.remove(`open`);
 
             // Open the selected sidebar
             if (currentSidebar === type) {
@@ -4148,20 +4471,15 @@
                     financeSidebar.classList.add(`open`);
                 } else if (type === `mapcode`) {
                     mapcodeSidebar.classList.add(`open`);
-                } else if (type === `expense` && expenseSidebar) {
-                    console.log(`Adding 'open' class to expenseSidebar`);
-                    expenseSidebar.classList.add(`open`);
-
                 } else if (type === `currency` && currencySidebar) {
                     console.log(`Adding 'open' class to currencySidebar`);
                     currencySidebar.classList.add(`open`);
                 } else if (type === `route` && routeSidebar) {
                     console.log(`Adding 'open' class to routeSidebar`);
                     routeSidebar.classList.add(`open`);
-                } else if (type === `settlement` && settlementSidebar) {
-                    console.log(`Adding 'open' class to settlementSidebar`);
-                    settlementSidebar.classList.add(`open`);
-                    calculateSettlement(); // 打開結算側邊欄時自動計算
+                } else if (type === `expenses` && expensesSidebar) {
+                    console.log(`Adding 'open' class to expensesSidebar`);
+                    expensesSidebar.classList.add(`open`);
                 }
                 overlay.classList.add(`active`);
                 currentSidebar = type;
@@ -4197,7 +4515,7 @@
                     document.body.appendChild(textArea);
                     textArea.focus();
                     textArea.select();
-                    
+
                     try {
                         const successful = document.execCommand('copy');
                         if (successful) {
@@ -4209,7 +4527,7 @@
                         console.error('複製失敗:', err);
                         showCopyError(button);
                     }
-                    
+
                     document.body.removeChild(textArea);
                 }
             } catch (err) {
@@ -4222,7 +4540,7 @@
             const originalText = button.innerHTML;
             button.innerHTML = '<i class="fas fa-check"></i> 已複製';
             button.style.background = '#4CAF50';
-            
+
             setTimeout(() => {
                 button.innerHTML = originalText;
                 button.style.background = '';
@@ -4233,7 +4551,7 @@
             const originalText = button.innerHTML;
             button.innerHTML = '<i class="fas fa-times"></i> 失敗';
             button.style.background = '#f44336';
-            
+
             setTimeout(() => {
                 button.innerHTML = originalText;
                 button.style.background = '';
@@ -4243,14 +4561,14 @@
         // Open Google Maps - iOS兼容版本
         function openGoogleMaps(address) {
             console.log('openGoogleMaps called:', address); // 調試用
-            
+
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-            
+
             // 檢查是否為坐標格式（例如：34.50853922164895, 136.7856158427696）
             const isCoordinates = /^-?\d+\.?\d*,\s*-?\d+\.?\d*$/.test(address.trim());
-            
+
             let mapsUrl;
-            
+
             if (isCoordinates) {
                 // 如果是坐標格式，直接使用坐標
                 const coords = address.trim();
@@ -4260,9 +4578,9 @@
                 const encodedAddress = encodeURIComponent(address);
                 mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}&travelmode=driving`;
             }
-            
+
             console.log('Opening maps URL:', mapsUrl); // 調試用
-            
+
             if (isIOS) {
                 // iOS設備：使用window.location.href更可靠
                 window.location.href = mapsUrl;
@@ -4276,10 +4594,10 @@
         function saveReminders() {
             const checkboxes = document.querySelectorAll(`.reminder-checkbox`);
             const states = {};
-            
+
             checkboxes.forEach(checkbox => {
                 states[checkbox.id] = checkbox.checked;
-                
+
                 // Update visual state
                 const reminderItem = checkbox.closest(`.reminder-item`);
                 if (reminderItem) {
@@ -4290,7 +4608,7 @@
                     }
                 }
             });
-            
+
             localStorage.setItem(`japanTripReminders`, JSON.stringify(states));
         }
 
@@ -4303,7 +4621,7 @@
                     const checkbox = document.getElementById(id);
                     if (checkbox) {
                         checkbox.checked = states[id];
-                        
+
                         // Update visual state
                         const reminderItem = checkbox.closest(`.reminder-item`);
                         if (reminderItem && states[id]) {
@@ -4314,369 +4632,13 @@
             }
         }
 
-        // 花費追蹤功能 - 新版本支持貨幣選擇和分類
-        // 添加新的花費記錄
-        function addExpenseEntry(day) {
-            const entryId = `entry_${day}_${Date.now()}`;
-            const container = document.getElementById(`expenseEntries${day}`);
-            
-            const entryHTML = `
-                <div class="expense-entry" data-entry-id="${entryId}" style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; border: 1px solid #e0e0e0; transition: all 0.2s;">
-                    <div style="display: grid; grid-template-columns: 1.5fr 1fr auto; gap: 8px; margin-bottom: 8px;">
-                        <select class="expense-category" onchange="saveExpenses()" style="padding: 6px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px;">
-                            <option value="">選擇分類</option>
-                            <option value="早餐">🍳 早餐</option>
-                            <option value="午餐">🍜 午餐</option>
-                            <option value="晚餐">🍱 晚餐</option>
-                            <option value="交通">🚇 交通</option>
-                            <option value="門票">🎫 門票</option>
-                            <option value="購物">🛍️ 購物</option>
-                            <option value="住宿">🏨 住宿</option>
-                            <option value="雜費">📝 雜費</option>
-                            <option value="其他">💰 其他</option>
-                        </select>
-                        <select class="expense-payer" onchange="handlePayerChange(this)" style="padding: 6px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px;">
-                            <option value="">選擇付款人</option>
-                            <option value="Kaho">👤 Kaho</option>
-                            <option value="Dicken">👤 Dicken</option>
-                            <option value="泰氏夫婦">👤 泰氏夫婦</option>
-                            <option value="公家">👥 公家</option>
-                        </select>
-                        <button onclick="deleteExpenseEntry('${entryId}')" class="delete-expense-btn" style="padding: 6px 10px; background: #EF5350; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; transition: all 0.2s; -webkit-tap-highlight-color: rgba(244, 67, 54, 0.2); -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; touch-action: manipulation; -webkit-appearance: none; appearance: none; min-height: 40px; min-width: 50px;">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                    <div style="display: flex; gap: 8px;">
-                        <input type="number" class="expense-amount" placeholder="金額" onchange="handleAmountChange(this)" style="flex: 1; padding: 6px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px;">
-                        <select class="expense-currency" onchange="handleCurrencyChange(this)" style="width: 80px; padding: 6px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px;">
-                            <option value="HKD">HKD</option>
-                            <option value="JPY">JPY</option>
-                        </select>
-                    </div>
-                    <div class="hkd-display" style="display: none; margin-top: 6px; font-size: 12px; color: #666; text-align: right;">
-                        ≈ HKD <span class="hkd-amount">0</span>
-                    </div>
-                    <div class="public-payment-hint" style="display: none; margin-top: 6px; font-size: 12px; color: #FF9800; padding-left: 8px;">
-                        💡 公家付款：每人分攤 HKD <span class="per-person-amount">0</span>
-                    </div>
-                </div>
-            `;
-            
-            container.insertAdjacentHTML('beforeend', entryHTML);
-            saveExpenses();
-        }
 
-        // 刪除花費記錄
-        function deleteExpenseEntry(entryId) {
-            const entry = document.querySelector(`[data-entry-id="${entryId}"]`);
-            if (entry && confirm('確定要刪除這筆記錄嗎？')) {
-                entry.remove();
-                saveExpenses();
-                calculateAllTotals();
-            }
-        }
-
-        // 處理付款人變化
-        function handlePayerChange(select) {
-            const entry = select.closest('.expense-entry');
-            const payer = select.value;
-            const publicHint = entry.querySelector('.public-payment-hint');
-            const amountInput = entry.querySelector('.expense-amount');
-            const currency = entry.querySelector('.expense-currency').value;
-            const amount = parseFloat(amountInput.value) || 0;
-            
-            if (payer === '公家' && amount > 0) {
-                // 顯示公家付款提示
-                let hkdAmount = amount;
-                if (currency === 'JPY') {
-                    hkdAmount = amount * exchangeRate;
-                }
-                const perPerson = Math.round(hkdAmount / 4);
-                const perPersonSpan = entry.querySelector('.per-person-amount');
-                perPersonSpan.textContent = perPerson.toLocaleString();
-                publicHint.style.display = 'block';
-            } else {
-                // 隱藏公家付款提示
-                publicHint.style.display = 'none';
-            }
-            
-            saveExpenses();
-        }
-
-        // 處理金額變化
-        function handleAmountChange(input) {
-            const entry = input.closest('.expense-entry');
-            const currency = entry.querySelector('.expense-currency').value;
-            const amount = parseFloat(input.value) || 0;
-            const payer = entry.querySelector('.expense-payer').value;
-            
-            if (currency === 'JPY' && amount > 0) {
-                const hkdAmount = Math.round(amount * exchangeRate);
-                const hkdDisplay = entry.querySelector('.hkd-display');
-                const hkdAmountSpan = entry.querySelector('.hkd-amount');
-                hkdDisplay.style.display = 'block';
-                hkdAmountSpan.textContent = hkdAmount.toLocaleString();
-            }
-            
-            // 更新公家付款提示
-            if (payer === '公家' && amount > 0) {
-                let hkdAmount = amount;
-                if (currency === 'JPY') {
-                    hkdAmount = amount * exchangeRate;
-                }
-                const perPerson = Math.round(hkdAmount / 4);
-                const publicHint = entry.querySelector('.public-payment-hint');
-                const perPersonSpan = entry.querySelector('.per-person-amount');
-                perPersonSpan.textContent = perPerson.toLocaleString();
-                publicHint.style.display = 'block';
-            }
-            
-            saveExpenses();
-        }
-
-        // 處理貨幣變化
-        function handleCurrencyChange(select) {
-            const entry = select.closest('.expense-entry');
-            const amountInput = entry.querySelector('.expense-amount');
-            const amount = parseFloat(amountInput.value) || 0;
-            const hkdDisplay = entry.querySelector('.hkd-display');
-            const hkdAmountSpan = entry.querySelector('.hkd-amount');
-            const payer = entry.querySelector('.expense-payer').value;
-            
-            if (select.value === 'JPY' && amount > 0) {
-                const hkdAmount = Math.round(amount * exchangeRate);
-                hkdDisplay.style.display = 'block';
-                hkdAmountSpan.textContent = hkdAmount.toLocaleString();
-            } else {
-                hkdDisplay.style.display = 'none';
-            }
-            
-            // 更新公家付款提示
-            if (payer === '公家' && amount > 0) {
-                let hkdAmount = amount;
-                if (select.value === 'JPY') {
-                    hkdAmount = amount * exchangeRate;
-                }
-                const perPerson = Math.round(hkdAmount / 4);
-                const publicHint = entry.querySelector('.public-payment-hint');
-                const perPersonSpan = entry.querySelector('.per-person-amount');
-                perPersonSpan.textContent = perPerson.toLocaleString();
-                publicHint.style.display = 'block';
-            }
-            
-            saveExpenses();
-        }
-
-        // 保存所有記錄到localStorage
-        function saveExpenses() {
-            expenseData = {};
-            
-            for (let day = 1; day <= 8; day++) {
-                const entries = document.querySelectorAll(`[data-day="${day}"] .expense-entry`);
-                expenseData[day] = [];
-                
-                entries.forEach(entry => {
-                    const category = entry.querySelector('.expense-category').value;
-                    const amount = parseFloat(entry.querySelector('.expense-amount').value) || 0;
-                    const currency = entry.querySelector('.expense-currency').value;
-                    const payer = entry.querySelector('.expense-payer').value;
-                    
-                    if (amount > 0) {
-                        expenseData[day].push({
-                            id: entry.dataset.entryId,
-                            category,
-                            amount,
-                            currency,
-                            payer
-                        });
-                    }
-                });
-            }
-            
-            localStorage.setItem('expenseDataV2', JSON.stringify(expenseData));
-            calculateAllTotals();
-        }
-
-        // 計算所有總額
-        function calculateAllTotals() {
-            // === 1. 已付費用（固定金額）===
-            const prepaidExpenses = 13541; // 機票 + 住宿 + 任天堂門票
-            
-            // === 2. 計算已記錄花費 ===
-            let recordedExpenses = 0;
-            
-            for (let day = 1; day <= 8; day++) {
-                let dayTotal = 0;
-                const entries = document.querySelectorAll(`[data-day="${day}"] .expense-entry`);
-                
-                entries.forEach(entry => {
-                    const amount = parseFloat(entry.querySelector('.expense-amount').value) || 0;
-                    const currency = entry.querySelector('.expense-currency').value;
-                    
-                    let hkdAmount = amount;
-                    if (currency === 'JPY') {
-                        hkdAmount = amount * exchangeRate;
-                    }
-                    
-                    dayTotal += hkdAmount;
-                });
-                
-                // 更新每日小計
-                const dayTotalElement = document.getElementById(`dayTotal${day}`);
-                if (dayTotalElement) {
-                    dayTotalElement.textContent = `HKD ${Math.round(dayTotal).toLocaleString()}`;
-                }
-                
-                recordedExpenses += dayTotal;
-            }
-            
-            // === 3. 實際總支出 = 已付費用 + 已記錄花費 ===
-            const totalActual = prepaidExpenses + recordedExpenses;
-            
-            // === 4. 更新顯示 ===
-            // 更新實際支出
-            const totalActualElement = document.getElementById('totalActual');
-            if (totalActualElement) {
-                totalActualElement.textContent = `HKD ${Math.round(totalActual).toLocaleString()}`;
-            }
-            
-            // 更新已付費用顯示
-            const prepaidDisplayElement = document.getElementById('prepaidDisplay');
-            if (prepaidDisplayElement) {
-                prepaidDisplayElement.textContent = `HKD ${prepaidExpenses.toLocaleString()}`;
-            }
-            
-            // 更新已記錄花費顯示
-            const recordedExpenseDisplayElement = document.getElementById('recordedExpenseDisplay');
-            if (recordedExpenseDisplayElement) {
-                recordedExpenseDisplayElement.textContent = `HKD ${Math.round(recordedExpenses).toLocaleString()}`;
-            }
-            
-            // 更新剩餘預算
-            const totalBudget = 42764;
-            const remaining = totalBudget - totalActual;
-            const remainingBudgetElement = document.getElementById('remainingBudget');
-            if (remainingBudgetElement) {
-                remainingBudgetElement.textContent = `HKD ${Math.round(remaining).toLocaleString()}`;
-                remainingBudgetElement.style.color = remaining >= 0 ? '#4CAF50' : '#EF5350';
-            }
-        }
-
-        // 載入記錄
-        function loadExpenses() {
-            const saved = localStorage.getItem('expenseDataV2');
-            if (saved) {
-                expenseData = JSON.parse(saved);
-                
-                for (let day = 1; day <= 8; day++) {
-                    if (expenseData[day] && expenseData[day].length > 0) {
-                        expenseData[day].forEach(record => {
-                            // 先添加空記錄
-                            const container = document.getElementById(`expenseEntries${day}`);
-                            const entryHTML = `
-                                <div class="expense-entry" data-entry-id="${record.id}" style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 8px; border: 1px solid #e0e0e0; transition: all 0.2s;">
-                                    <div style="display: grid; grid-template-columns: 1.5fr 1fr auto; gap: 8px; margin-bottom: 8px;">
-                                        <select class="expense-category" onchange="saveExpenses()" style="padding: 6px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px;">
-                                            <option value="">選擇分類</option>
-                                            <option value="早餐">🍳 早餐</option>
-                                            <option value="午餐">🍜 午餐</option>
-                                            <option value="晚餐">🍱 晚餐</option>
-                                            <option value="交通">🚇 交通</option>
-                                            <option value="門票">🎫 門票</option>
-                                            <option value="購物">🛍️ 購物</option>
-                                            <option value="住宿">🏨 住宿</option>
-                                            <option value="雜費">📝 雜費</option>
-                                            <option value="其他">💰 其他</option>
-                                        </select>
-                                        <select class="expense-payer" onchange="handlePayerChange(this)" style="padding: 6px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px;">
-                                            <option value="">選擇付款人</option>
-                                            <option value="Kaho" ${record.payer === 'Kaho' ? 'selected' : ''}>👤 Kaho</option>
-                                            <option value="Dicken" ${record.payer === 'Dicken' ? 'selected' : ''}>👤 Dicken</option>
-                                            <option value="泰氏夫婦" ${record.payer === '泰氏夫婦' ? 'selected' : ''}>👤 泰氏夫婦</option>
-                                            <option value="公家" ${record.payer === '公家' ? 'selected' : ''}>👥 公家</option>
-                                        </select>
-                                        <button onclick="deleteExpenseEntry('${record.id}')" class="delete-expense-btn" style="padding: 6px 10px; background: #EF5350; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; transition: all 0.2s; -webkit-tap-highlight-color: rgba(244, 67, 54, 0.2); -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; touch-action: manipulation; -webkit-appearance: none; appearance: none; min-height: 40px; min-width: 50px;">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                    <div style="display: flex; gap: 8px;">
-                                        <input type="number" class="expense-amount" placeholder="金額" value="${record.amount}" onchange="handleAmountChange(this)" style="flex: 1; padding: 6px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px;">
-                                        <select class="expense-currency" onchange="handleCurrencyChange(this)" style="width: 80px; padding: 6px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px;">
-                                            <option value="HKD" ${record.currency === 'HKD' ? 'selected' : ''}>HKD</option>
-                                            <option value="JPY" ${record.currency === 'JPY' ? 'selected' : ''}>JPY</option>
-                                        </select>
-                                    </div>
-                                    <div class="hkd-display" style="display: ${record.currency === 'JPY' ? 'block' : 'none'}; margin-top: 6px; font-size: 12px; color: #666; text-align: right;">
-                                        ≈ HKD <span class="hkd-amount">${Math.round(record.amount * exchangeRate).toLocaleString()}</span>
-                                    </div>
-                                </div>
-                            `;
-                            container.insertAdjacentHTML('beforeend', entryHTML);
-                            
-                            // 設置分類值
-                            const entry = container.querySelector(`[data-entry-id="${record.id}"]`);
-                            if (entry) {
-                                entry.querySelector('.expense-category').value = record.category;
-                            }
-                        });
-                    }
-                }
-                
-                calculateAllTotals();
-            }
-        }
-
-        // 重置所有記錄
-        function resetExpenses() {
-            console.log('resetExpenses called - iOS compatible'); // 調試用
-            if (confirm('確定要重置所有花費記錄嗎？這將刪除所有已記錄的花費資料。')) {
-                expenseData = {};
-                localStorage.removeItem('expenseDataV2');
-                
-                // 清空所有記錄容器
-                for (let day = 1; day <= 8; day++) {
-                    const container = document.getElementById(`expenseEntries${day}`);
-                    if (container) {
-                        container.innerHTML = '';
-                    }
-                }
-                
-                calculateAllTotals();
-                alert('所有花費記錄已清除！');
-            }
-        }
-        
-        // 重置費用結算記錄（費用結算側邊欄專用）
-        function resetSettlement() {
-            console.log('resetSettlement called - iOS compatible'); // 調試用
-            if (confirm('確定要重置所有費用記錄嗎？這將刪除所有已記錄的花費資料並重新計算結算。')) {
-                // 清除花費記錄數據
-                expenseData = {};
-                localStorage.removeItem('expenseDataV2');
-                
-                // 清空所有記錄容器
-                for (let day = 1; day <= 8; day++) {
-                    const container = document.getElementById(`expenseEntries${day}`);
-                    if (container) {
-                        container.innerHTML = '';
-                    }
-                }
-                
-                // 重新計算總額
-                calculateAllTotals();
-                
-                // 重新計算結算
-                calculateSettlement();
-                
-                alert('費用記錄已重置！');
-            }
-        }
 
         // 打包清單保存功能
         function savePackingList() {
             const checkboxes = document.querySelectorAll(`#packingSidebar .reminder-checkbox`);
             const states = {};
-            
+
             checkboxes.forEach(checkbox => {
                 states[checkbox.id] = checkbox.checked;
                 const reminderItem = checkbox.closest(`.reminder-item`);
@@ -4688,7 +4650,7 @@
                     }
                 }
             });
-            
+
             localStorage.setItem(`packingList`, JSON.stringify(states));
         }
 
@@ -4722,181 +4684,7 @@
             document.getElementById(`jpyResult`).textContent = `JPY ${jpy.toLocaleString(`en-US`, {minimumFractionDigits: 0, maximumFractionDigits: 0})}`;
         }
 
-        // 費用結算計算函數
-        function calculateSettlement() {
-            const EXCHANGE_RATE = 0.055;
-            
-            // 計算各人的已記錄花費
-            const personExpenses = {
-                'Kaho': { prepaid: 0, recorded: 0, total: 0 },
-                'Dicken': { prepaid: 0, recorded: 0, total: 0 },
-                '泰氏夫婦': { prepaid: 0, recorded: 0, total: 0 }
-            };
-            
-            // === 1. 先分配已付款項（這些也算是已記錄的花費）===
-            
-            // 機票：各自已付
-            personExpenses['Kaho'].prepaid += 780;
-            personExpenses['Dicken'].prepaid += 780;
-            personExpenses['泰氏夫婦'].prepaid += 1560; // 2人
-            
-            // 住宿：全部由Kaho支付
-            personExpenses['Kaho'].prepaid += 903.1;   // 第一晚
-            personExpenses['Kaho'].prepaid += 764;     // 第二晚
-            personExpenses['Kaho'].prepaid += 3746.28; // 第三到四晚
-            personExpenses['Kaho'].prepaid += 4281.82; // 第五六七晚
-            // Kaho住宿總計：9695.2
-            
-            // 任天堂博物館門票：泰氏夫婦支付
-            personExpenses['泰氏夫婦'].prepaid += 726; // JPY 13200 × 0.055
-            
-            // === 2. 計算花費記錄中的已記錄花費 ===
-            let publicTotal = 0; // 統計公家付款總額
-            let recordedExpensesOnly = 0; // 統計花費記錄中的支出（不包括已付款項）
-            
-            for (let day = 1; day <= 8; day++) {
-                if (expenseData[day]) {
-                    expenseData[day].forEach(record => {
-                        if (record.payer && record.amount > 0) {
-                            let hkdAmount = record.amount;
-                            if (record.currency === 'JPY') {
-                                hkdAmount = record.amount * EXCHANGE_RATE;
-                            }
-                            
-                            // 🆕 處理「公家」付款
-                            if (record.payer === '公家') {
-                                // 公家付款代表4人平分，每人分攤1/4
-                                const perPersonAmount = hkdAmount / 4;
-                                personExpenses['Kaho'].recorded += perPersonAmount;
-                                personExpenses['Dicken'].recorded += perPersonAmount;
-                                personExpenses['泰氏夫婦'].recorded += perPersonAmount * 2; // 夫婦2人份
-                                publicTotal += hkdAmount; // 累計公家付款總額
-                            } else if (personExpenses[record.payer]) {
-                                // 個人付款
-                                personExpenses[record.payer].recorded += hkdAmount;
-                            }
-                            
-                            recordedExpensesOnly += hkdAmount;
-                        }
-                    });
-                }
-            }
-            
-            // === 3. 計算各人總支出（已付 + 已記錄）===
-            for (let person of ['Kaho', 'Dicken', '泰氏夫婦']) {
-                personExpenses[person].total = personExpenses[person].prepaid + personExpenses[person].recorded;
-            }
-            
-            // === 4. 計算旅程總費用 ===
-            const prepaidTotal = 13541;  // 已付款項總計
-            const unpaidTotal = 7535;    // 未付款項總計（租車2585 + 海女小屋1694 + Burlesque1936 + Grill Eight BBQ1320）
-            
-            // ✅ 已記錄花費 = 已付款項 + 花費記錄
-            const totalRecordedExpenses = prepaidTotal + recordedExpensesOnly;
-            
-            // ✅ 旅程總費用 = 已付 + 未付 + 花費記錄
-            const totalTripCost = prepaidTotal + unpaidTotal + recordedExpensesOnly;
-            
-            // 因為泰氏夫婦是2人，總共4人
-            const perPerson = totalTripCost / 4;
-            
-            // 更新UI - 總費用統計
-            document.getElementById('totalTripCost').textContent = `HKD ${Math.round(totalTripCost).toLocaleString()}`;
-            document.getElementById('totalPrepaid').textContent = `HKD ${Math.round(prepaidTotal).toLocaleString()}`;
-            document.getElementById('totalUnpaid').textContent = `HKD ${Math.round(unpaidTotal).toLocaleString()}`;
-            
-            // 更新每人應付金額（如果元素存在）
-            const perPersonElement = document.getElementById('perPersonCost');
-            if (perPersonElement) {
-                perPersonElement.textContent = `HKD ${Math.round(perPerson).toLocaleString()}`;
-            }
-            
-            // 更新各人支出統計
-            for (let person of ['Kaho', 'Dicken', '泰氏夫婦']) {
-                const prepaid = Math.round(personExpenses[person].prepaid);
-                const recorded = Math.round(personExpenses[person].recorded);
-                const total = Math.round(personExpenses[person].total);
-                
-                document.getElementById(`${person}-prepaid`).textContent = `HKD ${prepaid.toLocaleString()}`;
-                document.getElementById(`${person}-recorded`).textContent = `HKD ${recorded.toLocaleString()}`;
-                document.getElementById(`${person}-total`).textContent = `HKD ${total.toLocaleString()}`;
-            }
-            
-            // ✅ 修正：計算結算時要考慮未付款項也需要平分
-            // 未付款項應該由4人平分
-            const unpaidPerPerson = unpaidTotal / 4;
-            
-            // 計算結算（誰應該付錢給誰）
-            // 考慮泰氏夫婦是2人份
-            const balances = {
-                'Kaho': personExpenses['Kaho'].total - perPerson,           // Kaho是1人
-                'Dicken': personExpenses['Dicken'].total - perPerson,       // Dicken是1人
-                '泰氏夫婦': personExpenses['泰氏夫婦'].total - (perPerson * 2)  // 泰氏夫婦是2人
-            };
-            
-            // 使用貪心算法計算最少交易次數
-            const transactions = [];
-            const debtors = []; // 少付的人（餘額為負，需要補錢）
-            const creditors = []; // 多付的人（餘額為正，應收錢）
-            
-            Object.keys(balances).forEach(person => {
-                const balance = Math.round(balances[person]);
-                if (balance < -10) { // 少付了，需要補錢（餘額為負）
-                    debtors.push({ person, amount: -balance });
-                } else if (balance > 10) { // 多付了，應收錢（餘額為正）
-                    creditors.push({ person, amount: balance });
-                }
-            });
-            
-            // 生成交易列表
-            let i = 0, j = 0;
-            while (i < debtors.length && j < creditors.length) {
-                const debtor = debtors[i];
-                const creditor = creditors[j];
-                const amount = Math.min(debtor.amount, creditor.amount);
-                
-                if (amount > 0) {
-                    transactions.push({
-                        from: debtor.person,
-                        to: creditor.person,
-                        amount: Math.round(amount)
-                    });
-                }
-                
-                debtor.amount -= amount;
-                creditor.amount -= amount;
-                
-                if (debtor.amount === 0) i++;
-                if (creditor.amount === 0) j++;
-            }
-            
-            // 更新結算交易UI
-            const transactionsContainer = document.getElementById('settlementTransactions');
-            if (transactions.length === 0) {
-                transactionsContainer.innerHTML = `
-                    <div style="text-align: center; color: #4CAF50; padding: 20px;">
-                        <i class="fas fa-check-circle" style="font-size: 48px; margin-bottom: 12px;"></i>
-                        <div style="font-weight: 600; font-size: 16px;">費用已平衡！</div>
-                        <div style="font-size: 14px; margin-top: 8px; opacity: 0.8;">所有人的支出都已經平均分配</div>
-                    </div>
-                `;
-            } else {
-                transactionsContainer.innerHTML = transactions.map(t => `
-                    <div style="background: white; padding: 12px; border-radius: 6px; margin-bottom: 8px; border-left: 3px solid #FF9800;">
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                            <div style="flex: 1;">
-                                <strong style="color: #1976D2;">${t.from}</strong>
-                                <span style="color: #666; margin: 0 8px;">→</span>
-                                <strong style="color: #2E7D32;">${t.to}</strong>
-                            </div>
-                            <div style="font-weight: 700; color: #F57C00; font-size: 18px;">
-                                HKD ${t.amount.toLocaleString()}
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
-            }
-        }
+
 
         // Back to top button
         function scrollToTop() {
@@ -4917,7 +4705,7 @@
         window.addEventListener(`scroll`, () => {
             const dayCards = document.querySelectorAll(`.day-card`);
             const navButtons = document.querySelectorAll(`.nav-btn`);
-            
+
             let currentDay = 1;
             dayCards.forEach((card, index) => {
                 const rect = card.getBoundingClientRect();
@@ -4925,7 +4713,7 @@
                     currentDay = index + 1;
                 }
             });
-            
+
             navButtons.forEach((btn, index) => {
                 if (index + 1 === currentDay) {
                     btn.classList.add(`active`);
@@ -4946,53 +4734,547 @@
         // Initialize
         document.addEventListener(`DOMContentLoaded`, () => {
             console.log('DOM loaded - iOS compatible'); // 調試用
-            
+
             // iOS特定：確保所有按鈕可點擊
             if (isIOS) {
-                const buttons = document.querySelectorAll('button, .nav-btn, .action-btn, .copy-btn, .nav-map-btn, .delete-expense-btn, .reset-expenses-btn, .recalculate-settlement-btn');
+                const buttons = document.querySelectorAll('button, .nav-btn, .action-btn, .copy-btn, .nav-map-btn');
                 buttons.forEach(button => {
                     // iOS Safari需要明確的cursor樣式
                     button.style.cursor = 'pointer';
-                    
+
                     // 為所有可點擊元素添加touchstart事件（iOS優化）
                     button.addEventListener('touchstart', function() {
                         // iOS觸控優化：空函數即可啟用快速點擊
                     }, { passive: true });
                 });
-                
+
                 console.log(`iOS optimization applied to ${buttons.length} buttons`);
-                
-                // 特別處理花費記錄和費用結算按鈕（包括resetSettlement按鈕）
-                const expenseButtons = document.querySelectorAll('.delete-expense-btn, .reset-expenses-btn, .recalculate-settlement-btn, #resetSettlementBtn');
-                expenseButtons.forEach(button => {
-                    // 添加觸控反饋
-                    button.addEventListener('touchstart', function() {
-                        console.log('Button touchstart:', this.id || this.className); // 調試用
-                        this.style.opacity = '0.8';
-                        this.style.transform = 'scale(0.95)';
-                    }, { passive: true });
-                    
-                    button.addEventListener('touchend', function() {
-                        console.log('Button touchend:', this.id || this.className); // 調試用
-                        this.style.opacity = '1';
-                        this.style.transform = 'scale(1)';
-                    }, { passive: true });
-                    
-                    button.addEventListener('touchcancel', function() {
-                        this.style.opacity = '1';
-                        this.style.transform = 'scale(1)';
-                    }, { passive: true });
-                });
-                
-                console.log(`iOS expense button optimization applied to ${expenseButtons.length} buttons`);
             }
-            
+
             loadReminders();
             loadExpenses();
+            calculateSettlement();
             
+            // 設定日期輸入框為當天日期
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('kahoDate').value = today;
+            document.getElementById('dickenDate').value = today;
+            document.getElementById('taiDate').value = today;
+
             console.log('Initialization complete'); // 調試用
         });
-    </script>
+
+        // ========== 開支記錄功能 ==========
+        
+        // 開支記錄數據結構
+        let expensesData = {
+            kaho: [],
+            dicken: [],
+            tai: []
+        };
+
+        // 已付款數據(從財務總覽提取 + 機票)
+        const prePaidData = {
+            kaho: 9695.2 + 780,    // 住宿 HKD 9695.2 + 機票 HKD 780
+            dicken: 0 + 780,       // 機票 HKD 780
+            tai: 726 + 1560        // 任天堂門票 HKD 726 + 機票 HKD 1560 (2人)
+        };
+
+        // 折疊/展開輸入區
+        function toggleExpenseInput(person) {
+            const inputDiv = document.getElementById(`${person}Input`);
+            const toggleIcon = document.getElementById(`${person}Toggle`);
+            
+            if (inputDiv.style.display === 'none') {
+                inputDiv.style.display = 'grid';
+                toggleIcon.className = 'fas fa-chevron-down';
+            } else {
+                inputDiv.style.display = 'none';
+                toggleIcon.className = 'fas fa-chevron-right';
+            }
+        }
+
+        // 選擇貨幣按鈕
+        function selectCurrency(person, currency) {
+            const buttons = document.querySelectorAll(`#${person}CurrencyButtons .currency-btn`);
+            buttons.forEach(btn => {
+                if (btn.dataset.currency === currency) {
+                    btn.style.border = '2px solid #4CAF50';
+                    btn.style.background = '#4CAF50';
+                    btn.style.color = 'white';
+                    btn.classList.add('active');
+                } else {
+                    btn.style.border = '2px solid #E0E0E0';
+                    btn.style.background = 'white';
+                    btn.style.color = '#666';
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // 選擇支付性質按鈕
+        function selectNature(person, nature) {
+            const buttons = document.querySelectorAll(`#${person}NatureButtons .nature-btn`);
+            const borderColor = person === 'kaho' ? '#2196F3' : (person === 'dicken' ? '#4CAF50' : '#9C27B0');
+            buttons.forEach(btn => {
+                if (btn.dataset.nature === nature) {
+                    btn.style.border = `2px solid ${borderColor}`;
+                    btn.style.background = borderColor;
+                    btn.style.color = 'white';
+                    btn.classList.add('active');
+                } else {
+                    btn.style.border = '2px solid #E0E0E0';
+                    btn.style.background = 'white';
+                    btn.style.color = '#666';
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // 添加開支記錄
+        function addExpense(person) {
+            const date = document.getElementById(`${person}Date`).value;
+            const category = document.getElementById(`${person}Category`).value;
+            
+            // 從按鈕組讀取支付性質
+            const natureBtn = document.querySelector(`#${person}NatureButtons .nature-btn.active`);
+            const nature = natureBtn ? natureBtn.dataset.nature : '團體消費';
+            
+            // 從按鈕組讀取貨幣
+            const currencyBtn = document.querySelector(`#${person}CurrencyButtons .currency-btn.active`);
+            const currency = currencyBtn ? currencyBtn.dataset.currency : 'HKD';
+            
+            const amount = parseFloat(document.getElementById(`${person}Amount`).value);
+
+            if (!date) {
+                alert('請選擇日期！');
+                return;
+            }
+
+            if (!amount || amount <= 0) {
+                alert('請輸入有效金額！');
+                return;
+            }
+
+            // 轉換為HKD
+            const amountHKD = currency === 'JPY' ? amount * exchangeRate : amount;
+
+            // 創建記錄對象
+            const expense = {
+                id: Date.now(),
+                date,
+                category,
+                nature,
+                currency,
+                amount,
+                amountHKD
+            };
+
+            // 添加到數據
+            expensesData[person].push(expense);
+
+            // 保存到localStorage
+            saveExpenses();
+
+            // 更新顯示
+            updateExpensesList(person);
+            updateSummary();
+            calculateSettlement();
+
+            // 清空輸入
+            document.getElementById(`${person}Amount`).value = '';
+
+            // 顯示成功提示
+            showSuccessMessage('記錄已添加！');
+        }
+
+        // 刪除開支記錄
+        function deleteExpense(person, expenseId) {
+            expensesData[person] = expensesData[person].filter(e => e.id !== expenseId);
+            saveExpenses();
+            updateExpensesList(person);
+            updateSummary();
+            calculateSettlement();
+            showSuccessMessage('記錄已刪除！');
+        }
+
+        // 更新記錄列表顯示
+        function updateExpensesList(person) {
+            const listDiv = document.getElementById(`${person}RecordsList`);
+            const expenses = expensesData[person];
+
+            if (expenses.length === 0) {
+                listDiv.innerHTML = '<div style="text-align: center; color: #999; font-size: 13px; padding: 8px;">暫無記錄</div>';
+                return;
+            }
+
+            let html = '';
+            expenses.forEach(expense => {
+                const borderColor = expense.nature === '團體消費' ? '#4CAF50' : '#2196F3';
+                const bgColor = expense.nature === '團體消費' ? '#F1F8F4' : '#F0F7FF';
+                
+                html += `
+                    <div class="expense-item" style="border-color: ${borderColor}; background: ${bgColor};">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                            <div style="flex: 1;">
+                                <div style="font-weight: 700; font-size: 14px; color: #202020; margin-bottom: 4px;">
+                                    ${expense.date} | ${expense.category}
+                                </div>
+                                <div style="font-size: 12px; color: #666;">
+                                    ${expense.nature}
+                                </div>
+                            </div>
+                            <button class="delete-expense-btn" onclick="deleteExpense('${person}', ${expense.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-size: 16px; font-weight: 700; color: #2E7D32;">
+                                ${expense.currency} ${expense.amount.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2})}
+                            </div>
+                            ${expense.currency === 'JPY' ? `
+                                <div class="expense-converted">
+                                    ≈ HKD ${expense.amountHKD.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2})}
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+
+            listDiv.innerHTML = html;
+        }
+
+        // 更新摘要顯示 - 顯示實際消費明細（共同開支 + 個人消費）
+        function updateSummary() {
+            // 1. 計算總共同開支（已付款項 + 團體消費記錄）
+            const totalPrePaid = prePaidData.kaho + prePaidData.dicken + prePaidData.tai;
+            
+            // 計算團體消費總額
+            const kahoGroup = expensesData.kaho.filter(e => e.nature === '團體消費').reduce((sum, e) => sum + e.amountHKD, 0);
+            const dickenGroup = expensesData.dicken.filter(e => e.nature === '團體消費').reduce((sum, e) => sum + e.amountHKD, 0);
+            const taiGroup = expensesData.tai.filter(e => e.nature === '團體消費').reduce((sum, e) => sum + e.amountHKD, 0);
+            const totalGroupExpense = kahoGroup + dickenGroup + taiGroup;
+            
+            // 總共同開支 = 已付款總額 + 團體消費總額
+            const totalCommonExpenses = totalPrePaid + totalGroupExpense;
+            
+            // 2. 計算每人的共同開支分攤（按份數：Kaho 1份、Dicken 1份、泰氏夫婦 2份）
+            const perShareAmount = totalCommonExpenses / 4;
+            const shares = {
+                'kaho': 1,
+                'dicken': 1,
+                'tai': 2
+            };
+            
+            const commonExpenseShare = {
+                'kaho': perShareAmount * shares['kaho'],
+                'dicken': perShareAmount * shares['dicken'],
+                'tai': perShareAmount * shares['tai']
+            };
+            
+            // 3. 計算每人的個人消費
+            const personalExpenses = {
+                'kaho': expensesData.kaho.filter(e => e.nature === '個人消費').reduce((sum, e) => sum + e.amountHKD, 0),
+                'dicken': expensesData.dicken.filter(e => e.nature === '個人消費').reduce((sum, e) => sum + e.amountHKD, 0),
+                'tai': expensesData.tai.filter(e => e.nature === '個人消費').reduce((sum, e) => sum + e.amountHKD, 0)
+            };
+            
+            // 4. 計算總消費（共同開支分攤 + 個人消費）
+            const totalExpenses = {
+                'kaho': commonExpenseShare['kaho'] + personalExpenses['kaho'],
+                'dicken': commonExpenseShare['dicken'] + personalExpenses['dicken'],
+                'tai': commonExpenseShare['tai'] + personalExpenses['tai']
+            };
+            
+            // 5. 更新顯示
+            // Kaho
+            document.getElementById('kahoCommonExpense').textContent = `HKD ${commonExpenseShare['kaho'].toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 1})}`;
+            document.getElementById('kahoPersonalExpense').textContent = `HKD ${personalExpenses['kaho'].toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 1})}`;
+            document.getElementById('kahoTotal').textContent = `HKD ${totalExpenses['kaho'].toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 1})}`;
+            
+            // Dicken
+            document.getElementById('dickenCommonExpense').textContent = `HKD ${commonExpenseShare['dicken'].toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 1})}`;
+            document.getElementById('dickenPersonalExpense').textContent = `HKD ${personalExpenses['dicken'].toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 1})}`;
+            document.getElementById('dickenTotal').textContent = `HKD ${totalExpenses['dicken'].toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 1})}`;
+            
+            // 泰氏夫婦
+            document.getElementById('taiCommonExpense').textContent = `HKD ${commonExpenseShare['tai'].toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 1})}`;
+            document.getElementById('taiPersonalExpense').textContent = `HKD ${personalExpenses['tai'].toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 1})}`;
+            document.getElementById('taiTotal').textContent = `HKD ${totalExpenses['tai'].toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 1})}`;
+        }
+
+        // 計算攤分結算（修正版：Kaho 1份、Dicken 1份、泰氏夫婦 2份）
+        function calculateSettlement() {
+            // 計算已付款總額
+            const totalPrePaid = prePaidData.kaho + prePaidData.dicken + prePaidData.tai;
+
+            // 計算團體消費總額(從記錄中)
+            const kahoGroup = expensesData.kaho.filter(e => e.nature === '團體消費').reduce((sum, e) => sum + e.amountHKD, 0);
+            const dickenGroup = expensesData.dicken.filter(e => e.nature === '團體消費').reduce((sum, e) => sum + e.amountHKD, 0);
+            const taiGroup = expensesData.tai.filter(e => e.nature === '團體消費').reduce((sum, e) => sum + e.amountHKD, 0);
+            const totalGroupExpense = kahoGroup + dickenGroup + taiGroup;
+
+            // 總計
+            const grandTotal = totalPrePaid + totalGroupExpense;
+
+            // 攤分邏輯：Kaho 1份、Dicken 1份、泰氏夫婦 2份，總共 4 份
+            const totalShares = 4;
+            const perShareAmount = grandTotal / totalShares;
+            
+            // 各人應分攤金額（人均 × 份數）
+            const kahoShouldPay = perShareAmount * 1;   // Kaho: 1份
+            const dickenShouldPay = perShareAmount * 1; // Dicken: 1份
+            const taiShouldPay = perShareAmount * 2;    // 泰氏夫婦: 2份
+
+            // 計算各人已付(包括已付款+團體消費記錄)
+            const kahoPaid = prePaidData.kaho + kahoGroup;
+            const dickenPaid = prePaidData.dicken + dickenGroup;
+            const taiPaid = prePaidData.tai + taiGroup;
+
+            // 計算差額（已付 - 應分攤）
+            const kahoDiff = kahoPaid - kahoShouldPay;
+            const dickenDiff = dickenPaid - dickenShouldPay;
+            const taiDiff = taiPaid - taiShouldPay;
+
+            // 更新攤分摘要顯示
+            document.getElementById('totalPrePaid').textContent = `HKD ${totalPrePaid.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2})}`;
+            document.getElementById('totalGroupExpense').textContent = `HKD ${totalGroupExpense.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2})}`;
+            document.getElementById('grandTotal').textContent = `HKD ${grandTotal.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2})}`;
+            document.getElementById('perPersonAmount').textContent = `HKD ${perShareAmount.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2})} (總額 ÷ 4)`;
+
+            // 顯示各人應分攤金額
+            const shouldPayDiv = document.getElementById('shouldPayBreakdown');
+            if (shouldPayDiv) {
+                shouldPayDiv.innerHTML = `
+                    <div style="background: #F5F5F5; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+                        <div style="font-weight: 700; color: #202020; margin-bottom: 8px; font-size: 14px;">📊 各人應分攤金額</div>
+                        <div style="display: grid; gap: 6px; font-size: 13px;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>👨 Kaho (1份):</span>
+                                <span style="font-weight: 600;">HKD ${kahoShouldPay.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2})}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>👨 Dicken (1份):</span>
+                                <span style="font-weight: 600;">HKD ${dickenShouldPay.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2})}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>👫 泰氏夫婦 (2份):</span>
+                                <span style="font-weight: 600;">HKD ${taiShouldPay.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2})}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // 生成結算結果
+            const resultsDiv = document.getElementById('settlementResults');
+            let html = '';
+
+            const people = [
+                { name: 'Kaho', icon: '👨', diff: kahoDiff, paid: kahoPaid, shouldPay: kahoShouldPay, color: '#2196F3' },
+                { name: 'Dicken', icon: '👨', diff: dickenDiff, paid: dickenPaid, shouldPay: dickenShouldPay, color: '#4CAF50' },
+                { name: '泰氏夫婦', icon: '👫', diff: taiDiff, paid: taiPaid, shouldPay: taiShouldPay, color: '#9C27B0' }
+            ];
+
+            people.forEach(person => {
+                let statusClass, statusText, statusColor, bgColor;
+                
+                if (person.diff > 1) {
+                    statusClass = 'positive';
+                    statusText = `${person.icon} ${person.name} 應收回`;
+                    statusColor = '#2E7D32';
+                    bgColor = '#E8F5E9';
+                } else if (person.diff < -1) {
+                    statusClass = 'negative';
+                    statusText = `${person.icon} ${person.name} 需補給`;
+                    statusColor = '#C62828';
+                    bgColor = '#FFEBEE';
+                } else {
+                    statusClass = 'zero';
+                    statusText = `${person.icon} ${person.name} 已結清`;
+                    statusColor = '#1976D2';
+                    bgColor = '#E3F2FD';
+                }
+
+                html += `
+                    <div class="settlement-card" style="border-left: 4px solid ${person.color}; background: ${bgColor};">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <div class="settlement-person" style="color: ${person.color};">
+                                ${statusText}
+                            </div>
+                            <div class="settlement-amount ${statusClass}" style="color: ${statusColor};">
+                                ${Math.abs(person.diff) < 1 ? '✓' : `HKD ${Math.abs(person.diff).toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2})}`}
+                            </div>
+                        </div>
+                        <div style="font-size: 12px; color: #666; display: grid; gap: 4px;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>已付款：</span>
+                                <span>HKD ${person.paid.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2})}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>應分攤：</span>
+                                <span>HKD ${person.shouldPay.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2})}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            resultsDiv.innerHTML = html;
+
+            // 生成並顯示付款指引
+            displayPaymentInstructions({ kaho: kahoDiff, dicken: dickenDiff, tai: taiDiff });
+        }
+
+        // 生成付款指引計算函數
+        function generatePaymentInstructions(settlements) {
+            // 分類應收和應付的人
+            const receivers = []; // 應收款的人
+            const payers = [];    // 應付款的人
+            
+            Object.keys(settlements).forEach(person => {
+                const diff = settlements[person];
+                if (diff > 0.01) { // 應收回（正值）
+                    receivers.push({ person: person, amount: diff });
+                } else if (diff < -0.01) { // 需補給（負值）
+                    payers.push({ person: person, amount: Math.abs(diff) });
+                }
+            });
+            
+            // 按金額排序（從大到小）
+            receivers.sort((a, b) => b.amount - a.amount);
+            payers.sort((a, b) => b.amount - a.amount);
+            
+            // 生成付款指引
+            const instructions = [];
+            let receiverIndex = 0;
+            let payerIndex = 0;
+            
+            while (receiverIndex < receivers.length && payerIndex < payers.length) {
+                const receiver = receivers[receiverIndex];
+                const payer = payers[payerIndex];
+                
+                const transferAmount = Math.min(receiver.amount, payer.amount);
+                
+                if (transferAmount > 0.01) {
+                    instructions.push({
+                        from: payer.person,
+                        to: receiver.person,
+                        amount: transferAmount.toFixed(1)
+                    });
+                }
+                
+                receiver.amount -= transferAmount;
+                payer.amount -= transferAmount;
+                
+                if (receiver.amount < 0.01) receiverIndex++;
+                if (payer.amount < 0.01) payerIndex++;
+            }
+            
+            return instructions;
+        }
+
+        // 顯示付款指引
+        function displayPaymentInstructions(settlements) {
+            const paymentInstructions = generatePaymentInstructions(settlements);
+            const resultsDiv = document.getElementById('settlementResults');
+            
+            // 人名對照表
+            const nameMap = {
+                'kaho': 'Kaho',
+                'dicken': 'Dicken',
+                'tai': '泰氏夫婦'
+            };
+            
+            let instructionsHTML = `
+                <div style="background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%); padding: 20px; border-radius: 12px; margin-top: 20px; border: 3px solid #FF9800;">
+                    <div style="font-weight: 700; font-size: 18px; color: #E65100; margin-bottom: 16px; text-align: center;">
+                        <i class="fas fa-hand-holding-usd"></i> 💸 付款指引
+                    </div>
+                    <div style="background: white; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
+            `;
+            
+            if (paymentInstructions.length > 0) {
+                paymentInstructions.forEach(instruction => {
+                    instructionsHTML += `
+                        <div style="padding: 12px; background: #FFEBEE; border-left: 4px solid #F44336; border-radius: 6px; margin-bottom: 8px;">
+                            <i class="fas fa-arrow-right" style="color: #F44336;"></i>
+                            <strong>${nameMap[instruction.from]}</strong> 需要付 <strong style="color: #F44336;">HKD ${instruction.amount}</strong> 給 <strong>${nameMap[instruction.to]}</strong>
+                        </div>
+                    `;
+                });
+            } else {
+                instructionsHTML += `
+                    <div style="padding: 12px; background: #E8F5E9; border-left: 4px solid #4CAF50; border-radius: 6px; text-align: center;">
+                        <i class="fas fa-check-circle" style="color: #4CAF50;"></i>
+                        <strong style="color: #4CAF50;">所有帳目已結清！</strong>
+                    </div>
+                `;
+            }
+            
+            instructionsHTML += `
+                    </div>
+                    <div style="text-align: center; font-size: 12px; color: #666; margin-top: 12px;">
+                        <i class="fas fa-info-circle"></i> 付款完成後，所有人的帳目將結清
+                    </div>
+                </div>
+            `;
+            
+            resultsDiv.innerHTML += instructionsHTML;
+        }
+
+        // 保存到localStorage
+        function saveExpenses() {
+            localStorage.setItem('japanTripExpenses', JSON.stringify(expensesData));
+        }
+
+        // 從localStorage載入
+        function loadExpenses() {
+            const saved = localStorage.getItem('japanTripExpenses');
+            if (saved) {
+                expensesData = JSON.parse(saved);
+                
+                // 更新所有顯示
+                updateExpensesList('kaho');
+                updateExpensesList('dicken');
+                updateExpensesList('tai');
+                updateSummary();
+            }
+        }
+
+        // 顯示成功提示
+        function showSuccessMessage(message) {
+            // 創建提示元素
+            const toast = document.createElement('div');
+            toast.textContent = message;
+            toast.style.cssText = `
+                position: fixed;
+                top: 100px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #4CAF50;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 8px;
+                font-weight: 600;
+                z-index: 10000;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                animation: slideDown 0.3s ease;
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // 2秒後移除
+            setTimeout(() => {
+                toast.style.animation = 'slideUp 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 2000);
+        }
+
+                    </script>
     <script src="https://cdn.kuse.ai/sdk.prd.js"></script>
 
 </body></html>
