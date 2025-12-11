@@ -4163,8 +4163,17 @@
                 <div id="kahoInput" style="display: grid; gap: 10px;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                         <div>
-                            <label style="font-size: 12px; color: #666; font-weight: 600;">日期</label>
-                            <input type="date" id="kahoDate" style="width: 100%; padding: 8px; border: 2px solid #2196F3; border-radius: 6px; font-size: 14px;">
+                            <label style="font-size: 12px; color: #666; font-weight: 600;">行程日期</label>
+                            <select id="kahoDay" style="width: 100%; padding: 8px; border: 2px solid #2196F3; border-radius: 6px; font-size: 14px; font-weight: 600; color: #202020;">
+                                <option value="1">Day 1 (1月25日)</option>
+                                <option value="2">Day 2 (1月26日)</option>
+                                <option value="3">Day 3 (1月27日)</option>
+                                <option value="4">Day 4 (1月28日)</option>
+                                <option value="5">Day 5 (1月29日)</option>
+                                <option value="6">Day 6 (1月30日)</option>
+                                <option value="7">Day 7 (1月31日)</option>
+                                <option value="8">Day 8 (2月1日)</option>
+                            </select>
                         </div>
                         <div>
                             <label style="font-size: 12px; color: #666; font-weight: 600;">支付類別</label>
@@ -4216,8 +4225,17 @@
                 <div id="dickenInput" style="display: grid; gap: 10px;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                         <div>
-                            <label style="font-size: 12px; color: #666; font-weight: 600;">日期</label>
-                            <input type="date" id="dickenDate" style="width: 100%; padding: 8px; border: 2px solid #4CAF50; border-radius: 6px; font-size: 14px;">
+                            <label style="font-size: 12px; color: #666; font-weight: 600;">行程日期</label>
+                            <select id="dickenDay" style="width: 100%; padding: 8px; border: 2px solid #4CAF50; border-radius: 6px; font-size: 14px; font-weight: 600; color: #202020;">
+                                <option value="1">Day 1 (1月25日)</option>
+                                <option value="2">Day 2 (1月26日)</option>
+                                <option value="3">Day 3 (1月27日)</option>
+                                <option value="4">Day 4 (1月28日)</option>
+                                <option value="5">Day 5 (1月29日)</option>
+                                <option value="6">Day 6 (1月30日)</option>
+                                <option value="7">Day 7 (1月31日)</option>
+                                <option value="8">Day 8 (2月1日)</option>
+                            </select>
                         </div>
                         <div>
                             <label style="font-size: 12px; color: #666; font-weight: 600;">支付類別</label>
@@ -4269,8 +4287,17 @@
                 <div id="taiInput" style="display: grid; gap: 10px;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                         <div>
-                            <label style="font-size: 12px; color: #666; font-weight: 600;">日期</label>
-                            <input type="date" id="taiDate" style="width: 100%; padding: 8px; border: 2px solid #9C27B0; border-radius: 6px; font-size: 14px;">
+                            <label style="font-size: 12px; color: #666; font-weight: 600;">行程日期</label>
+                            <select id="taiDay" style="width: 100%; padding: 8px; border: 2px solid #9C27B0; border-radius: 6px; font-size: 14px; font-weight: 600; color: #202020;">
+                                <option value="1">Day 1 (1月25日)</option>
+                                <option value="2">Day 2 (1月26日)</option>
+                                <option value="3">Day 3 (1月27日)</option>
+                                <option value="4">Day 4 (1月28日)</option>
+                                <option value="5">Day 5 (1月29日)</option>
+                                <option value="6">Day 6 (1月30日)</option>
+                                <option value="7">Day 7 (1月31日)</option>
+                                <option value="8">Day 8 (2月1日)</option>
+                            </select>
                         </div>
                         <div>
                             <label style="font-size: 12px; color: #666; font-weight: 600;">支付類別</label>
@@ -4755,16 +4782,21 @@
             loadExpenses();
             calculateSettlement();
             
-            // 設定日期輸入框為當天日期
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('kahoDate').value = today;
-            document.getElementById('dickenDate').value = today;
-            document.getElementById('taiDate').value = today;
+            // 自動設定今天對應的行程天數
+            const todayDay = getTodayTripDay();
+            document.getElementById('kahoDay').value = todayDay;
+            document.getElementById('dickenDay').value = todayDay;
+            document.getElementById('taiDay').value = todayDay;
 
             console.log('Initialization complete'); // 調試用
         });
 
         // ========== 開支記錄功能 ==========
+        
+        // 行程設定
+        const TRIP_START_DATE = new Date('2026-01-25'); // 出發日
+        const TRIP_END_DATE = new Date('2026-02-01');   // 結束日
+        const TRIP_DAYS = 8; // 總天數（統一使用 TRIP_DAYS）
         
         // 開支記錄數據結構
         let expensesData = {
@@ -4779,6 +4811,21 @@
             dicken: 0 + 780,       // 機票 HKD 780
             tai: 726 + 1560        // 任天堂門票 HKD 726 + 機票 HKD 1560 (2人)
         };
+
+        // 計算今天對應的行程天數
+        function getTodayTripDay() {
+            const today = new Date();
+            const diffTime = today - TRIP_START_DATE;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays < 0) {
+                return 1; // 出發日之前都算 Day 1
+            } else if (diffDays >= TRIP_DAYS) {
+                return TRIP_DAYS; // 最後一天之後都算 Day 8
+            } else {
+                return diffDays + 1; // Day 1 = 0天差, Day 2 = 1天差...
+            }
+        }
 
         // 折疊/展開輸入區
         function toggleExpenseInput(person) {
@@ -4833,12 +4880,12 @@
 
         // 添加開支記錄
         function addExpense(person) {
-            const date = document.getElementById(`${person}Date`).value;
+            const day = document.getElementById(`${person}Day`).value;
             const category = document.getElementById(`${person}Category`).value;
             
             // 從按鈕組讀取支付性質
             const natureBtn = document.querySelector(`#${person}NatureButtons .nature-btn.active`);
-            const nature = natureBtn ? natureBtn.dataset.nature : '團體消費';
+            const nature = natureBtn ? natureBtn.dataset.nature : '個人消費';
             
             // 從按鈕組讀取貨幣
             const currencyBtn = document.querySelector(`#${person}CurrencyButtons .currency-btn.active`);
@@ -4846,8 +4893,8 @@
             
             const amount = parseFloat(document.getElementById(`${person}Amount`).value);
 
-            if (!date) {
-                alert('請選擇日期！');
+            if (!day) {
+                alert('請選擇行程日期！');
                 return;
             }
 
@@ -4862,7 +4909,7 @@
             // 創建記錄對象
             const expense = {
                 id: Date.now(),
-                date,
+                day: `Day ${day}`,
                 category,
                 nature,
                 currency,
@@ -4881,7 +4928,9 @@
             updateSummary();
             calculateSettlement();
 
-            // 清空輸入
+            // 清空輸入並重設為今天
+            const todayDay = getTodayTripDay();
+            document.getElementById(`${person}Day`).value = todayDay;
             document.getElementById(`${person}Amount`).value = '';
 
             // 顯示成功提示
@@ -4918,7 +4967,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
                             <div style="flex: 1;">
                                 <div style="font-weight: 700; font-size: 14px; color: #202020; margin-bottom: 4px;">
-                                    ${expense.date} | ${expense.category}
+                                    ${expense.day} | ${expense.category}
                                 </div>
                                 <div style="font-size: 12px; color: #666;">
                                     ${expense.nature}
