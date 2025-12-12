@@ -148,16 +148,6 @@
             opacity: 0.8;
         }
 
-        .action-btn:active {
-            transform: scale(0.95);
-            opacity: 0.8;
-        }
-
-        .action-btn:active {
-            transform: scale(0.95);
-            opacity: 0.8;
-        }
-
         .action-btn.secondary {
             background: #FF9800;
         }
@@ -4130,6 +4120,19 @@
             </div>
         </div>
 
+        <!-- 匯率顯示區域 -->
+        <div style="background: #FFF3E0; padding: 12px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid #FF9800;">
+            <div style="font-size: 13px; color: #666; margin-bottom: 4px;">
+                <i class="fas fa-info-circle"></i> 當前匯率（同步自開支預算）
+            </div>
+            <div style="font-size: 16px; font-weight: 700; color: #F57C00;">
+                1 JPY = <span id="expenseRecordExchangeRate">0.055</span> HKD
+            </div>
+            <div style="font-size: 11px; color: #999; margin-top: 4px;">
+                💡 在「開支預算」頁面修改匯率會同步更新
+            </div>
+        </div>
+
         <!-- 中段: 開支輸入表單 -->
         <div class="reminder-section">
             <h4 class="reminder-section-title">
@@ -4430,25 +4433,45 @@
             </div>
         </div>
 
-        <!-- 開支項目列表 - 手風琴式設計 -->
-        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+        <!-- 已知開支摺疊區域 -->
+        <div style="background: white; border-radius: 12px; border: 2px solid #667eea; overflow: hidden; margin-bottom: 20px;">
+            <div onclick="toggleAllBudgetItems()" style="padding: 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fas fa-list-ul" style="font-size: 20px; color: white;"></i>
+                    <div>
+                        <div style="font-weight: 700; font-size: 16px; color: white;">已知開支清單</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.9); margin-top: 4px;">共 10 項開支項目</div>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-down" id="allBudgetItemsIcon" style="color: white; font-size: 20px; transition: transform 0.3s;"></i>
+            </div>
+            
+            <div id="allBudgetItemsContent" style="display: none;">
+                <!-- 開支項目列表 - 手風琴式設計 -->
+                <div style="display: flex; flex-direction: column; gap: 8px; padding: 16px;">
             
             <!-- 機票 HKD 3120 - 預設合付 -->
             <div style="background: white; border-radius: 12px; border: 2px solid #2196F3; overflow: hidden;">
-                <div onclick="toggleBudgetItem('budget_flight')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <i class="fas fa-plane" style="font-size: 20px; color: #2196F3;"></i>
-                        <div>
-                            <div style="font-weight: 700; font-size: 15px; color: #202020;">機票</div>
-                            <div style="font-size: 18px; font-weight: 700; color: #2196F3;">HKD 3,120</div>
-                        </div>
+                <div onclick="toggleBudgetItem('budget_flight')" style="padding: 10px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-plane" style="font-size: 18px; color: #2196F3;"></i>
+                        <div style="font-weight: 700; font-size: 15px; color: #202020;">機票</div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <span id="budget_flight_payer" style="font-size: 12px; color: #666; background: white; padding: 4px 8px; border-radius: 4px;">合付</span>
+                        <span id="budget_flight_payer" style="font-size: 12px; color: #666; background: white; padding: 3px 8px; border-radius: 4px;">合付</span>
                         <i class="fas fa-chevron-down" id="budget_flight_icon" style="color: #2196F3; transition: transform 0.3s;"></i>
                     </div>
                 </div>
                 <div id="budget_flight" style="display: none; padding: 16px; border-top: 1px solid #E0E0E0;">
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 13px; color: #666; margin-bottom: 6px; font-weight: 600;">金額：</div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 14px; font-weight: 600; color: #666;">HKD</span>
+                            <input type="number" id="budget_amount_flight" value="3120" step="0.01" min="0" 
+                                   style="width: 120px; padding: 6px 8px; border: 2px solid #2196F3; border-radius: 6px; font-size: 16px; font-weight: 700; color: #2196F3;"
+                                   oninput="calculateBudgetOverview();">
+                        </div>
+                    </div>
                     <div style="font-size: 13px; color: #666; margin-bottom: 8px; font-weight: 600;">付款人：</div>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                         <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
@@ -4477,20 +4500,26 @@
 
             <!-- Day 1住宿 HKD 903.1 - 預設Kaho -->
             <div style="background: white; border-radius: 12px; border: 2px solid #4CAF50; overflow: hidden;">
-                <div onclick="toggleBudgetItem('budget_hotel1')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <i class="fas fa-hotel" style="font-size: 20px; color: #4CAF50;"></i>
-                        <div>
-                            <div style="font-weight: 700; font-size: 15px; color: #202020;">Day 1住宿</div>
-                            <div style="font-size: 18px; font-weight: 700; color: #4CAF50;">HKD 903.1</div>
-                        </div>
+                <div onclick="toggleBudgetItem('budget_hotel1')" style="padding: 10px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-hotel" style="font-size: 18px; color: #4CAF50;"></i>
+                        <div style="font-weight: 700; font-size: 15px; color: #202020;">Day 1住宿</div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <span id="budget_hotel1_payer" style="font-size: 12px; color: #666; background: white; padding: 4px 8px; border-radius: 4px;">Kaho</span>
+                        <span id="budget_hotel1_payer" style="font-size: 12px; color: #666; background: white; padding: 3px 8px; border-radius: 4px;">Kaho</span>
                         <i class="fas fa-chevron-down" id="budget_hotel1_icon" style="color: #4CAF50; transition: transform 0.3s;"></i>
                     </div>
                 </div>
                 <div id="budget_hotel1" style="display: none; padding: 16px; border-top: 1px solid #E0E0E0;">
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 13px; color: #666; margin-bottom: 6px; font-weight: 600;">金額：</div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 14px; font-weight: 600; color: #666;">HKD</span>
+                            <input type="number" id="budget_amount_hotel1" value="903.1" step="0.01" min="0" 
+                                   style="width: 120px; padding: 6px 8px; border: 2px solid #4CAF50; border-radius: 6px; font-size: 16px; font-weight: 700; color: #4CAF50;"
+                                   oninput="calculateBudgetOverview();">
+                        </div>
+                    </div>
                     <div style="font-size: 13px; color: #666; margin-bottom: 8px; font-weight: 600;">付款人：</div>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                         <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
@@ -4519,20 +4548,26 @@
 
             <!-- Day 2住宿 HKD 764 - 預設Kaho -->
             <div style="background: white; border-radius: 12px; border: 2px solid #4CAF50; overflow: hidden;">
-                <div onclick="toggleBudgetItem('budget_hotel2')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <i class="fas fa-hotel" style="font-size: 20px; color: #4CAF50;"></i>
-                        <div>
-                            <div style="font-weight: 700; font-size: 15px; color: #202020;">Day 2住宿</div>
-                            <div style="font-size: 18px; font-weight: 700; color: #4CAF50;">HKD 764</div>
-                        </div>
+                <div onclick="toggleBudgetItem('budget_hotel2')" style="padding: 10px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-hotel" style="font-size: 18px; color: #4CAF50;"></i>
+                        <div style="font-weight: 700; font-size: 15px; color: #202020;">Day 2住宿</div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <span id="budget_hotel2_payer" style="font-size: 12px; color: #666; background: white; padding: 4px 8px; border-radius: 4px;">Kaho</span>
+                        <span id="budget_hotel2_payer" style="font-size: 12px; color: #666; background: white; padding: 3px 8px; border-radius: 4px;">Kaho</span>
                         <i class="fas fa-chevron-down" id="budget_hotel2_icon" style="color: #4CAF50; transition: transform 0.3s;"></i>
                     </div>
                 </div>
                 <div id="budget_hotel2" style="display: none; padding: 16px; border-top: 1px solid #E0E0E0;">
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 13px; color: #666; margin-bottom: 6px; font-weight: 600;">金額：</div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 14px; font-weight: 600; color: #666;">HKD</span>
+                            <input type="number" id="budget_amount_hotel2" value="764" step="0.01" min="0" 
+                                   style="width: 120px; padding: 6px 8px; border: 2px solid #4CAF50; border-radius: 6px; font-size: 16px; font-weight: 700; color: #4CAF50;"
+                                   oninput="calculateBudgetOverview();">
+                        </div>
+                    </div>
                     <div style="font-size: 13px; color: #666; margin-bottom: 8px; font-weight: 600;">付款人：</div>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                         <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
@@ -4561,20 +4596,26 @@
 
             <!-- Day 3-4住宿 HKD 3746.28 - 預設Kaho -->
             <div style="background: white; border-radius: 12px; border: 2px solid #4CAF50; overflow: hidden;">
-                <div onclick="toggleBudgetItem('budget_hotel3')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <i class="fas fa-hotel" style="font-size: 20px; color: #4CAF50;"></i>
-                        <div>
-                            <div style="font-weight: 700; font-size: 15px; color: #202020;">Day 3-4住宿</div>
-                            <div style="font-size: 18px; font-weight: 700; color: #4CAF50;">HKD 3,746.28</div>
-                        </div>
+                <div onclick="toggleBudgetItem('budget_hotel3')" style="padding: 10px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-hotel" style="font-size: 18px; color: #4CAF50;"></i>
+                        <div style="font-weight: 700; font-size: 15px; color: #202020;">Day 3-4住宿</div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <span id="budget_hotel3_payer" style="font-size: 12px; color: #666; background: white; padding: 4px 8px; border-radius: 4px;">Kaho</span>
+                        <span id="budget_hotel3_payer" style="font-size: 12px; color: #666; background: white; padding: 3px 8px; border-radius: 4px;">Kaho</span>
                         <i class="fas fa-chevron-down" id="budget_hotel3_icon" style="color: #4CAF50; transition: transform 0.3s;"></i>
                     </div>
                 </div>
                 <div id="budget_hotel3" style="display: none; padding: 16px; border-top: 1px solid #E0E0E0;">
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 13px; color: #666; margin-bottom: 6px; font-weight: 600;">金額：</div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 14px; font-weight: 600; color: #666;">HKD</span>
+                            <input type="number" id="budget_amount_hotel3" value="3746.28" step="0.01" min="0" 
+                                   style="width: 120px; padding: 6px 8px; border: 2px solid #4CAF50; border-radius: 6px; font-size: 16px; font-weight: 700; color: #4CAF50;"
+                                   oninput="calculateBudgetOverview();">
+                        </div>
+                    </div>
                     <div style="font-size: 13px; color: #666; margin-bottom: 8px; font-weight: 600;">付款人：</div>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                         <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
@@ -4603,20 +4644,26 @@
 
             <!-- Day 5-7住宿 HKD 4281.82 - 預設Kaho -->
             <div style="background: white; border-radius: 12px; border: 2px solid #4CAF50; overflow: hidden;">
-                <div onclick="toggleBudgetItem('budget_hotel4')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <i class="fas fa-hotel" style="font-size: 20px; color: #4CAF50;"></i>
-                        <div>
-                            <div style="font-weight: 700; font-size: 15px; color: #202020;">Day 5-7住宿</div>
-                            <div style="font-size: 18px; font-weight: 700; color: #4CAF50;">HKD 4,281.82</div>
-                        </div>
+                <div onclick="toggleBudgetItem('budget_hotel4')" style="padding: 10px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-hotel" style="font-size: 18px; color: #4CAF50;"></i>
+                        <div style="font-weight: 700; font-size: 15px; color: #202020;">Day 5-7住宿</div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <span id="budget_hotel4_payer" style="font-size: 12px; color: #666; background: white; padding: 4px 8px; border-radius: 4px;">Kaho</span>
+                        <span id="budget_hotel4_payer" style="font-size: 12px; color: #666; background: white; padding: 3px 8px; border-radius: 4px;">Kaho</span>
                         <i class="fas fa-chevron-down" id="budget_hotel4_icon" style="color: #4CAF50; transition: transform 0.3s;"></i>
                     </div>
                 </div>
                 <div id="budget_hotel4" style="display: none; padding: 16px; border-top: 1px solid #E0E0E0;">
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 13px; color: #666; margin-bottom: 6px; font-weight: 600;">金額：</div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 14px; font-weight: 600; color: #666;">HKD</span>
+                            <input type="number" id="budget_amount_hotel4" value="4281.82" step="0.01" min="0" 
+                                   style="width: 120px; padding: 6px 8px; border: 2px solid #4CAF50; border-radius: 6px; font-size: 16px; font-weight: 700; color: #4CAF50;"
+                                   oninput="calculateBudgetOverview();">
+                        </div>
+                    </div>
                     <div style="font-size: 13px; color: #666; margin-bottom: 8px; font-weight: 600;">付款人：</div>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                         <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
@@ -4645,20 +4692,29 @@
 
             <!-- 任天堂門票 JPY 13,200 - 預設泰氏夫婦 -->
             <div style="background: white; border-radius: 12px; border: 2px solid #4CAF50; overflow: hidden;">
-                <div onclick="toggleBudgetItem('budget_nintendo')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <i class="fas fa-ticket-alt" style="font-size: 20px; color: #E91E63;"></i>
-                        <div>
-                            <div style="font-weight: 700; font-size: 15px; color: #202020;">任天堂門票</div>
-                            <div style="font-size: 18px; font-weight: 700; color: #E91E63;">JPY 13,200 <span id="budget_nintendo_hkd" style="font-size: 14px; color: #666;">≈ HKD 730</span></div>
-                        </div>
+                <div onclick="toggleBudgetItem('budget_nintendo')" style="padding: 10px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-ticket-alt" style="font-size: 18px; color: #E91E63;"></i>
+                        <div style="font-weight: 700; font-size: 15px; color: #202020;">任天堂門票</div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <span id="budget_nintendo_payer" style="font-size: 12px; color: #666; background: white; padding: 4px 8px; border-radius: 4px;">泰氏夫婦</span>
+                        <span id="budget_nintendo_payer" style="font-size: 12px; color: #666; background: white; padding: 3px 8px; border-radius: 4px;">泰氏夫婦</span>
                         <i class="fas fa-chevron-down" id="budget_nintendo_icon" style="color: #E91E63; transition: transform 0.3s;"></i>
                     </div>
                 </div>
                 <div id="budget_nintendo" style="display: none; padding: 16px; border-top: 1px solid #E0E0E0;">
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 13px; color: #666; margin-bottom: 6px; font-weight: 600;">金額：</div>
+                        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span style="font-size: 14px; font-weight: 600; color: #666;">JPY</span>
+                                <input type="number" id="budget_amount_nintendo" value="13200" step="1" min="0" 
+                                       style="width: 100px; padding: 6px 8px; border: 2px solid #E91E63; border-radius: 6px; font-size: 16px; font-weight: 700; color: #E91E63;"
+                                       oninput="calculateBudgetOverview();">
+                            </div>
+                            <span id="budget_nintendo_hkd" style="font-size: 14px; color: #666;">≈ HKD 730</span>
+                        </div>
+                    </div>
                     <div style="font-size: 13px; color: #666; margin-bottom: 8px; font-weight: 600;">付款人：</div>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                         <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
@@ -4687,20 +4743,29 @@
 
             <!-- 租車 JPY 60,610 - 預設未付 -->
             <div style="background: white; border-radius: 12px; border: 2px solid #FF9800; overflow: hidden;">
-                <div onclick="toggleBudgetItem('budget_rental_car')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <i class="fas fa-car" style="font-size: 20px; color: #FF9800;"></i>
-                        <div>
-                            <div style="font-weight: 700; font-size: 15px; color: #202020;">租車</div>
-                            <div style="font-size: 18px; font-weight: 700; color: #FF9800;">JPY 60,610 <span id="budget_rental_car_hkd" style="font-size: 14px; color: #666;">≈ HKD 3,334</span></div>
-                        </div>
+                <div onclick="toggleBudgetItem('budget_rental_car')" style="padding: 10px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-car" style="font-size: 18px; color: #FF9800;"></i>
+                        <div style="font-weight: 700; font-size: 15px; color: #202020;">租車</div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <span id="budget_rental_car_payer" style="font-size: 12px; color: #666; background: white; padding: 4px 8px; border-radius: 4px;">未付</span>
+                        <span id="budget_rental_car_payer" style="font-size: 12px; color: #666; background: white; padding: 3px 8px; border-radius: 4px;">未付</span>
                         <i class="fas fa-chevron-down" id="budget_rental_car_icon" style="color: #FF9800; transition: transform 0.3s;"></i>
                     </div>
                 </div>
                 <div id="budget_rental_car" style="display: none; padding: 16px; border-top: 1px solid #E0E0E0;">
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 13px; color: #666; margin-bottom: 6px; font-weight: 600;">金額：</div>
+                        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span style="font-size: 14px; font-weight: 600; color: #666;">JPY</span>
+                                <input type="number" id="budget_amount_rental_car" value="60610" step="1" min="0" 
+                                       style="width: 100px; padding: 6px 8px; border: 2px solid #FF9800; border-radius: 6px; font-size: 16px; font-weight: 700; color: #FF9800;"
+                                       oninput="calculateBudgetOverview();">
+                            </div>
+                            <span id="budget_rental_car_hkd" style="font-size: 14px; color: #666;">≈ HKD 3,334</span>
+                        </div>
+                    </div>
                     <div style="font-size: 13px; color: #666; margin-bottom: 8px; font-weight: 600;">付款人：</div>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                         <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
@@ -4729,20 +4794,29 @@
 
             <!-- 海女小屋 JPY 30,800 - 預設未付 -->
             <div style="background: white; border-radius: 12px; border: 2px solid #FF9800; overflow: hidden;">
-                <div onclick="toggleBudgetItem('budget_ama_hut')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <i class="fas fa-fish" style="font-size: 20px; color: #00BCD4;"></i>
-                        <div>
-                            <div style="font-weight: 700; font-size: 15px; color: #202020;">海女小屋</div>
-                            <div style="font-size: 18px; font-weight: 700; color: #00BCD4;">JPY 30,800 <span id="budget_ama_hut_hkd" style="font-size: 14px; color: #666;">≈ HKD 1,694</span></div>
-                        </div>
+                <div onclick="toggleBudgetItem('budget_ama_hut')" style="padding: 10px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-fish" style="font-size: 18px; color: #00BCD4;"></i>
+                        <div style="font-weight: 700; font-size: 15px; color: #202020;">海女小屋</div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <span id="budget_ama_hut_payer" style="font-size: 12px; color: #666; background: white; padding: 4px 8px; border-radius: 4px;">未付</span>
+                        <span id="budget_ama_hut_payer" style="font-size: 12px; color: #666; background: white; padding: 3px 8px; border-radius: 4px;">未付</span>
                         <i class="fas fa-chevron-down" id="budget_ama_hut_icon" style="color: #00BCD4; transition: transform 0.3s;"></i>
                     </div>
                 </div>
                 <div id="budget_ama_hut" style="display: none; padding: 16px; border-top: 1px solid #E0E0E0;">
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 13px; color: #666; margin-bottom: 6px; font-weight: 600;">金額：</div>
+                        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span style="font-size: 14px; font-weight: 600; color: #666;">JPY</span>
+                                <input type="number" id="budget_amount_ama_hut" value="30800" step="1" min="0" 
+                                       style="width: 100px; padding: 6px 8px; border: 2px solid #00BCD4; border-radius: 6px; font-size: 16px; font-weight: 700; color: #00BCD4;"
+                                       oninput="calculateBudgetOverview();">
+                            </div>
+                            <span id="budget_ama_hut_hkd" style="font-size: 14px; color: #666;">≈ HKD 1,694</span>
+                        </div>
+                    </div>
                     <div style="font-size: 13px; color: #666; margin-bottom: 8px; font-weight: 600;">付款人：</div>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                         <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
@@ -4771,20 +4845,29 @@
 
             <!-- Grill Eight BBQ JPY 24,000 - 預設未付 -->
             <div style="background: white; border-radius: 12px; border: 2px solid #FF9800; overflow: hidden;">
-                <div onclick="toggleBudgetItem('budget_grill_eight')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <i class="fas fa-utensils" style="font-size: 20px; color: #FF5722;"></i>
-                        <div>
-                            <div style="font-weight: 700; font-size: 15px; color: #202020;">Grill Eight BBQ</div>
-                            <div style="font-size: 18px; font-weight: 700; color: #FF5722;">JPY 24,000 <span id="budget_grill_eight_hkd" style="font-size: 14px; color: #666;">≈ HKD 1,320</span></div>
-                        </div>
+                <div onclick="toggleBudgetItem('budget_grill_eight')" style="padding: 10px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-utensils" style="font-size: 18px; color: #FF5722;"></i>
+                        <div style="font-weight: 700; font-size: 15px; color: #202020;">Grill Eight BBQ</div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <span id="budget_grill_eight_payer" style="font-size: 12px; color: #666; background: white; padding: 4px 8px; border-radius: 4px;">未付</span>
+                        <span id="budget_grill_eight_payer" style="font-size: 12px; color: #666; background: white; padding: 3px 8px; border-radius: 4px;">未付</span>
                         <i class="fas fa-chevron-down" id="budget_grill_eight_icon" style="color: #FF5722; transition: transform 0.3s;"></i>
                     </div>
                 </div>
                 <div id="budget_grill_eight" style="display: none; padding: 16px; border-top: 1px solid #E0E0E0;">
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 13px; color: #666; margin-bottom: 6px; font-weight: 600;">金額：</div>
+                        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span style="font-size: 14px; font-weight: 600; color: #666;">JPY</span>
+                                <input type="number" id="budget_amount_grill_eight" value="24000" step="1" min="0" 
+                                       style="width: 100px; padding: 6px 8px; border: 2px solid #FF5722; border-radius: 6px; font-size: 16px; font-weight: 700; color: #FF5722;"
+                                       oninput="calculateBudgetOverview();">
+                            </div>
+                            <span id="budget_grill_eight_hkd" style="font-size: 14px; color: #666;">≈ HKD 1,320</span>
+                        </div>
+                    </div>
                     <div style="font-size: 13px; color: #666; margin-bottom: 8px; font-weight: 600;">付款人：</div>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                         <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
@@ -4813,20 +4896,29 @@
 
             <!-- Burlesque Osaka JPY 35,200 - 預設未付 -->
             <div style="background: white; border-radius: 12px; border: 2px solid #FF9800; overflow: hidden;">
-                <div onclick="toggleBudgetItem('budget_burlesque')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <i class="fas fa-glass-cheers" style="font-size: 20px; color: #9C27B0;"></i>
-                        <div>
-                            <div style="font-weight: 700; font-size: 15px; color: #202020;">Burlesque Osaka</div>
-                            <div style="font-size: 18px; font-weight: 700; color: #9C27B0;">JPY 35,200 <span id="budget_burlesque_hkd" style="font-size: 14px; color: #666;">≈ HKD 1,936</span></div>
-                        </div>
+                <div onclick="toggleBudgetItem('budget_burlesque')" style="padding: 10px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-glass-cheers" style="font-size: 18px; color: #9C27B0;"></i>
+                        <div style="font-weight: 700; font-size: 15px; color: #202020;">Burlesque Osaka</div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <span id="budget_burlesque_payer" style="font-size: 12px; color: #666; background: white; padding: 4px 8px; border-radius: 4px;">未付</span>
+                        <span id="budget_burlesque_payer" style="font-size: 12px; color: #666; background: white; padding: 3px 8px; border-radius: 4px;">未付</span>
                         <i class="fas fa-chevron-down" id="budget_burlesque_icon" style="color: #9C27B0; transition: transform 0.3s;"></i>
                     </div>
                 </div>
                 <div id="budget_burlesque" style="display: none; padding: 16px; border-top: 1px solid #E0E0E0;">
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 13px; color: #666; margin-bottom: 6px; font-weight: 600;">金額：</div>
+                        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span style="font-size: 14px; font-weight: 600; color: #666;">JPY</span>
+                                <input type="number" id="budget_amount_burlesque" value="35200" step="1" min="0" 
+                                       style="width: 100px; padding: 6px 8px; border: 2px solid #9C27B0; border-radius: 6px; font-size: 16px; font-weight: 700; color: #9C27B0;"
+                                       oninput="calculateBudgetOverview();">
+                            </div>
+                            <span id="budget_burlesque_hkd" style="font-size: 14px; color: #666;">≈ HKD 1,936</span>
+                        </div>
+                    </div>
                     <div style="font-size: 13px; color: #666; margin-bottom: 8px; font-weight: 600;">付款人：</div>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                         <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
@@ -4853,7 +4945,9 @@
                 </div>
             </div>
 
-        </div>
+                </div> <!-- 結束開支項目列表 -->
+            </div> <!-- 結束 allBudgetItemsContent -->
+        </div> <!-- 結束已知開支摺疊區域 -->
 
         <!-- 結算區域 -->
         <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 12px; color: white; margin-bottom: 20px;">
@@ -5560,6 +5654,7 @@
 
             loadReminders();
             loadExpenses();
+            loadBudgetAmounts(); // 載入儲存的開支金額
             
             // 先初始化開支預算計算(如果需要)
             if (typeof calculateBudgetOverview === 'function') {
@@ -5690,7 +5785,8 @@
                 return;
             }
 
-            // 轉換為HKD
+            // 轉換為HKD（使用開支預算頁面的匯率設定）
+            const exchangeRate = parseFloat(document.getElementById('budgetExchangeRate')?.value) || currentExchangeRate;
             const amountHKD = currency === 'JPY' ? amount * exchangeRate : amount;
 
             // 創建記錄對象
@@ -6109,6 +6205,64 @@
             }
         }
 
+        // 載入儲存的開支金額
+        function loadBudgetAmounts() {
+            const savedAmounts = localStorage.getItem('budgetAmounts');
+            if (savedAmounts) {
+                try {
+                    const amounts = JSON.parse(savedAmounts);
+                    
+                    // 載入HKD項目
+                    if (amounts.flight !== undefined) {
+                        const el = document.getElementById('budget_amount_flight');
+                        if (el) el.value = amounts.flight;
+                    }
+                    if (amounts.hotel1 !== undefined) {
+                        const el = document.getElementById('budget_amount_hotel1');
+                        if (el) el.value = amounts.hotel1;
+                    }
+                    if (amounts.hotel2 !== undefined) {
+                        const el = document.getElementById('budget_amount_hotel2');
+                        if (el) el.value = amounts.hotel2;
+                    }
+                    if (amounts.hotel3 !== undefined) {
+                        const el = document.getElementById('budget_amount_hotel3');
+                        if (el) el.value = amounts.hotel3;
+                    }
+                    if (amounts.hotel4 !== undefined) {
+                        const el = document.getElementById('budget_amount_hotel4');
+                        if (el) el.value = amounts.hotel4;
+                    }
+                    
+                    // 載入JPY項目
+                    if (amounts.nintendo !== undefined) {
+                        const el = document.getElementById('budget_amount_nintendo');
+                        if (el) el.value = amounts.nintendo;
+                    }
+                    if (amounts.rental_car !== undefined) {
+                        const el = document.getElementById('budget_amount_rental_car');
+                        if (el) el.value = amounts.rental_car;
+                    }
+                    if (amounts.ama_hut !== undefined) {
+                        const el = document.getElementById('budget_amount_ama_hut');
+                        if (el) el.value = amounts.ama_hut;
+                    }
+                    if (amounts.grill_eight !== undefined) {
+                        const el = document.getElementById('budget_amount_grill_eight');
+                        if (el) el.value = amounts.grill_eight;
+                    }
+                    if (amounts.burlesque !== undefined) {
+                        const el = document.getElementById('budget_amount_burlesque');
+                        if (el) el.value = amounts.burlesque;
+                    }
+                    
+                    console.log('已載入儲存的開支金額');
+                } catch (e) {
+                    console.error('載入開支金額失敗:', e);
+                }
+            }
+        }
+
         // 開支總覽數據
         const fixedExpenses = [
             { id: 'flight', name: '機票', amount: 3120, currency: 'HKD' },
@@ -6389,11 +6543,50 @@
             }
         }
 
+        // 摺疊/展開所有開支項目
+        function toggleAllBudgetItems() {
+            const content = document.getElementById('allBudgetItemsContent');
+            const icon = document.getElementById('allBudgetItemsIcon');
+            
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+                if (icon) icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.style.display = 'none';
+                if (icon) icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
         // ========== 開支預算側邊欄功能 ==========
         
         // 計算開支預算總覽
         function calculateBudgetOverview() {
             const exchangeRate = parseFloat(document.getElementById('budgetExchangeRate')?.value) || 0.055;
+            
+            // 同步更新全局匯率變數
+            currentExchangeRate = exchangeRate;
+            
+            // 同步更新開支記錄頁面的匯率顯示
+            const expenseRecordExchangeRateEl = document.getElementById('expenseRecordExchangeRate');
+            if (expenseRecordExchangeRateEl) {
+                expenseRecordExchangeRateEl.textContent = exchangeRate.toFixed(3);
+            }
+            
+            // 儲存所有開支金額到 localStorage
+            const budgetAmounts = {
+                flight: parseFloat(document.getElementById('budget_amount_flight')?.value) || 3120,
+                hotel1: parseFloat(document.getElementById('budget_amount_hotel1')?.value) || 903.1,
+                hotel2: parseFloat(document.getElementById('budget_amount_hotel2')?.value) || 764,
+                hotel3: parseFloat(document.getElementById('budget_amount_hotel3')?.value) || 3746.28,
+                hotel4: parseFloat(document.getElementById('budget_amount_hotel4')?.value) || 4281.82,
+                nintendo: parseFloat(document.getElementById('budget_amount_nintendo')?.value) || 13200,
+                rental_car: parseFloat(document.getElementById('budget_amount_rental_car')?.value) || 60610,
+                ama_hut: parseFloat(document.getElementById('budget_amount_ama_hut')?.value) || 30800,
+                grill_eight: parseFloat(document.getElementById('budget_amount_grill_eight')?.value) || 24000,
+                burlesque: parseFloat(document.getElementById('budget_amount_burlesque')?.value) || 35200
+            };
+            
+            localStorage.setItem('budgetAmounts', JSON.stringify(budgetAmounts));
             
             // 更新日元顯示
             const nintendoHkd = document.getElementById('budget_nintendo_hkd');
@@ -6402,24 +6595,31 @@
             const grillEightHkd = document.getElementById('budget_grill_eight_hkd');
             const burlesqueHkd = document.getElementById('budget_burlesque_hkd');
             
-            if (nintendoHkd) nintendoHkd.textContent = `≈ HKD ${(13200 * exchangeRate).toFixed(0)}`;
-            if (rentalCarHkd) rentalCarHkd.textContent = `≈ HKD ${(60610 * exchangeRate).toFixed(0)}`;
-            if (amaHutHkd) amaHutHkd.textContent = `≈ HKD ${(30800 * exchangeRate).toFixed(0)}`;
-            if (grillEightHkd) grillEightHkd.textContent = `≈ HKD ${(24000 * exchangeRate).toFixed(0)}`;
-            if (burlesqueHkd) burlesqueHkd.textContent = `≈ HKD ${(35200 * exchangeRate).toFixed(0)}`;
+            // 從輸入框讀取JPY金額並更新HKD顯示
+            const nintendoAmount = parseFloat(document.getElementById('budget_amount_nintendo')?.value) || 13200;
+            const rentalCarAmount = parseFloat(document.getElementById('budget_amount_rental_car')?.value) || 60610;
+            const amaHutAmount = parseFloat(document.getElementById('budget_amount_ama_hut')?.value) || 30800;
+            const grillEightAmount = parseFloat(document.getElementById('budget_amount_grill_eight')?.value) || 24000;
+            const burlesqueAmount = parseFloat(document.getElementById('budget_amount_burlesque')?.value) || 35200;
             
-            // 開支項目定義
+            if (nintendoHkd) nintendoHkd.textContent = `≈ HKD ${(nintendoAmount * exchangeRate).toFixed(0)}`;
+            if (rentalCarHkd) rentalCarHkd.textContent = `≈ HKD ${(rentalCarAmount * exchangeRate).toFixed(0)}`;
+            if (amaHutHkd) amaHutHkd.textContent = `≈ HKD ${(amaHutAmount * exchangeRate).toFixed(0)}`;
+            if (grillEightHkd) grillEightHkd.textContent = `≈ HKD ${(grillEightAmount * exchangeRate).toFixed(0)}`;
+            if (burlesqueHkd) burlesqueHkd.textContent = `≈ HKD ${(burlesqueAmount * exchangeRate).toFixed(0)}`;
+            
+            // 開支項目定義 - 從輸入框讀取金額
             const budgetExpenses = [
-                { id: 'flight', amount: 3120, currency: 'HKD' },
-                { id: 'hotel1', amount: 903.1, currency: 'HKD' },
-                { id: 'hotel2', amount: 764, currency: 'HKD' },
-                { id: 'hotel3', amount: 3746.28, currency: 'HKD' },
-                { id: 'hotel4', amount: 4281.82, currency: 'HKD' },
-                { id: 'nintendo', amount: 13200, currency: 'JPY' },
-                { id: 'rental_car', amount: 60610, currency: 'JPY' },
-                { id: 'ama_hut', amount: 30800, currency: 'JPY' },
-                { id: 'grill_eight', amount: 24000, currency: 'JPY' },
-                { id: 'burlesque', amount: 35200, currency: 'JPY' }
+                { id: 'flight', amount: parseFloat(document.getElementById('budget_amount_flight')?.value) || 3120, currency: 'HKD' },
+                { id: 'hotel1', amount: parseFloat(document.getElementById('budget_amount_hotel1')?.value) || 903.1, currency: 'HKD' },
+                { id: 'hotel2', amount: parseFloat(document.getElementById('budget_amount_hotel2')?.value) || 764, currency: 'HKD' },
+                { id: 'hotel3', amount: parseFloat(document.getElementById('budget_amount_hotel3')?.value) || 3746.28, currency: 'HKD' },
+                { id: 'hotel4', amount: parseFloat(document.getElementById('budget_amount_hotel4')?.value) || 4281.82, currency: 'HKD' },
+                { id: 'nintendo', amount: nintendoAmount, currency: 'JPY' },
+                { id: 'rental_car', amount: rentalCarAmount, currency: 'JPY' },
+                { id: 'ama_hut', amount: amaHutAmount, currency: 'JPY' },
+                { id: 'grill_eight', amount: grillEightAmount, currency: 'JPY' },
+                { id: 'burlesque', amount: burlesqueAmount, currency: 'JPY' }
             ];
             
             // 計算各人已付
