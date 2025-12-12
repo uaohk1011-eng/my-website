@@ -6261,6 +6261,90 @@
                     console.error('載入開支金額失敗:', e);
                 }
             }
+            
+            // 載入儲存的付款人選擇
+            const savedPayers = localStorage.getItem('budgetPayers');
+            if (savedPayers) {
+                try {
+                    const payers = JSON.parse(savedPayers);
+                    
+                    // 恢復各項目的付款人選擇
+                    if (payers.flight) {
+                        const radio = document.querySelector(`input[name="budget_payer_flight"][value="${payers.flight}"]`);
+                        if (radio) {
+                            radio.checked = true;
+                            updateBudgetPayerDisplay('budget_flight', payers.flight);
+                        }
+                    }
+                    if (payers.hotel1) {
+                        const radio = document.querySelector(`input[name="budget_payer_hotel1"][value="${payers.hotel1}"]`);
+                        if (radio) {
+                            radio.checked = true;
+                            updateBudgetPayerDisplay('budget_hotel1', payers.hotel1);
+                        }
+                    }
+                    if (payers.hotel2) {
+                        const radio = document.querySelector(`input[name="budget_payer_hotel2"][value="${payers.hotel2}"]`);
+                        if (radio) {
+                            radio.checked = true;
+                            updateBudgetPayerDisplay('budget_hotel2', payers.hotel2);
+                        }
+                    }
+                    if (payers.hotel3) {
+                        const radio = document.querySelector(`input[name="budget_payer_hotel3"][value="${payers.hotel3}"]`);
+                        if (radio) {
+                            radio.checked = true;
+                            updateBudgetPayerDisplay('budget_hotel3', payers.hotel3);
+                        }
+                    }
+                    if (payers.hotel4) {
+                        const radio = document.querySelector(`input[name="budget_payer_hotel4"][value="${payers.hotel4}"]`);
+                        if (radio) {
+                            radio.checked = true;
+                            updateBudgetPayerDisplay('budget_hotel4', payers.hotel4);
+                        }
+                    }
+                    if (payers.nintendo) {
+                        const radio = document.querySelector(`input[name="budget_payer_nintendo"][value="${payers.nintendo}"]`);
+                        if (radio) {
+                            radio.checked = true;
+                            updateBudgetPayerDisplay('budget_nintendo', payers.nintendo);
+                        }
+                    }
+                    if (payers.rental_car) {
+                        const radio = document.querySelector(`input[name="budget_payer_rental_car"][value="${payers.rental_car}"]`);
+                        if (radio) {
+                            radio.checked = true;
+                            updateBudgetPayerDisplay('budget_rental_car', payers.rental_car);
+                        }
+                    }
+                    if (payers.ama_hut) {
+                        const radio = document.querySelector(`input[name="budget_payer_ama_hut"][value="${payers.ama_hut}"]`);
+                        if (radio) {
+                            radio.checked = true;
+                            updateBudgetPayerDisplay('budget_ama_hut', payers.ama_hut);
+                        }
+                    }
+                    if (payers.grill_eight) {
+                        const radio = document.querySelector(`input[name="budget_payer_grill_eight"][value="${payers.grill_eight}"]`);
+                        if (radio) {
+                            radio.checked = true;
+                            updateBudgetPayerDisplay('budget_grill_eight', payers.grill_eight);
+                        }
+                    }
+                    if (payers.burlesque) {
+                        const radio = document.querySelector(`input[name="budget_payer_burlesque"][value="${payers.burlesque}"]`);
+                        if (radio) {
+                            radio.checked = true;
+                            updateBudgetPayerDisplay('budget_burlesque', payers.burlesque);
+                        }
+                    }
+                    
+                    console.log('已載入儲存的付款人選擇');
+                } catch (e) {
+                    console.error('載入付款人選擇失敗:', e);
+                }
+            }
         }
 
         // 開支總覽數據
@@ -6587,6 +6671,22 @@
             };
             
             localStorage.setItem('budgetAmounts', JSON.stringify(budgetAmounts));
+            
+            // 儲存所有付款人選擇到 localStorage
+            const budgetPayers = {
+                flight: document.querySelector('input[name="budget_payer_flight"]:checked')?.value || '合付',
+                hotel1: document.querySelector('input[name="budget_payer_hotel1"]:checked')?.value || 'Kaho',
+                hotel2: document.querySelector('input[name="budget_payer_hotel2"]:checked')?.value || 'Kaho',
+                hotel3: document.querySelector('input[name="budget_payer_hotel3"]:checked')?.value || 'Kaho',
+                hotel4: document.querySelector('input[name="budget_payer_hotel4"]:checked')?.value || 'Kaho',
+                nintendo: document.querySelector('input[name="budget_payer_nintendo"]:checked')?.value || '泰氏夫婦',
+                rental_car: document.querySelector('input[name="budget_payer_rental_car"]:checked')?.value || '未付',
+                ama_hut: document.querySelector('input[name="budget_payer_ama_hut"]:checked')?.value || '未付',
+                grill_eight: document.querySelector('input[name="budget_payer_grill_eight"]:checked')?.value || '未付',
+                burlesque: document.querySelector('input[name="budget_payer_burlesque"]:checked')?.value || '未付'
+            };
+            
+            localStorage.setItem('budgetPayers', JSON.stringify(budgetPayers));
             
             // 更新日元顯示
             const nintendoHkd = document.getElementById('budget_nintendo_hkd');
