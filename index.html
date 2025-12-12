@@ -4650,7 +4650,7 @@
                         <i class="fas fa-ticket-alt" style="font-size: 20px; color: #E91E63;"></i>
                         <div>
                             <div style="font-weight: 700; font-size: 15px; color: #202020;">任天堂門票</div>
-                            <div style="font-size: 18px; font-weight: 700; color: #E91E63;">JPY 13,200 <span id="budget_nintendo_hkd" style="font-size: 14px; color: #666;">≈ HKD 726</span></div>
+                            <div style="font-size: 18px; font-weight: 700; color: #E91E63;">JPY 13,200 <span id="budget_nintendo_hkd" style="font-size: 14px; color: #666;">≈ HKD 730</span></div>
                         </div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
@@ -4969,7 +4969,7 @@
                         
                         <strong>5. 預估其他雜費：</strong><br>
                         <code style="background: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; display: block; margin: 4px 0; word-wrap: break-word; white-space: pre-wrap;">
-= JPY 40,000 × 匯率
+= JPY 200,000 × 匯率
 <span style="font-size: 9px; color: #999;">(購物、交通、零食等)</span></code><br>
                         
                         <strong>6. 預估總費用：</strong><br>
@@ -6198,8 +6198,8 @@
             // 景點門票估算（部分景點免費，部分需付費）
             const estimatedTickets = 12500 * exchangeRate;
             
-            // 其他雜費（購物、零食、交通等）
-            const estimatedOthers = 20000 * exchangeRate;
+            // 日常雜費
+            const estimatedOthers = 40000 * exchangeRate;
             
             const estimatedTotal = knownExpenses + estimatedMeals + estimatedDriving + estimatedTickets + estimatedOthers;
             
@@ -6328,38 +6328,23 @@
             // 計算行程費用估算
             const recordedExpenses = kahoPaid + dickenPaid + taiPaid + totalUnpaid;
             
-            // 餐飲估算（8天，根據行程中的餐廳和實際消費水平計算）
-            // 已記錄餐廳（3餐）：
-            // - 海女小屋 JPY 30,800（Day 4午餐，4人）
-            // - Grill Eight BBQ JPY 24,000（Day 5午餐，4人）
-            // - Burlesque Osaka JPY 35,200（Day 6晚餐，4人）
+            // 餐飲估算
+            // 已知餐廳：松重壽喜燒 + 一升瓶 + たか屋
+            const knownRestaurants = (28000 + 24000 + 16000) * exchangeRate;
             
-            // 行程中其他已知餐廳（未記錄開支）：
-            // - Day 1晚餐：松重壽喜燒（すき焼き 牛しゃぶ 松重）- 預估 JPY 7,000/人 × 4人 = JPY 28,000
-            // - Day 3午餐：一升瓶（焼肉の一升びん 宮町店）- 預估 JPY 6,000/人 × 4人 = JPY 24,000
-            // - Day 4晚餐：たか屋伊勢酒場 - 預估 JPY 4,000/人 × 4人 = JPY 16,000
-            
-            const knownRestaurants = (28000 + 24000 + 16000) * exchangeRate; // 已知餐廳未記錄開支
-            
-            // 其餘餐飲估算（以較高消費計算）：
-            // 總餐數：8天 × 3餐/天 × 4人 = 96餐
-            // 已記錄：3餐（海女小屋、Grill Eight、Burlesque）= 12人次
-            // 已知餐廳：3餐（松重、一升瓶、たか屋）= 12人次
-            // 剩餘：96 - 12 - 12 = 72人次
-            // 預估平均：JPY 3,500/人/餐（考慮日本關西地區較高消費）
+            // 其餘餐飲：72人次 × JPY 3,500/餐
             const remainingMeals = 72 * 3500 * exchangeRate;
             
             const estimatedMeals = knownRestaurants + remainingMeals;
             
-            // 自駕雜費估算
-            // 油費 JPY 15,000 + 停車費 JPY 8,000 + 高速公路費 JPY 12,000
+            // 自駕雜費：油費 + 停車 + 高速
             const estimatedDriving = (15000 + 8000 + 12000) * exchangeRate;
             
-            // 景點門票估算（水族館、神宮等）
+            // 景點門票
             const estimatedTickets = 12000 * exchangeRate;
             
-            // 其他雜費（購物、交通、零食等）
-            const estimatedOthers = 40000 * exchangeRate;
+            // 日常雜費
+            const estimatedOthers = 200000 * exchangeRate;
             
             const estimatedTotal = recordedExpenses + estimatedMeals + estimatedDriving + estimatedTickets + estimatedOthers;
             const perPersonExpense = estimatedTotal / 4; // 4人平均
@@ -6483,38 +6468,23 @@
             // 計算整體行程費用估算
             const knownExpenses = kahoPaid + dickenPaid + taiPaid + totalUnpaid;
             
-            // 餐飲估算（8天，根據行程中的餐廳和實際消費水平計算）
-            // 已記錄餐廳（3餐）：
-            // - 海女小屋 JPY 30,800（Day 4午餐，4人）
-            // - Grill Eight BBQ JPY 24,000（Day 5午餐，4人）
-            // - Burlesque Osaka JPY 35,200（Day 6晚餐，4人）
+            // 餐飲估算
+            // 已知餐廳：松重壽喜燒 + 一升瓶 + たか屋
+            const knownRestaurants = (28000 + 24000 + 16000) * exchangeRate;
             
-            // 行程中其他已知餐廳（未記錄開支）：
-            // - Day 1晚餐：松重壽喜燒（すき焼き 牛しゃぶ 松重）- 預估 JPY 7,000/人 × 4人 = JPY 28,000
-            // - Day 3午餐：一升瓶（焼肉の一升びん 宮町店）- 預估 JPY 6,000/人 × 4人 = JPY 24,000
-            // - Day 4晚餐：たか屋伊勢酒場 - 預估 JPY 4,000/人 × 4人 = JPY 16,000
-            
-            const knownRestaurants = (28000 + 24000 + 16000) * exchangeRate; // 已知餐廳未記錄開支
-            
-            // 其餘餐飲估算（以較高消費計算）：
-            // 總餐數：8天 × 3餐/天 × 4人 = 96餐
-            // 已記錄：3餐（海女小屋、Grill Eight、Burlesque）= 12人次
-            // 已知餐廳：3餐（松重、一升瓶、たか屋）= 12人次
-            // 剩餘：96 - 12 - 12 = 72人次
-            // 預估平均：JPY 3,500/人/餐（考慮日本關西地區較高消費）
+            // 其餘餐飲：72人次 × JPY 3,500/餐
             const remainingMeals = 72 * 3500 * exchangeRate;
             
             const estimatedMeals = knownRestaurants + remainingMeals;
             
-            // 自駕雜費估算
-            // 油費 JPY 15,000 + 停車費 JPY 8,000 + 高速公路費 JPY 12,000
+            // 自駕雜費：油費 + 停車 + 高速
             const estimatedDriving = (15000 + 8000 + 12000) * exchangeRate;
             
-            // 景點門票估算（水族館、神宮等）
+            // 景點門票
             const estimatedTickets = 12000 * exchangeRate;
             
-            // 其他雜費（購物、交通、零食等）
-            const estimatedOthers = 40000 * exchangeRate;
+            // 日常雜費
+            const estimatedOthers = 200000 * exchangeRate;
             
             const estimatedTotal = knownExpenses + estimatedMeals + estimatedDriving + estimatedTickets + estimatedOthers;
             const perPersonExpense = estimatedTotal / 4; // 4人平均
