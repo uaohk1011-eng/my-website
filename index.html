@@ -4158,7 +4158,7 @@ HKD 4,829.5
                         <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                             <div style="display: flex; align-items: center; gap: 4px;">
                                 <span id="budget_nintendo_currency_label" style="font-size: 14px; font-weight: 600; color: #666;">HKD</span>
-                                <input type="number" id="budget_amount_nintendo" value="13200" step="1" min="0" style="width: 100px; padding: 6px 8px 8px; border: 2px solid rgb(233, 30, 99); border-radius: 6px; font-size: 16px; font-weight: 700; color: rgb(233, 30, 99);" oninput="calculateBudgetOverview();">
+                                <input type="number" id="budget_amount_nintendo" value="680" step="1" min="0" style="width: 100px; padding: 6px 8px 8px; border: 2px solid rgb(233, 30, 99); border-radius: 6px; font-size: 16px; font-weight: 700; color: rgb(233, 30, 99);" oninput="calculateBudgetOverview();">
                             </div>
                             <span id="budget_nintendo_hkd" style="font-size: 14px; color: #666;">≈ HKD 37</span>
                         </div>
@@ -5639,7 +5639,7 @@ const rentalCarHkd = document.getElementById('rental_car_hkd');
 const amaHutHkd = document.getElementById('ama_hut_hkd');
 const grillEightHkd = document.getElementById('grill_eight_hkd');
 const burlesqueHkd = document.getElementById('burlesque_hkd');
-if (nintendoTicketHkd) nintendoTicketHkd.textContent = `≈ HKD ${(13200 * exchangeRate).toFixed(0)}`;
+if (nintendoTicketHkd) nintendoTicketHkd.textContent = `≈ HKD ${(680 * exchangeRate).toFixed(0)}`;
 if (rentalCarHkd) rentalCarHkd.textContent = `≈ HKD ${(60610 * exchangeRate).toFixed(0)}`;
 if (amaHutHkd) amaHutHkd.textContent = `≈ HKD ${(30800 * exchangeRate).toFixed(0)}`;
 if (grillEightHkd) grillEightHkd.textContent = `≈ HKD ${(24000 * exchangeRate).toFixed(0)}`;
@@ -5650,7 +5650,7 @@ const expenses = [
 { id: 'hotel2', amount: 764, currency: 'HKD' },
 { id: 'hotel3', amount: 3746.28, currency: 'HKD' },
 { id: 'hotel4', amount: 4281.82, currency: 'HKD' },
-{ id: 'nintendo', amount: 13200, currency: 'JPY' },
+{ id: 'nintendo', amount: 680, currency: 'JPY' },
 { id: 'rental_car', amount: 60610, currency: 'JPY' },
 { id: 'ama_hut', amount: 30800, currency: 'JPY' },
 { id: 'grill_eight', amount: 24000, currency: 'JPY' },
@@ -5755,7 +5755,7 @@ hotel1: parseFloat(document.getElementById('budget_amount_hotel1')?.value) || 90
 hotel2: parseFloat(document.getElementById('budget_amount_hotel2')?.value) || 764,
 hotel3: parseFloat(document.getElementById('budget_amount_hotel3')?.value) || 3746.28,
 hotel4: parseFloat(document.getElementById('budget_amount_hotel4')?.value) || 4281.82,
-nintendo: parseFloat(document.getElementById('budget_amount_nintendo')?.value) || 13200,
+nintendo: parseFloat(document.getElementById('budget_amount_nintendo')?.value) || 680,
 rental_car: parseFloat(document.getElementById('budget_amount_rental_car')?.value) || 60610,
 ama_hut: parseFloat(document.getElementById('budget_amount_ama_hut')?.value) || 30800,
 grill_eight: parseFloat(document.getElementById('budget_amount_grill_eight')?.value) || 24000,
@@ -5780,7 +5780,7 @@ const rentalCarHkd = document.getElementById('budget_rental_car_hkd');
 const amaHutHkd = document.getElementById('budget_ama_hut_hkd');
 const grillEightHkd = document.getElementById('budget_grill_eight_hkd');
 const burlesqueHkd = document.getElementById('budget_burlesque_hkd');
-const nintendoAmount = parseFloat(document.getElementById('budget_amount_nintendo')?.value) || 13200;
+const nintendoAmount = parseFloat(document.getElementById('budget_amount_nintendo')?.value) || 680;
 const rentalCarAmount = parseFloat(document.getElementById('budget_amount_rental_car')?.value) || 60610;
 const amaHutAmount = parseFloat(document.getElementById('budget_amount_ama_hut')?.value) || 30800;
 const grillEightAmount = parseFloat(document.getElementById('budget_amount_grill_eight')?.value) || 24000;
