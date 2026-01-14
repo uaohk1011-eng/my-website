@@ -3999,7 +3999,7 @@ HKD 4,829.5
                         <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                             <div style="display: flex; align-items: center; gap: 4px;">
                                 <span id="budget_nintendo_currency_label" style="font-size: 14px; font-weight: 600; color: #666;">HKD</span>
-                                <input type="number" id="budget_amount_nintendo" value="13200" step="1" min="0" style="width: 100px; padding: 6px 8px 8px; border: 2px solid rgb(233, 30, 99); border-radius: 6px; font-size: 16px; font-weight: 700; color: rgb(233, 30, 99);" oninput="calculateBudgetOverview();">
+                                <input type="number" id="budget_amount_nintendo" value="680" step="1" min="0" style="width: 100px; padding: 6px 8px 8px; border: 2px solid rgb(233, 30, 99); border-radius: 6px; font-size: 16px; font-weight: 700; color: rgb(233, 30, 99);" oninput="calculateBudgetOverview();">
                             </div>
                             <span id="budget_nintendo_hkd" style="font-size: 14px; color: #666;">≈ HKD 37</span>
                         </div>
@@ -4431,6 +4431,7 @@ element.scrollIntoView({ behavior: `smooth`, block: `start` });
 document.querySelectorAll(`.nav-btn`).forEach(btn => btn.classList.remove(`active`));
 if (typeof event !== 'undefined' && event.target) {
 event.target.classList.add(`active`);
+    
 }
 }
 }, 300); // 等待300ms讓側邊欄關閉動畫完成
@@ -5596,7 +5597,7 @@ hotel1: parseFloat(document.getElementById('budget_amount_hotel1')?.value) || 90
 hotel2: parseFloat(document.getElementById('budget_amount_hotel2')?.value) || 764,
 hotel3: parseFloat(document.getElementById('budget_amount_hotel3')?.value) || 3746.28,
 hotel4: parseFloat(document.getElementById('budget_amount_hotel4')?.value) || 4281.82,
-nintendo: parseFloat(document.getElementById('budget_amount_nintendo')?.value) || 13200,
+nintendo: parseFloat(document.getElementById('budget_amount_nintendo')?.value) || 680,
 rental_car: parseFloat(document.getElementById('budget_amount_rental_car')?.value) || 60610,
 ama_hut: parseFloat(document.getElementById('budget_amount_ama_hut')?.value) || 30800,
 grill_eight: parseFloat(document.getElementById('budget_amount_grill_eight')?.value) || 24000,
@@ -5621,7 +5622,7 @@ const rentalCarHkd = document.getElementById('budget_rental_car_hkd');
 const amaHutHkd = document.getElementById('budget_ama_hut_hkd');
 const grillEightHkd = document.getElementById('budget_grill_eight_hkd');
 const burlesqueHkd = document.getElementById('budget_burlesque_hkd');
-const nintendoAmount = parseFloat(document.getElementById('budget_amount_nintendo')?.value) || 13200;
+const nintendoAmount = parseFloat(document.getElementById('budget_amount_nintendo')?.value) || 680;
 const rentalCarAmount = parseFloat(document.getElementById('budget_amount_rental_car')?.value) || 60610;
 const amaHutAmount = parseFloat(document.getElementById('budget_amount_ama_hut')?.value) || 30800;
 const grillEightAmount = parseFloat(document.getElementById('budget_amount_grill_eight')?.value) || 24000;
