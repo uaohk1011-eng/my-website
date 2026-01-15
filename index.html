@@ -4128,7 +4128,7 @@ HKD 4,507.5
                 </div>
             </div>
 
-            <!-- Day 5-7住宿 HKD 4281.82 - 預設Kaho -->
+            <!-- Day 5-7住宿 HKD 4081.82 - 預設Kaho -->
             <div style="background: white; border-radius: 12px; border: 2px solid #4CAF50; overflow: hidden;">
                 <div onclick="toggleBudgetItem('budget_hotel4')" style="padding: 10px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, rgb(232, 245, 233) 0%, rgb(200, 230, 201) 100%); outline: none;" contenteditable="true" data-editor-original-outline="">
                     <div style="display: flex; align-items: center; gap: 10px;">
@@ -4154,7 +4154,7 @@ HKD 4,507.5
                         <div style="font-size: 13px; color: #666; margin-bottom: 6px; font-weight: 600;">金額：</div>
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <span id="budget_hotel4_currency_label" style="font-size: 14px; font-weight: 600; color: #666;">HKD</span>
-                            <input type="number" id="budget_amount_hotel4" value="4281.82" step="0.01" min="0" style="width: 120px; padding: 6px 8px; border: 2px solid #4CAF50; border-radius: 6px; font-size: 16px; font-weight: 700; color: #4CAF50;" oninput="calculateBudgetOverview();">
+                            <input type="number" id="budget_amount_hotel4" value="4081.82" step="0.01" min="0" style="width: 120px; padding: 6px 8px; border: 2px solid #4CAF50; border-radius: 6px; font-size: 16px; font-weight: 700; color: #4CAF50;" oninput="calculateBudgetOverview();">
                         </div>
                         <div id="budget_hotel4_converted" style="font-size: 12px; color: #999; margin-top: 4px; display: none;"></div>
                     </div>
@@ -5591,7 +5591,7 @@ const fixedExpenses = [
 { id: 'hotel1', name: '住宿1', amount: 903.1, currency: 'HKD' },
 { id: 'hotel2', name: '住宿2', amount: 764, currency: 'HKD' },
 { id: 'hotel3', name: '住宿3', amount: 3746.28, currency: 'HKD' },
-{ id: 'hotel4', name: '住宿4', amount: 4281.82, currency: 'HKD' },
+{ id: 'hotel4', name: '住宿4', amount: 4081.82, currency: 'HKD' },
 { id: 'rental_car', name: '租車', amount: 60610, currency: 'JPY' },
 { id: 'ama_hut', name: '海女小屋', amount: 30800, currency: 'JPY', note: '第4天午餐' },
 { id: 'grill_eight', name: 'Grill Eight BBQ', amount: 24000, currency: 'JPY', note: '第5天午餐' },
@@ -5702,7 +5702,7 @@ const expenses = [
 { id: 'hotel1', amount: 903.1, currency: 'HKD' },
 { id: 'hotel2', amount: 764, currency: 'HKD' },
 { id: 'hotel3', amount: 3746.28, currency: 'HKD' },
-{ id: 'hotel4', amount: 4281.82, currency: 'HKD' },
+{ id: 'hotel4', amount: 4081.82, currency: 'HKD' },
 { id: 'nintendo', amount: 680, currency: 'HKD' },
 { id: 'rental_car', amount: 60610, currency: 'JPY' },
 { id: 'ama_hut', amount: 30800, currency: 'JPY' },
@@ -5807,7 +5807,7 @@ flight: parseFloat(document.getElementById('budget_amount_flight')?.value) || 31
 hotel1: parseFloat(document.getElementById('budget_amount_hotel1')?.value) || 903.1,
 hotel2: parseFloat(document.getElementById('budget_amount_hotel2')?.value) || 764,
 hotel3: parseFloat(document.getElementById('budget_amount_hotel3')?.value) || 3746.28,
-hotel4: parseFloat(document.getElementById('budget_amount_hotel4')?.value) || 4281.82,
+hotel4: parseFloat(document.getElementById('budget_amount_hotel4')?.value) || 4081.82,
 nintendo: parseFloat(document.getElementById('budget_amount_nintendo')?.value) || 680,
 rental_car: parseFloat(document.getElementById('budget_amount_rental_car')?.value) || 60610,
 ama_hut: parseFloat(document.getElementById('budget_amount_ama_hut')?.value) || 30800,
@@ -5848,7 +5848,7 @@ const budgetExpenses = [
 { id: 'hotel1', amount: parseFloat(document.getElementById('budget_amount_hotel1')?.value) || 903.1, currency: budgetItemCurrencies.hotel1 || 'HKD' },
 { id: 'hotel2', amount: parseFloat(document.getElementById('budget_amount_hotel2')?.value) || 764, currency: budgetItemCurrencies.hotel2 || 'HKD' },
 { id: 'hotel3', amount: parseFloat(document.getElementById('budget_amount_hotel3')?.value) || 3746.28, currency: budgetItemCurrencies.hotel3 || 'HKD' },
-{ id: 'hotel4', amount: parseFloat(document.getElementById('budget_amount_hotel4')?.value) || 4281.82, currency: budgetItemCurrencies.hotel4 || 'HKD' },
+{ id: 'hotel4', amount: parseFloat(document.getElementById('budget_amount_hotel4')?.value) || 4081.82, currency: budgetItemCurrencies.hotel4 || 'HKD' },
 { id: 'nintendo', amount: nintendoAmount, currency: budgetItemCurrencies.nintendo || 'HKD' },
 { id: 'rental_car', amount: rentalCarAmount, currency: budgetItemCurrencies.rental_car || 'JPY' },
 { id: 'ama_hut', amount: amaHutAmount, currency: budgetItemCurrencies.ama_hut || 'JPY' },
