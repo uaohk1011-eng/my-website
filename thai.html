@@ -6,6 +6,7 @@
     <title>曼谷6天5夜深度自由行 - 互動行程與記帳工具</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 引入 Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
@@ -86,10 +87,11 @@
         .quick-tag:hover { background-color: #E2E8F0; color: #1E293B; }
         .quick-tag:active { transform: scale(0.95); }
 
-        /* 出發準備專用樣式 */
+        /* 重點提示專用樣式 */
         .prep-checkbox:checked + label { text-decoration: line-through; color: #94A3B8; }
         .phone-link { text-decoration: none; color: #2563EB; font-weight: 600; }
         .phone-link:hover { text-decoration: underline; }
+        .copyable-text { background-color: #F8FAFC; border: 1px solid #E2E8F0; padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; word-break: break-all; margin-bottom: 6px; color: #334155; }
     </style>
 </head>
 <body>
@@ -99,6 +101,7 @@
         <p>2026年6月12日 — 6月17日 (6天5夜)</p>
     </header>
 
+    <!-- 主行程頁面 Tab 區塊 -->
     <div id="tab-itinerary" class="main-tab-content active">
         <div class="day-nav" id="dayNav">
             <button class="day-btn active" onclick="switchDay(1)">Day 1</button>
@@ -110,6 +113,7 @@
         </div>
         
         <div class="container-custom">
+            <!-- Day 1 區塊 -->
             <div class="day-section active" id="daySection-1">
                 <div class="day-title-box">
                     <h2>Day 1 | 2026年6月12日 (五)</h2>
@@ -177,6 +181,7 @@
                 </div>
             </div>
 
+            <!-- Day 2 區塊 -->
             <div class="day-section" id="daySection-2">
                 <div class="day-title-box">
                     <h2>Day 2 | 2026年6月13日 (六)</h2>
@@ -253,6 +258,7 @@
                 </div>
             </div>
 
+            <!-- Day 3 區塊 -->
             <div class="day-section" id="daySection-3">
                 <div class="day-title-box">
                     <h2>Day 3 | 2026年6月14日 (日)</h2>
@@ -325,6 +331,7 @@
                 </div>
             </div>
 
+            <!-- Day 4 區塊 -->
             <div class="day-section" id="daySection-4">
                 <div class="day-title-box">
                     <h2>Day 4 | 2026年6月15日 (一)</h2>
@@ -402,6 +409,7 @@
                 </div>
             </div>
 
+            <!-- Day 5 區塊 -->
             <div class="day-section" id="daySection-5">
                 <div class="day-title-box">
                     <h2>Day 5 | 2026年6月16日 (二)</h2>
@@ -477,7 +485,7 @@
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 20:30 - 23:30</span>
                             <h3 class="card-title">Tichuca Rooftop Bar (網網紅迷幻水母高空酒吧)</h3>
-                            <p class="card-desc">全曼谷當紅的夜生活朝聖地！位於 T-One 大樓頂層，最醒目的標誌就是那座會隨風與音樂節奏變幻萬千色彩的巨大 LED 幻彩大水母藝術裝置。站在天際線旁俯瞰全曼谷 360 度的璀璨夜景，喝著調酒，氣氛無與倫比。</p>
+                            <p class="card-desc">全曼谷當紅的夜生活朝盛地！位於 T-One 大樓頂層，最醒目的標誌就是那座會隨風與音樂節奏變幻萬千色彩的巨大 LED 幻彩大水母藝術裝置。站在天際線旁俯瞰全曼谷 360 度的璀璨夜景，喝著調酒，氣氛無與倫比。</p>
                             <div class="alert-block">
                                 <i class="fas fa-exclamation-triangle"></i>
                                 <span><b>注意：</b> 該店有極為嚴格的 Dress Code（服裝限制）：<b>嚴禁著運動短褲、背心、任何形式的拖鞋或露趾涼鞋！</b> 請盛裝出席。此外，安檢極嚴，<b>入場必須檢查所有人「護照正本」</b>（手機照片可能不被接受），且不允許攜帶外食與大背包。</span>
@@ -491,6 +499,7 @@
                 </div>
             </div>
 
+            <!-- Day 6 區塊 -->
             <div class="day-section" id="daySection-6">
                 <div class="day-title-box">
                     <h2>Day 6 | 2026年6月17日 (三)</h2>
@@ -548,9 +557,11 @@
         </div>
     </div>
 
+    <!-- 記帳與分賬 Tab 區塊 -->
     <div id="tab-accounting" class="main-tab-content p-3 bootstrap-zone">
         <div class="container-custom">
             
+            <!-- 1. 匯率設定 -->
             <div class="accounting-zone">
                 <div class="accounting-title"><i class="fas fa-calculator me-2"></i>即時匯率設定</div>
                 <div class="row g-2 align-items-center">
@@ -566,6 +577,7 @@
                 </div>
             </div>
 
+            <!-- 2. 輸入表單 -->
             <div class="accounting-zone">
                 <div class="accounting-title"><i class="fas fa-edit me-2"></i>新增消費紀錄</div>
                 <form id="expenseForm" onsubmit="addExpense(event)">
@@ -631,6 +643,7 @@
                 </form>
             </div>
 
+            <!-- 3. 平分結算結果與轉帳指引 -->
             <div class="accounting-zone">
                 <div class="accounting-title"><i class="fas fa-hand-holding-usd me-2"></i>全體 AA 制平分結算</div>
                 <div class="table-responsive mb-2">
@@ -644,16 +657,20 @@
                             </tr>
                         </thead>
                         <tbody id="statTableBody">
-                            </tbody>
+                            <!-- JS 動態生成 -->
+                        </tbody>
                     </table>
                 </div>
                 
                 <div id="settlementResultBlock" class="p-3 bg-light rounded-3 border mt-2" style="font-size:0.88rem;">
-                    </div>
+                    <!-- JS 動態計算應收應付 -->
+                </div>
                 <div id="transferInstructionsBlock" class="p-3 rounded-3 border mt-2" style="font-size:0.88rem; background-color: #F0FDF4; border-color: #DCFCE7;">
-                    </div>
+                    <!-- JS 智慧轉帳配對指引 -->
+                </div>
             </div>
 
+            <!-- 4. 歷史明細 -->
             <div class="accounting-zone">
                 <div class="accounting-title"><i class="fas fa-list-ul me-2"></i>消費明細流水帳</div>
                 <div class="table-responsive">
@@ -668,7 +685,8 @@
                             </tr>
                         </thead>
                         <tbody id="historyTableBody">
-                            </tbody>
+                            <!-- JS 動態明細 -->
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -676,89 +694,114 @@
         </div>
     </div>
 
+    <!-- 【全面調整】重點提示 Tab 區塊 -->
     <div id="tab-preparation" class="main-tab-content p-3 bootstrap-zone">
         <div class="container-custom">
             
-            <div class="accounting-zone">
-                <div class="accounting-title">
-                    <i class="fas fa-clipboard-list text-danger me-2"></i>物品準備備忘清單
+            <!-- 區塊一：住宿資料 (酒店名稱, 地址（英/泰）, 電話) -->
+            <div class="accounting-zone" style="border-left: 5px solid #10B981;">
+                <div class="accounting-title text-success">
+                    <i class="fas fa-hotel me-2"></i>住宿資料 (Accommodation)
                 </div>
-                <p class="text-muted small mb-2">一邊打包一邊勾選，系統會自動幫你計算進度喔！</p>
-                
-                <div class="progress mb-3" style="height: 18px;">
-                    <div id="prepProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 0%; font-size: 0.75rem; font-weight: bold;">0%</div>
+                <div class="mb-3">
+                    <div class="small text-muted fw-bold mb-1">酒店名稱 (Hotel Name):</div>
+                    <div class="fw-bold text-dark p-2 bg-light rounded" style="font-size: 0.95rem;">Somerset Rama 9 Bangkok (曼谷盛捷拉瑪九服務公寓)</div>
                 </div>
+                <div class="mb-3">
+                    <div class="small text-muted fw-bold mb-1">酒店地址 (Address - English):</div>
+                    <div class="copyable-text">No. 22 Ratchadaphisek Road, Huai Khwang, Huai Khwang, Bangkok 10310, Thailand</div>
+                </div>
+                <div class="mb-3">
+                    <div class="small text-muted fw-bold mb-1">酒店地址 (Address - 泰文 | 方便給的士司機看):</div>
+                    <div class="copyable-text fw-medium" style="font-family: sans-serif; background-color: #FEF3C7; border-color: #FCD34D;">ซัมเมอร์เซ็ท พระรามเก้า แบงค็อก, เลขที่ 22 ถนนรัชดาภิเษก, แขวงห้วยขวาง, เขตห้วยขวาง, กรุงเทพมหานคร 10310</div>
+                </div>
+                <div>
+                    <div class="small text-muted fw-bold mb-1">酒店電話 (Phone):</div>
+                    <a href="tel:+6622391055" class="phone-link d-inline-block p-2 bg-light rounded w-100"><i class="fas fa-phone-alt me-2"></i>+66 2 239 1055</a>
+                </div>
+            </div>
 
-                <div class="list-group list-group-flush" id="prepListGroup">
-                    <div class="list-group-item d-flex align-items-center px-1 py-2">
-                        <input class="form-check-input prep-checkbox me-3" type="checkbox" id="prep-passport" onchange="calculatePrepProgress()">
-                        <label class="form-check-label fw-medium text-dark" for="prep-passport">🪪 護照正本 (確認有效期 6 個月以上)</label>
+            <!-- 區塊二：實用緊急電話 -->
+            <div class="accounting-zone" style="border-left: 5px solid #3B82F6;">
+                <div class="accounting-title text-primary">
+                    <i class="fas fa-phone-square-alt me-2"></i>重要聯絡電話 (Emergency Contacts)
+                </div>
+                <p class="text-muted small mb-3">💡 在手機上點擊下方藍色號碼，即可一鍵直接撥號。</p>
+                
+                <div class="list-group list-group-flush">
+                    <div class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center bg-transparent">
+                        <div>
+                            <div class="fw-bold" style="font-size:0.88rem;">🇹🇭 泰國旅遊警察 (英語/華語支援)</div>
+                            <span class="text-muted" style="font-size:0.75rem;">遺失物品、旅遊求助首選</span>
+                        </div>
+                        <a href="tel:1155" class="phone-link"><i class="fas fa-phone me-1"></i>1155</a>
                     </div>
-                    <div class="list-group-item d-flex align-items-center px-1 py-2">
-                        <input class="form-check-input prep-checkbox me-3" type="checkbox" id="prep-visa" onchange="calculatePrepProgress()">
-                        <label class="form-check-label fw-medium text-dark" for="prep-visa">🛂 泰國電子簽證/免簽相關文件證明</label>
+                    <div class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center bg-transparent">
+                        <div>
+                            <div class="fw-bold" style="font-size:0.88rem;">🚑 泰國醫療急救求助專線</div>
+                            <span class="text-muted" style="font-size:0.75rem;">緊急傷病、救護車中心</span>
+                        </div>
+                        <a href="tel:1669" class="phone-link"><i class="fas fa-phone me-1"></i>1669</a>
                     </div>
-                    <div class="list-group-item d-flex align-items-center px-1 py-2">
-                        <input class="form-check-input prep-checkbox me-3" type="checkbox" id="prep-ticket" onchange="calculatePrepProgress()">
-                        <label class="form-check-label fw-medium text-dark" for="prep-ticket">✈️ 泰國航空來回電子機票 (TG601 / TG602)</label>
+                    <div class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center bg-transparent">
+                        <div>
+                            <div class="fw-bold" style="font-size:0.88rem;">👮 泰國報警求助專線 (General)</div>
+                            <span class="text-muted" style="font-size:0.75rem;">當地一般報警中心</span>
+                        </div>
+                        <a href="tel:191" class="phone-link"><i class="fas fa-phone me-1"></i>191</a>
                     </div>
-                    <div class="list-group-item d-flex align-items-center px-1 py-2">
-                        <input class="form-check-input prep-checkbox me-3" type="checkbox" id="prep-cash" onchange="calculatePrepProgress()">
-                        <label class="form-check-label fw-medium text-dark" for="prep-cash">💵 泰銖現金 (榮泰船麵、夜市小吃必備現鈔)</label>
+                    <div class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center bg-transparent">
+                        <div>
+                            <div class="fw-bold" style="font-size:0.88rem;">🇭🇰 香港入境事務處 (24小時專線)</div>
+                            <span class="text-muted" style="font-size:0.75rem;">港人在外遇緊急狀況協助熱線</span>
+                        </div>
+                        <a href="tel:+8521868" class="phone-link"><i class="fas fa-phone me-1"></i>+852 1868</a>
                     </div>
-                    <div class="list-group-item d-flex align-items-center px-1 py-2">
-                        <input class="form-check-input prep-checkbox me-3" type="checkbox" id="prep-cards" onchange="calculatePrepProgress()">
-                        <label class="form-check-label fw-medium text-dark" for="prep-cards">💳 信用卡 (出發前確認已開通海外刷卡與提款)</label>
-                    </div>
-                    <div class="list-group-item d-flex align-items-center px-1 py-2">
-                        <input class="form-check-input prep-checkbox me-3" type="checkbox" id="prep-sun" onchange="calculatePrepProgress()">
-                        <label class="form-check-label fw-medium text-dark" for="prep-sun">☀️ 夏日防曬用品 (防曬乳、墨鏡、遮陽傘)</label>
-                    </div>
-                    <div class="list-group-item d-flex align-items-center px-1 py-2">
-                        <input class="form-check-input prep-checkbox me-3" type="checkbox" id="prep-medicine" onchange="calculatePrepProgress()">
-                        <label class="form-check-label fw-medium text-dark" for="prep-medicine">💊 常備藥品 (腸胃藥、止痛藥、防蚊液、暈車藥)</label>
-                    </div>
-                    <div class="list-group-item d-flex align-items-center px-1 py-2">
-                        <input class="form-check-input prep-checkbox me-3" type="checkbox" id="prep-hotel" onchange="calculatePrepProgress()">
-                        <label class="form-check-label fw-medium text-dark" for="prep-hotel">🏨 酒店與 Klook 票券憑證 (Somerset/Copper/Jeh O)</label>
+                    <div class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center bg-transparent">
+                        <div>
+                            <div class="fw-bold" style="font-size:0.88rem;">🇨🇳 中國駐泰國大使館領保電話</div>
+                            <span class="text-muted" style="font-size:0.75rem;">重大海外緊急事件領事保護協助</span>
+                        </div>
+                        <a href="tel:+6622457010" class="phone-link"><i class="fas fa-phone me-1"></i>+66 2245 7010</a>
                     </div>
                 </div>
             </div>
 
-            <div class="accounting-zone">
-                <div class="accounting-title">
-                    <i class="fas fa-phone-alt text-primary me-2"></i>旅泰實用緊急電話
+            <!-- 區塊三：出發準備 (攜帶物品清單) -->
+            <div class="accounting-zone" style="border-left: 5px solid #EF4444;">
+                <div class="accounting-title text-danger">
+                    <i class="fas fa-clipboard-check me-2"></i>出發準備 (攜帶物品清單)
                 </div>
-                <p class="text-muted small mb-3">💡 在手機上點擊下方電話號碼，即可直接撥號。</p>
                 
-                <div class="list-group list-group-flush">
-                    <div class="list-group-item px-1 py-2 d-flex justify-content-between align-items-center">
-                        <div>
-                            <div class="fw-bold">🇹🇭 泰國旅遊警察 (有中文服務)</div>
-                            <span class="text-muted small">遺失物品、旅遊糾紛求助專線</span>
-                        </div>
-                        <a href="tel:1155" class="phone-link"><i class="fas fa-phone me-1"></i>1155</a>
+                <!-- 行李打包進度條 -->
+                <div class="progress mb-3" style="height: 18px;">
+                    <div id="prepProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 0%; font-size: 0.75rem; font-weight: bold;">0%</div>
+                </div>
+
+                <div class="list-group list-group-flush" id="prepListGroup">
+                    <div class="list-group-item d-flex align-items-start px-0 py-2 bg-transparent">
+                        <input class="form-check-input prep-checkbox me-3 mt-1" type="checkbox" id="prep-passport" onchange="calculatePrepProgress()">
+                        <label class="form-check-label fw-medium text-dark" for="prep-passport">🪪 <b>重要文件</b>：護照正本（確認滿 6 個月以上有效）、電子機票、酒店確認信</label>
                     </div>
-                    <div class="list-group-item px-1 py-2 d-flex justify-content-between align-items-center">
-                        <div>
-                            <div class="fw-bold">🚑 泰國醫療急救求助專線</div>
-                            <span class="text-muted small">緊急傷病、叫救護車中心</span>
-                        </div>
-                        <a href="tel:1669" class="phone-link"><i class="fas fa-phone me-1"></i>1669</a>
+                    <div class="list-group-item d-flex align-items-start px-0 py-2 bg-transparent">
+                        <input class="form-check-input prep-checkbox me-3 mt-1" type="checkbox" id="prep-insurance" onchange="calculatePrepProgress()">
+                        <label class="form-check-label fw-medium text-dark" for="prep-insurance">📄 <b>旅遊保險</b>：確認已成功購買，並儲存保單電子檔或聯絡電話</label>
                     </div>
-                    <div class="list-group-item px-1 py-2 d-flex justify-content-between align-items-center">
-                        <div>
-                            <div class="fw-bold">🇭🇰 香港入境事務處 (24小時專線)</div>
-                            <span class="text-muted small">港人在外遇緊急狀況協助</span>
-                        </div>
-                        <a href="tel:+8521868" class="phone-link"><i class="fas fa-phone me-1"></i>+852 1868</a>
+                    <div class="list-group-item d-flex align-items-start px-0 py-2 bg-transparent">
+                        <input class="form-check-input prep-checkbox me-3 mt-1" type="checkbox" id="prep-cash" onchange="calculatePrepProgress()">
+                        <label class="form-check-label fw-medium text-dark" for="prep-cash">💵 <b>泰銖現金</b>：準備適量當地貨幣現鈔（部分泰國小吃、市集不收信用卡）</label>
                     </div>
-                    <div class="list-group-item px-1 py-2 d-flex justify-content-between align-items-center">
-                        <div>
-                            <div class="fw-bold">✈️ 泰國航空 曼谷客服中心</div>
-                            <span class="text-muted small">班機時刻、行李或票務變更詢問</span>
-                        </div>
-                        <a href="tel:+6623561111" class="phone-link"><i class="fas fa-phone me-1"></i>+66 2356 1111</a>
+                    <div class="list-group-item d-flex align-items-start px-0 py-2 bg-transparent">
+                        <input class="form-check-input prep-checkbox me-3 mt-1" type="checkbox" id="prep-powerbank" onchange="calculatePrepProgress()">
+                        <label class="form-check-label fw-medium text-dark" for="prep-powerbank">🔋 <b>行動電源</b>：必須隨身攜帶不可託運（容量標示須清晰，且符合民航局規定）</label>
+                    </div>
+                    <div class="list-group-item d-flex align-items-start px-0 py-2 bg-transparent">
+                        <input class="form-check-input prep-checkbox me-3 mt-1" type="checkbox" id="prep-adapter" onchange="calculatePrepProgress()">
+                        <label class="form-check-label fw-medium text-dark" for="prep-adapter">🔌 <b>旅行轉插</b>：泰國標準電壓為 220V，插頭形狀與香港不同，記得帶轉插</label>
+                    </div>
+                    <div class="list-group-item d-flex align-items-start px-0 py-2 bg-transparent">
+                        <input class="form-check-input prep-checkbox me-3 mt-1" type="checkbox" id="prep-clothes" onchange="calculatePrepProgress()">
+                        <label class="form-check-label fw-medium text-dark" for="prep-clothes">🎒 <b>個人用品</b>：足量替換衣物（注意高級高空酒吧與四面神服裝限制）、常備藥品、防曬用品及雨具</label>
                     </div>
                 </div>
             </div>
@@ -766,6 +809,7 @@
         </div>
     </div>
 
+    <!-- 底部功能 Tab 列 -->
     <div class="bottom-bar">
         <button id="navBtn-itinerary" class="bar-item active" onclick="switchMainTab('itinerary')">
             <i class="fas fa-calendar-alt"></i>
@@ -776,8 +820,8 @@
             <span>記帳分帳</span>
         </button>
         <button id="navBtn-preparation" class="bar-item" onclick="switchMainTab('preparation')">
-            <i class="fas fa-suitcase shadow-sm"></i>
-            <span>出發準備</span>
+            <i class="fas fa-info-circle"></i>
+            <span>重點提示</span>
         </button>
         <button class="bar-item" onclick="handleResetAction()">
             <i class="fas fa-undo"></i>
@@ -834,13 +878,12 @@
             if (isCompleted) { checkBtn.classList.add('done'); } else { checkBtn.classList.remove('done'); }
         }
 
-        // --- 出發準備：進度條動態計算邏輯 ---
+        // --- 重點提示：物品清單進度條計算邏輯 ---
         function calculatePrepProgress() {
             const checkboxes = document.querySelectorAll('.prep-checkbox');
             let checkedCount = 0;
             checkboxes.forEach(cb => {
                 if (cb.checked) checkedCount++;
-                // 順便把狀態暫存到本地快取中
                 localStorage.setItem(cb.id, cb.checked ? 'true' : 'false');
             });
             
@@ -859,7 +902,7 @@
                     updateAccountingCalculations();
                 }
             } else if (document.getElementById('tab-preparation').classList.contains('active')) {
-                if (confirm('確定要將所有行李與行李清單的準備進度歸零重新計算嗎？')) {
+                if (confirm('確定要將所有出發準備清單的進度歸零重新計算嗎？')) {
                     document.querySelectorAll('.prep-checkbox').forEach(cb => {
                         cb.checked = false;
                         localStorage.removeItem(cb.id);
@@ -906,7 +949,7 @@
             const lastDay = localStorage.getItem('currentSelectedDay');
             if (lastDay) { switchDay(parseInt(lastDay)); }
 
-            // 出發準備清單狀態恢復
+            // 重點提示物品清單狀態恢復
             document.querySelectorAll('.prep-checkbox').forEach(cb => {
                 if (localStorage.getItem(cb.id) === 'true') {
                     cb.checked = true;
@@ -933,10 +976,7 @@
 
             if (isNaN(amount) || amount <= 0) return;
 
-            // 名稱為空自動帶入付款類別
-            if (!name) {
-                name = category;
-            }
+            if (!name) { name = category; }
 
             const records = getExpenses();
             const newRecord = {
