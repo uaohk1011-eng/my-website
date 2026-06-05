@@ -125,7 +125,7 @@
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 12:55 - 14:35</span>
                             <h3 class="card-title">香港國際機場 ✈️ 曼谷萬那普機場 (BKK)</h3>
-                            <p class="card-desc">搭乘泰國航空 TG601 班機前往曼谷。抵達機場後辦理入境，提取託運行李並辦理清關。</p>
+                            <p class="card-desc">搭乘<b>泰國航空 TG601 班機 (12:55 出發)</b> 前往曼谷。抵達機場後辦理入境，提取託運行李並辦理清關。</p>
                             <div class="alert-block">
                                 <i class="fas fa-exclamation-triangle"></i>
                                 <span><b>注意：</b> 下飛機後請儘快前往 Immigration 護照查驗處，下飛機人潮通常極多，排隊辦理入境約需 30-40 分鐘。</span>
@@ -541,7 +541,7 @@
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 14:30 - 22:00</span>
                             <h3 class="card-title">抵達萬那普機場 ✈️ 順利返港</h3>
-                            <p class="card-desc">返回香港！搭乘泰國航空 TG602 18:10 班機。抵達機場後辦理報到、行李託運及安檢。</p>
+                            <p class="card-desc">返回香港！搭乘<b>泰國航空 TG602 班機 (18:10 出發)</b>。抵達機場後辦理報到、行李託運及安檢。</p>
                             <div class="alert-block">
                                 <i class="fas fa-exclamation-triangle"></i>
                                 <span><b>注意：</b> 曼谷萬那普機場離境安檢手續極為繁瑣且經常大排長龍，強烈建議務必提前 3 小時（約 15:10 前）抵達機場。<b>若有購買符合退稅標準的物品，請務必在過海關出境前，先前往機場的退稅辦公室（VAT Refund Office）讓官員在退稅單上蓋章，否則入關後將無法辦理退稅！</b></span>
@@ -698,6 +698,29 @@
     <div id="tab-preparation" class="main-tab-content p-3 bootstrap-zone">
         <div class="container-custom">
             
+            <!-- 新增區塊：航班資訊 (Flight Details) -->
+            <div class="accounting-zone" style="border-left: 5px solid #FF6B6B;">
+                <div class="accounting-title style-color-primary" style="color: var(--primary);">
+                    <i class="fas fa-plane me-2"></i>來回航班資訊 (Flight Details)
+                </div>
+                <div class="mb-3 border-bottom pb-2">
+                    <div class="small text-muted fw-bold mb-1">🛫 去程航班 (Departure):</div>
+                    <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded">
+                        <span class="fw-bold text-dark"><i class="fas fa-plane-departure text-secondary me-2"></i>泰國航空 TG601</span>
+                        <span class="badge badge-hkd">2026/06/12</span>
+                        <span class="fw-bold text-danger">12:55</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="small text-muted fw-bold mb-1">🛬 回程航班 (Return):</div>
+                    <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded">
+                        <span class="fw-bold text-dark"><i class="fas fa-plane-arrival text-success me-2"></i>泰國航空 TG602</span>
+                        <span class="badge badge-hkd">2026/06/17</span>
+                        <span class="fw-bold text-danger">18:10</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- 區塊一：住宿資料 (酒店名稱, 地址（英/泰）, 電話) -->
             <div class="accounting-zone" style="border-left: 5px solid #10B981;">
                 <div class="accounting-title text-success">
@@ -1079,7 +1102,7 @@
                     settlementHTML += `
                         <div class="d-flex justify-content-between align-items-center text-success my-1 fw-medium">
                             <span><i class="fas fa-arrow-alt-circle-down me-1"></i><b>${m}</b> 實際支付較多</span>
-                            <span>需收回 <b>$${diff.toFixed(2)}</b> HKD</span>
+                            <span>Ref 需收回 <b>$${diff.toFixed(2)}</b> HKD</span>
                         </div>`;
                     creditors.push({ name: m, amount: diff });
                 } else if (diff < -0.005) {
