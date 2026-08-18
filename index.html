@@ -29,13 +29,38 @@
         }
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Poppins', 'Noto Sans TC', sans-serif; background-color: var(--light-bg); color: var(--text-main); line-height: 1.6; padding-bottom: 90px; }
-        header { background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; padding: 25px 20px; text-align: center; border-bottom-left-radius: 24px; border-bottom-right-radius: 24px; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); position: sticky; top: 0; z-index: 100; }
-        header h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 5px; letter-spacing: 0.5px; }
-        header p { font-size: 0.85rem; opacity: 0.9; }
         
-        .day-nav { display: flex; overflow-x: auto; white-space: nowrap; padding: 12px 15px; gap: 10px; background: var(--light-bg); position: sticky; top: 79px; z-index: 99; scrollbar-width: none; }
+        /* 標題與導覽列 Sticky 層級修正 */
+        header { 
+            background: linear-gradient(135deg, #1e40af, #3b82f6); 
+            color: white; 
+            padding: 20px 15px; 
+            text-align: center; 
+            border-bottom-left-radius: 20px; 
+            border-bottom-right-radius: 20px; 
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1020; 
+        }
+        header h1 { font-size: 1.3rem; font-weight: 700; margin-bottom: 3px; letter-spacing: 0.5px; }
+        header p { font-size: 0.82rem; opacity: 0.9; margin-bottom: 0; }
+        
+        .day-nav { 
+            display: flex; 
+            overflow-x: auto; 
+            white-space: nowrap; 
+            padding: 10px 15px; 
+            gap: 8px; 
+            background: var(--light-bg); 
+            position: sticky; 
+            top: 72px; /* 銜接 header 高度 */
+            z-index: 1010; 
+            scrollbar-width: none; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
         .day-nav::-webkit-scrollbar { display: none; }
-        .day-btn { background-color: var(--card-bg); color: var(--dark); border: 1px solid #E2E8F0; padding: 8px 16px; border-radius: 20px; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+        .day-btn { background-color: var(--card-bg); color: var(--dark); border: 1px solid #E2E8F0; padding: 7px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
         .day-btn.active { background-color: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25); }
         
         .container-custom { padding: 15px; max-width: 600px; margin: 0 auto; }
@@ -116,6 +141,36 @@
         .phone-link { text-decoration: none; color: #2563EB; font-weight: 600; }
         .phone-link:hover { text-decoration: underline; }
         .copyable-text { background-color: #F8FAFC; border: 1px solid #E2E8F0; padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; word-break: break-all; margin-bottom: 6px; color: #334155; }
+
+        /* 回到最上方按鈕 Floating Back to Top Button */
+        #backToTopBtn {
+            position: fixed;
+            bottom: 75px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
+        }
+        #backToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        #backToTopBtn:active {
+            transform: scale(0.9);
+        }
     </style>
 </head>
 <body>
@@ -243,19 +298,20 @@
             <div class="day-section" id="daySection-2">
                 <div class="day-title-box">
                     <h2>Day 2 | 2026年8月21日 (五)</h2>
-                    <p>聖淘沙入住 ➔ 哈利波特展 & 斜坡滑車</p>
+                    <p>海南雞早餐 ➔ 哈利波特展 ➔ Asian Food Hall ➔ 入住聖淘沙 ➔ 泳池休閒</p>
                 </div>
                 <div class="timeline">
                     <div class="timeline-item" id="item-2-0">
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
-                            <span class="time-tag"><i class="far fa-clock"></i> 09:00 - 10:00</span>
+                            <span class="time-tag"><i class="far fa-clock"></i> 09:40 - 11:30</span>
                             <h3 class="card-title">Check-out ➔ 天天海南雞飯 ➔ 林志源牛肉乾</h3>
                             <p class="card-desc">辦理退房手續後，步行 5–8 分鐘至麥士威熟食中心品嚐天天海南雞飯，並順道於牛車水選購林志源牛肉乾。</p>
                             
                             <div class="alert-block">
-                                <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 熟食中心注意事項</div>
-                                <b>現金與支付：</b> 天天海南雞飯早晨約 10:00 開始營業，排隊約 20 分鐘；部分熟食攤位僅收現金或 PayNow，請備妥少許新幣現金。
+                                <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 營業時間與支付提醒</div>
+                                <b>營業時間確認：</b> 天天海南雞飯營業時間為 <b>10:00 AM 開始</b>（每週一公休）。建議於 10:00 準時到達排隊點餐。<br>
+                                <b>現金準備：</b> 部分熟食攤位僅收現金或 PayNow，請備妥少許新幣現金。
                             </div>
 
                             <div class="card-actions">
@@ -267,34 +323,15 @@
 
                     <div class="transit-time-block">
                         <i class="fas fa-route me-1 text-primary"></i> <b>前往聖淘沙交通路線與時間：</b><br>
-                        由牛車水步行約 5 分鐘至 <a class="mrt-badge" href="https://maps.google.com/?q=Chinatown+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Chinatown 站 (NE4)</a> 搭紫線 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> HarbourFront 站 (NE1)</a>（車程 6 分鐘，SGD $1.20）出站進入 VivoCity 怡豐城 3 樓 ➔ 轉乘 <a class="mrt-badge" href="https://maps.google.com/?q=VivoCity+Sentosa+Express" target="_blank"><i class="fas fa-train"></i> Sentosa Express 聖淘沙輕軌</a> ➔ 於 <a class="mrt-badge" href="https://maps.google.com/?q=Imbiah+Station+Sentosa" target="_blank"><i class="fas fa-subway"></i> Imbiah 站</a> 下車（車程 6 分鐘，房客憑憑證免費），步行 3 分鐘抵達聖淘沙鄉村酒店。
+                        由牛車水步行約 5 分鐘至 <a class="mrt-badge" href="https://maps.google.com/?q=Chinatown+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Chinatown 站 (NE4)</a> 搭紫線 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> HarbourFront 站 (NE1)</a>（車程 6 分鐘，SGD $1.20）出站進入 VivoCity 怡豐城 3 樓 ➔ 轉乘 <a class="mrt-badge" href="https://maps.google.com/?q=VivoCity+Sentosa+Express" target="_blank"><i class="fas fa-train"></i> Sentosa Express 聖淘沙輕軌</a> 前往名勝世界 / Imbiah 站。
                     </div>
 
                     <div class="timeline-item" id="item-2-1">
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
-                            <span class="time-tag"><i class="far fa-clock"></i> 10:30 - 11:00</span>
-                            <h3 class="card-title">入住：聖淘沙鄉村酒店 (Village Hotel Sentosa)</h3>
-                            <p class="card-desc">抵達酒店寄存行李並領取入住憑證。</p>
-                            
-                            <div class="alert-block">
-                                <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 聖淘沙通行證提醒</div>
-                                <b>免費輕軌 Pass：</b> 入住聖淘沙島內酒店之住客，出示酒店預訂確認信即可獲得免費乘搭 Sentosa Express 輕軌Pass，在島內與往返 VivoCity 期間均可免費搭乘！
-                            </div>
-
-                            <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Village+Hotel+Sentosa" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 聖淘沙鄉村酒店</a>
-                                <button class="btn-check" onclick="toggleComplete('2-1')"><i class="fas fa-check"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item" id="item-2-2">
-                        <div class="timeline-badge"></div>
-                        <div class="card-custom">
-                            <span class="time-tag"><i class="far fa-clock"></i> 13:00 - 15:00</span>
+                            <span class="time-tag"><i class="far fa-clock"></i> 11:30 - 13:30</span>
                             <h3 class="card-title">哈利波特展 Harry Potter Exhibition</h3>
-                            <p class="card-desc">沉浸式體驗魔法世界（已預訂門票 HKD$2,405.00），由酒店步行約 8–10 分鐘即達名勝世界展覽會場。</p>
+                            <p class="card-desc">沉浸式體驗魔法世界（已預訂門票 HKD$2,405.00），位於聖淘沙名勝世界展覽會場。</p>
                             
                             <div class="alert-block">
                                 <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 入場提醒</div>
@@ -303,6 +340,19 @@
 
                             <div class="card-actions">
                                 <a href="https://maps.google.com/?q=Resorts+World+Sentosa" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 展覽地點導航</a>
+                                <button class="btn-check" onclick="toggleComplete('2-1')"><i class="fas fa-check"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" id="item-2-2">
+                        <div class="timeline-badge"></div>
+                        <div class="card-custom">
+                            <span class="time-tag"><i class="far fa-clock"></i> 14:00 - 15:00</span>
+                            <h3 class="card-title">午餐：名勝世界 Asian Food Hall</h3>
+                            <p class="card-desc">展覽結束後，步行至聖淘沙名勝世界 Asian Food Hall 享用豐富多元的亞洲特色午餐。</p>
+                            <div class="card-actions">
+                                <a href="https://maps.google.com/?q=Resorts+World+Sentosa+Asian+Food+Hall" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> Asian Food Hall 導航</a>
                                 <button class="btn-check" onclick="toggleComplete('2-2')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
@@ -311,17 +361,17 @@
                     <div class="timeline-item" id="item-2-3">
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
-                            <span class="time-tag"><i class="far fa-clock"></i> 15:30 - 17:00</span>
-                            <h3 class="card-title">天際線斜坡滑車 Skyline Luge</h3>
-                            <p class="card-desc">由哈利波特展覽地點步行約 5 分鐘至 Imbiah 售票處。刺激有趣的斜坡滑車與空中吊椅體驗（已預訂門票 HKD$1,386.00）。</p>
+                            <span class="time-tag"><i class="far fa-clock"></i> 15:00 - 16:30</span>
+                            <h3 class="card-title">入住：聖淘沙鄉村酒店 (Village Hotel Sentosa)</h3>
+                            <p class="card-desc">前往聖淘沙鄉村酒店辦理 Check-in 手續，領取房卡與進房整理行李。</p>
                             
                             <div class="alert-block">
-                                <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 安全與穿著提醒</div>
-                                <b>安全裝備：</b> 身高未滿 110cm 之兒童需與成人合坐。體驗時嚴禁穿著拖鞋或高跟鞋，建議穿著包鞋及塗抹防曬乳。
+                                <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 聖淘沙通行證提醒</div>
+                                <b>免費輕軌 Pass：</b> 入住聖淘沙島內酒店之住客，出示酒店預訂確認信即可獲得免費乘搭 Sentosa Express 輕軌 Pass，在島內與往返 VivoCity 期間均可免費搭乘！
                             </div>
 
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Skyline+Luge+Sentosa" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 斜坡滑車導航</a>
+                                <a href="https://maps.google.com/?q=Village+Hotel+Sentosa" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 聖淘沙鄉村酒店</a>
                                 <button class="btn-check" onclick="toggleComplete('2-3')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
@@ -330,12 +380,24 @@
                     <div class="timeline-item" id="item-2-4">
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
+                            <span class="time-tag"><i class="far fa-clock"></i> 16:30 - 18:00</span>
+                            <h3 class="card-title">酒店泳池暢泳與度假休閒</h3>
+                            <p class="card-desc">換上泳裝，享受聖淘沙鄉村酒店特色多層景觀泳池、水上設施與休閒時光。</p>
+                            <div class="card-actions me-0 mt-3">
+                                <button class="btn-check w-100 py-2" onclick="toggleComplete('2-4')"><i class="fas fa-check me-2"></i> 完成泳池行程</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" id="item-2-5">
+                        <div class="timeline-badge"></div>
+                        <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 18:30 - 20:00</span>
                             <h3 class="card-title">晚餐：酒店鐵板燒 / Soi Social</h3>
-                            <p class="card-desc">由斜坡滑車終點/Imbiah站步行約 5–10 分鐘即可到達餐廳享用精饌晚餐。</p>
+                            <p class="card-desc">梳洗後於酒店特色餐廳（鐵板燒或 Soi Social）享用美味晚餐。</p>
                             <div class="card-actions">
                                 <a href="https://maps.google.com/?q=Soi+Social+Sentosa" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> Soi Social 導航</a>
-                                <button class="btn-check" onclick="toggleComplete('2-4')"><i class="fas fa-check"></i></button>
+                                <button class="btn-check" onclick="toggleComplete('2-5')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
                     </div>
@@ -346,18 +408,19 @@
             <div class="day-section" id="daySection-3">
                 <div class="day-title-box">
                     <h2>Day 3 | 2026年8月22日 (六)</h2>
-                    <p>冒險海灣水上樂園 ➔ VivoCity 松發肉骨茶</p>
+                    <p>水上樂園 ➔ 園內午餐 ➔ 天際線斜坡滑車 ➔ VivoCity 晚餐</p>
                 </div>
                 <div class="timeline">
                     <div class="timeline-item" id="item-3-0">
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
-                            <span class="time-tag"><i class="far fa-clock"></i> 09:30 - 13:00</span>
+                            <span class="time-tag"><i class="far fa-clock"></i> 09:40 - 13:00</span>
                             <h3 class="card-title">冒險海灣水上樂園 Adventure Cove Waterpark</h3>
                             <p class="card-desc">暢玩滑水道與彩虹礁浮潛體驗（已預訂門票 HKD$1,273.00）。由聖淘沙鄉村酒店<b>步行約 10 分鐘</b>即達入口。</p>
                             
                             <div class="alert-block">
                                 <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 水上樂園注意事項</div>
+                                <b>開園時間提示：</b> 水上樂園營業時間為 <b>10:00 AM</b> 開門，建議 09:40 抵達現場排隊入場以節省時間。<br>
                                 <b>泳衣嚴格限制：</b> 滑水道設施嚴禁穿著帶有金屬扣、拉鍊或鈕扣之泳衣。<br>
                                 <b>寄物櫃費用：</b> 園區內電子置物櫃需付費租用 (約 SGD $10-20/天)，建議攜帶防水手機袋與毛巾。
                             </div>
@@ -372,14 +435,11 @@
                     <div class="timeline-item" id="item-3-1">
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
-                            <span class="time-tag"><i class="far fa-clock"></i> 14:00 - 16:00</span>
-                            <h3 class="card-title">Resorts World ➔ VivoCity 逛街購物</h3>
-                            <p class="card-desc">
-                                步行 3 分鐘至 <a class="mrt-badge" href="https://maps.google.com/?q=Resorts+World+Station+Sentosa" target="_blank"><i class="fas fa-train"></i> Resorts World 站</a> ➔ 搭乘 Sentosa Express 輕軌（車程 5 分鐘，房客免費）返回 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> HarbourFront 站 (VivoCity)</a> 逛街購物。
-                            </p>
-                            <div class="card-actions">
-                                <a href="https://maps.google.com/?q=VivoCity" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> VivoCity 導航</a>
-                                <button class="btn-check" onclick="toggleComplete('3-1')"><i class="fas fa-check"></i></button>
+                            <span class="time-tag"><i class="far fa-clock"></i> 13:00 - 14:00</span>
+                            <h3 class="card-title">水上樂園園內午餐</h3>
+                            <p class="card-desc">於水上樂園內餐廳（如 The Bay Restaurant）享用美味午餐，補充電力。</p>
+                            <div class="card-actions me-0 mt-3">
+                                <button class="btn-check w-100 py-2" onclick="toggleComplete('3-1')"><i class="fas fa-check me-2"></i> 完成園內午餐</button>
                             </div>
                         </div>
                     </div>
@@ -387,33 +447,57 @@
                     <div class="timeline-item" id="item-3-2">
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
-                            <span class="time-tag"><i class="far fa-clock"></i> 16:30 - 18:30</span>
-                            <h3 class="card-title">晚餐：松發肉骨茶 (VivoCity 分店)</h3>
-                            <p class="card-desc">於 VivoCity 商場 2 樓品嚐新加坡必吃米其林推薦肉骨茶，湯頭胡椒香氣濃郁，可免費無限加湯！</p>
+                            <span class="time-tag"><i class="far fa-clock"></i> 14:30 - 17:00</span>
+                            <h3 class="card-title">新加坡天際線斜坡滑車 Skyline Luge</h3>
+                            <p class="card-desc">離開水上樂園後前往 Imbiah 售票處。刺激有趣的斜坡滑車與空中吊椅體驗（已預訂門票 HKD$1,386.00）。</p>
                             
                             <div class="alert-block">
-                                <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 排隊攻略</div>
-                                <b>預先取號：</b> 週末晚餐人潮極多，建議 16:30 提早到達或使用現場 QR Code 掃碼取號，避免高峰期等待超過 45 分鐘。
+                                <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 安全與穿著提醒</div>
+                                <b>安全裝備：</b> 身高未滿 110cm 之兒童需與成人合坐。體驗時嚴禁穿著拖鞋或高跟鞋，建議穿著包鞋及塗抹防曬乳。
                             </div>
 
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Song+Fa+Bak+Kut+Teh+VivoCity" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 松發肉骨茶導航</a>
+                                <a href="https://maps.google.com/?q=Skyline+Luge+Sentosa" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 斜坡滑車導航</a>
                                 <button class="btn-check" onclick="toggleComplete('3-2')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
                     </div>
 
+                    <div class="transit-time-block">
+                        <i class="fas fa-route me-1 text-primary"></i> <b>前往 VivoCity 交通：</b><br>
+                        由斜坡滑車終點/Imbiah 站搭乘 Sentosa Express 輕軌 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> VivoCity 站 (HarbourFront)</a>（車程約 6 分鐘，房客憑通行證免費）。
+                    </div>
+
                     <div class="timeline-item" id="item-3-3">
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
-                            <span class="time-tag"><i class="far fa-clock"></i> 19:00 - 19:30</span>
+                            <span class="time-tag"><i class="far fa-clock"></i> 17:30 - 20:00</span>
+                            <h3 class="card-title">VivoCity 購物與晚餐 (如松發肉骨茶)</h3>
+                            <p class="card-desc">於 VivoCity 商場逛街，並享用豐盛晚餐（可選擇 2 樓松發肉骨茶或其他精選美食）。</p>
+                            
+                            <div class="alert-block">
+                                <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 排隊攻略</div>
+                                <b>預先取號：</b> 週末晚餐人潮極多，若選擇松發肉骨茶建議提早到達或使用現場 QR Code 掃碼取號。
+                            </div>
+
+                            <div class="card-actions">
+                                <a href="https://maps.google.com/?q=VivoCity" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> VivoCity 導航</a>
+                                <button class="btn-check" onclick="toggleComplete('3-3')"><i class="fas fa-check"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" id="item-3-4">
+                        <div class="timeline-badge"></div>
+                        <div class="card-custom">
+                            <span class="time-tag"><i class="far fa-clock"></i> 20:30</span>
                             <h3 class="card-title">返回聖淘沙鄉村酒店</h3>
                             <p class="card-desc">
-                                於 VivoCity 3樓搭乘 Sentosa Express 輕軌 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=Imbiah+Station+Sentosa" target="_blank"><i class="fas fa-subway"></i> Imbiah 站</a> 下車（車程約 6 分鐘），出站步行 3 分鐘回酒店。
+                                於 VivoCity 3樓搭乘 Sentosa Express 輕軌 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=Imbiah+Station+Sentosa" target="_blank"><i class="fas fa-subway"></i> Imbiah 站</a> 下車（車程約 6 分鐘），步行 3 分鐘回酒店休息。
                             </p>
                             <div class="card-actions">
                                 <a href="https://maps.google.com/?q=Village+Hotel+Sentosa" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 返回酒店導航</a>
-                                <button class="btn-check" onclick="toggleComplete('3-3')"><i class="fas fa-check"></i></button>
+                                <button class="btn-check" onclick="toggleComplete('3-4')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
                     </div>
@@ -424,7 +508,7 @@
             <div class="day-section" id="daySection-4">
                 <div class="day-title-box">
                     <h2>Day 4 | 2026年8月23日 (日)</h2>
-                    <p>聖淘沙香格里拉奢華度假日</p>
+                    <p>聖淘沙香格里拉度假 ➔ VivoCity 購物與晚餐</p>
                 </div>
                 <div class="timeline">
                     <div class="timeline-item" id="item-4-0">
@@ -446,9 +530,9 @@
                     <div class="timeline-item" id="item-4-1">
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
-                            <span class="time-tag"><i class="far fa-clock"></i> 全天</span>
+                            <span class="time-tag"><i class="far fa-clock"></i> 10:30 - 17:00</span>
                             <h3 class="card-title">度假村休閒活動 & 海灘漫步</h3>
-                            <p class="card-desc">享用香格里拉獨家水上設施、泳池滑水道、私人海灘與精饌晚宴（園區內步行即可抵達各設施）。</p>
+                            <p class="card-desc">享用香格里拉獨家水上設施、泳池滑水道、私人海灘與兒童水上樂園區。</p>
                             
                             <div class="alert-block">
                                 <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> Check-in 提醒</div>
@@ -458,6 +542,48 @@
                             <div class="card-actions">
                                 <a href="https://maps.google.com/?q=Shangri-La+Rasa+Sentosa+Singapore" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 香格里拉地圖</a>
                                 <button class="btn-check" onclick="toggleComplete('4-1')"><i class="fas fa-check"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="transit-time-block">
+                        <i class="fas fa-route me-1 text-primary"></i> <b>香格里拉前往 VivoCity 交通路線與時間：</b><br>
+                        <b>方案 A（免費巴士 + 輕軌，約 20 分鐘）：</b> 於香格里拉門口搭乘 Sentosa Bus A ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=Beach+Station+Sentosa" target="_blank"><i class="fas fa-subway"></i> Beach 站</a> 轉乘 Sentosa Express 輕軌 ➔ 直達 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> VivoCity 站 (HarbourFront)</a>（憑酒店通行證免費）。<br>
+                        <b>方案 B（Grab / 計程車）：</b> 約 10 分鐘，車費約 SGD $10–12。
+                    </div>
+
+                    <div class="timeline-item" id="item-4-2">
+                        <div class="timeline-badge"></div>
+                        <div class="card-custom">
+                            <span class="time-tag"><i class="far fa-clock"></i> 17:30 - 20:00</span>
+                            <h3 class="card-title">VivoCity 購物與晚餐 (如無招牌海鮮 / 美食廣場)</h3>
+                            <p class="card-desc">前往新加坡最大的購物中心 VivoCity 怡豐城進行購物巡禮，並於館內特色餐廳享用豐盛晚餐。</p>
+                            
+                            <div class="alert-block">
+                                <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 用餐與購物提醒</div>
+                                <b>多元餐飲選擇：</b> 可選擇 VivoCity 內的「無招牌海鮮」、大食代 (Food Republic) 或豐富的南洋風味餐飲。<br>
+                                <b>退稅服務：</b> 若於商場購物單筆消費滿 SGD $100，記得出示護照索取 eTRS 電子退稅單。
+                            </div>
+
+                            <div class="card-actions">
+                                <a href="https://maps.google.com/?q=VivoCity" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> VivoCity 導航</a>
+                                <button class="btn-check" onclick="toggleComplete('4-2')"><i class="fas fa-check"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" id="item-4-3">
+                        <div class="timeline-badge"></div>
+                        <div class="card-custom">
+                            <span class="time-tag"><i class="far fa-clock"></i> 20:30</span>
+                            <h3 class="card-title">返回香格里拉 Rasa Sentosa</h3>
+                            <p class="card-desc">
+                                <b>方案 A（輕軌 + 巴士）：</b> 於 VivoCity 3樓搭乘 Sentosa Express 輕軌至 Beach 站 ➔ 轉乘 Sentosa Bus A 返回香格里拉大堂。<br>
+                                <b>方案 B（Grab / 計程車）：</b> 直達香格里拉酒店大堂（車程約 10 分鐘，SGD $10–12）。
+                            </p>
+                            <div class="card-actions">
+                                <a href="https://maps.google.com/?q=Shangri-La+Rasa+Sentosa+Singapore" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 返回酒店導航</a>
+                                <button class="btn-check" onclick="toggleComplete('4-3')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
                     </div>
@@ -544,7 +670,7 @@
                 </div>
             </div>
 
-            <!-- Day 8 區塊 (更新版) -->
+            <!-- Day 8 區塊 -->
             <div class="day-section" id="daySection-8">
                 <div class="day-title-box">
                     <h2>Day 8 | 2026年8月27日 (四)</h2>
@@ -576,7 +702,7 @@
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 11:00 - 13:00</span>
                             <h3 class="card-title">Keppel Centre for Art Education (館內步行)</h3>
-                            <p class="card-desc">專為兒童設計的藝術教育中心！小孩可暢玩互動式藝術展覽、參與手作工作坊與多媒體體驗。</p>
+                            <p class="card-desc">專為兒童設計的藝術教育中心！小孩可暢玩互動式藝術展覽、參與手作工作坊與多媒體體驗（美術館營業時間為 10:00 AM 開門）。</p>
                             
                             <div class="alert-block">
                                 <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 行李寄存提示</div>
@@ -706,16 +832,16 @@
                 <form id="expenseForm" onsubmit="addExpense(event)">
                     <div class="row g-2">
                         <div class="col-6">
-                            <label class="form-label small text-muted mb-1">日期</label>
+                            <label class="form-label small text-muted mb-1">日期天數</label>
                             <select id="expDate" class="form-select form-select-sm" required>
-                                <option value="2026-08-20">8/20 (四) Day 1</option>
-                                <option value="2026-08-21">8/21 (五) Day 2</option>
-                                <option value="2026-08-22">8/22 (六) Day 3</option>
-                                <option value="2026-08-23">8/23 (日) Day 4</option>
-                                <option value="2026-08-24">8/24 (一) Day 5</option>
-                                <option value="2026-08-25">8/25 (二) Day 6</option>
-                                <option value="2026-08-26">8/26 (三) Day 7</option>
-                                <option value="2026-08-27">8/27 (四) Day 8</option>
+                                <option value="2026-08-20|Day 1">8/20 (四) Day 1</option>
+                                <option value="2026-08-21|Day 2">8/21 (五) Day 2</option>
+                                <option value="2026-08-22|Day 3">8/22 (六) Day 3</option>
+                                <option value="2026-08-23|Day 4">8/23 (日) Day 4</option>
+                                <option value="2026-08-24|Day 5">8/24 (一) Day 5</option>
+                                <option value="2026-08-25|Day 6">8/25 (二) Day 6</option>
+                                <option value="2026-08-26|Day 7">8/26 (三) Day 7</option>
+                                <option value="2026-08-27|Day 8">8/27 (四) Day 8</option>
                             </select>
                         </div>
                         <div class="col-6">
@@ -762,12 +888,26 @@
 
             <!-- 3. 歷史消費流水帳 -->
             <div class="accounting-zone">
-                <div class="accounting-title"><i class="fas fa-list-ul me-2"></i>開支明細流水帳</div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="accounting-title mb-0"><i class="fas fa-list-ul me-2"></i>開支明細流水帳</div>
+                    <select id="filterDaySelect" class="form-select form-select-sm w-auto fw-bold text-primary" onchange="updateCalculations()">
+                        <option value="ALL">顯示全部天數</option>
+                        <option value="Day 1">DAY 1 (8/20)</option>
+                        <option value="Day 2">DAY 2 (8/21)</option>
+                        <option value="Day 3">DAY 3 (8/22)</option>
+                        <option value="Day 4">DAY 4 (8/23)</option>
+                        <option value="Day 5">DAY 5 (8/24)</option>
+                        <option value="Day 6">DAY 6 (8/25)</option>
+                        <option value="Day 7">DAY 7 (8/26)</option>
+                        <option value="Day 8">DAY 8 (8/27)</option>
+                    </select>
+                </div>
+
                 <div class="table-responsive">
                     <table class="table table-striped table-hover table-sm align-middle m-0" style="font-size:0.82rem;">
                         <thead class="table-dark">
                             <tr>
-                                <th>日期</th>
+                                <th>天數/日期</th>
                                 <th>項目/類別</th>
                                 <th class="text-end">金額</th>
                                 <th class="text-center">刪除</th>
@@ -913,6 +1053,11 @@
         </div>
     </div>
 
+    <!-- 浮動回到最上方按鈕 Back to Top -->
+    <button id="backToTopBtn" onclick="scrollToTop()" title="回到最上方">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <!-- 底部 Tab 導覽列 -->
     <div class="bottom-bar">
         <button id="navBtn-itinerary" class="bar-item active" onclick="switchMainTab('itinerary')">
@@ -1022,7 +1167,9 @@
 
         function addExpense(e) {
             e.preventDefault();
-            const date = document.getElementById('expDate').value;
+            const rawVal = document.getElementById('expDate').value; // "2026-08-20|Day 1"
+            const [fullDate, dayLabel] = rawVal.split('|');
+            
             const category = document.getElementById('expCategory').value;
             let name = document.getElementById('expName').value.trim();
             const currency = document.getElementById('expCurrency').value;
@@ -1034,7 +1181,8 @@
             const records = getExpenses();
             records.push({
                 id: Date.now().toString(),
-                date: date.substring(5),
+                date: fullDate.substring(5), // "08-20"
+                dayLabel: dayLabel,          // "Day 1"
                 category: category,
                 name: name,
                 currency: currency,
@@ -1058,20 +1206,20 @@
         function loadPresetExpenses() {
             if (confirm('是否自動載入行程表中的預訂固定開支（機票、酒店、門票、郵輪相關費與車資預估）？')) {
                 const presets = [
-                    { id: 'p1', date: '08-20', category: '機票車資', name: '新航 SQ899/898 機票', currency: 'HKD', amount: 17441.00 },
-                    { id: 'p2', date: '08-20', category: '飯店住宿', name: 'Butternut Tree Hotel 住宿', currency: 'HKD', amount: 1998.15 },
-                    { id: 'p3', date: '08-21', category: '飯店住宿', name: '聖淘沙鄉村酒店住宿', currency: 'HKD', amount: 8933.51 },
-                    { id: 'p4', date: '08-21', category: '景點門票', name: '哈利波特展門票', currency: 'HKD', amount: 2405.00 },
-                    { id: 'p5', date: '08-21', category: '景點門票', name: '天際線斜坡滑車門票', currency: 'HKD', amount: 1386.00 },
-                    { id: 'p6', date: '08-22', category: '景點門票', name: '冒險海灣水上樂園門票', currency: 'HKD', amount: 1273.00 },
-                    { id: 'p7', date: '08-23', category: '飯店住宿', name: '聖淘沙香格里拉住宿', currency: 'HKD', amount: 11186.00 },
-                    { id: 'p8', date: '08-24', category: '郵輪相關', name: '迪士尼郵輪船票', currency: 'HKD', amount: 46042.00 },
-                    { id: 'p9', date: '08-24', category: '郵輪相關', name: '迪士尼郵輪穿梭巴士', currency: 'HKD', amount: 1287.00 },
-                    { id: 'p10', date: '08-24', category: '郵輪相關', name: '迪士尼郵輪相片 Package', currency: 'USD', amount: 170.00 },
-                    { id: 'p11', date: '08-24', category: '郵輪相關', name: '迪士尼郵輪小費 Gratuities', currency: 'USD', amount: 336.00 },
-                    { id: 'p12', date: '08-24', category: '郵輪相關', name: '迪士尼郵輪午餐費用', currency: 'USD', amount: 275.00 },
-                    { id: 'p13', date: '08-27', category: '交通車資', name: '碼頭 ➔ 國家美術館 (Grab)', currency: 'SGD', amount: 10.00 },
-                    { id: 'p14', date: '08-27', category: '交通車資', name: '國家美術館 ➔ 機場 (Grab)', currency: 'SGD', amount: 30.00 }
+                    { id: 'p1', date: '08-20', dayLabel: 'Day 1', category: '機票車資', name: '新航 SQ899/898 機票', currency: 'HKD', amount: 17441.00 },
+                    { id: 'p2', date: '08-20', dayLabel: 'Day 1', category: '飯店住宿', name: 'Butternut Tree Hotel 住宿', currency: 'HKD', amount: 1998.15 },
+                    { id: 'p3', date: '08-21', dayLabel: 'Day 2', category: '飯店住宿', name: '聖淘沙鄉村酒店住宿', currency: 'HKD', amount: 8933.51 },
+                    { id: 'p4', date: '08-21', dayLabel: 'Day 2', category: '景點門票', name: '哈利波特展門票', currency: 'HKD', amount: 2405.00 },
+                    { id: 'p5', date: '08-22', dayLabel: 'Day 3', category: '景點門票', name: '天際線斜坡滑車門票', currency: 'HKD', amount: 1386.00 },
+                    { id: 'p6', date: '08-22', dayLabel: 'Day 3', category: '景點門票', name: '冒險海灣水上樂園門票', currency: 'HKD', amount: 1273.00 },
+                    { id: 'p7', date: '08-23', dayLabel: 'Day 4', category: '飯店住宿', name: '聖淘沙香格里拉住宿', currency: 'HKD', amount: 11186.00 },
+                    { id: 'p8', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪船票', currency: 'HKD', amount: 46042.00 },
+                    { id: 'p9', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪穿梭巴士', currency: 'HKD', amount: 1287.00 },
+                    { id: 'p10', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪相片 Package', currency: 'USD', amount: 170.00 },
+                    { id: 'p11', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪小費 Gratuities', currency: 'USD', amount: 336.00 },
+                    { id: 'p12', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪午餐費用', currency: 'USD', amount: 275.00 },
+                    { id: 'p13', date: '08-27', dayLabel: 'Day 8', category: '交通車資', name: '碼頭 ➔ 國家美術館 (Grab)', currency: 'SGD', amount: 10.00 },
+                    { id: 'p14', date: '08-27', dayLabel: 'Day 8', category: '交通車資', name: '國家美術館 ➔ 機場 (Grab)', currency: 'SGD', amount: 30.00 }
                 ];
 
                 let current = getExpenses();
@@ -1093,13 +1241,24 @@
             localStorage.setItem('sg_rate_sgd', rateSGD);
             localStorage.setItem('sg_rate_usd', rateUSD);
 
+            const selectedFilter = document.getElementById('filterDaySelect').value;
             const records = getExpenses();
             let sumHKD = 0, sumSGD = 0, sumUSD = 0;
 
             const historyBody = document.getElementById('historyTableBody');
             historyBody.innerHTML = '';
 
+            let filteredCount = 0;
+
             records.forEach(item => {
+                const itemDay = item.dayLabel || fallbackDayLabel(item.date);
+
+                if (selectedFilter !== 'ALL' && itemDay !== selectedFilter) {
+                    return;
+                }
+
+                filteredCount++;
+
                 if (item.currency === 'HKD') sumHKD += item.amount;
                 else if (item.currency === 'SGD') sumSGD += item.amount;
                 else if (item.currency === 'USD') sumUSD += item.amount;
@@ -1110,7 +1269,7 @@
 
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${item.date}</td>
+                    <td><span class="badge bg-secondary text-white">${itemDay}</span><br><small class="text-muted">${item.date}</small></td>
                     <td><div class="fw-bold">${item.name}</div><span class="text-muted" style="font-size:0.7rem;">#${item.category}</span></td>
                     <td class="text-end fw-bold"><span class="badge ${badgeClass} me-1">${item.currency}</span>$${item.amount.toFixed(2)}</td>
                     <td class="text-center">
@@ -1120,8 +1279,8 @@
                 historyBody.appendChild(tr);
             });
 
-            if (records.length === 0) {
-                historyBody.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-3">目前尚未有任何消費紀錄！</td></tr>`;
+            if (filteredCount === 0) {
+                historyBody.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-3">此天數目前尚無任何消費紀錄！</td></tr>`;
             }
 
             const grandTotal = sumHKD + (sumSGD * rateSGD) + (sumUSD * rateUSD);
@@ -1130,6 +1289,15 @@
             document.getElementById('subTotalHKD').innerText = `$${sumHKD.toLocaleString()}`;
             document.getElementById('subTotalSGD').innerText = `S$${sumSGD.toLocaleString()}`;
             document.getElementById('subTotalUSD').innerText = `$${sumUSD.toLocaleString()}`;
+        }
+
+        function fallbackDayLabel(mmdd) {
+            const map = {
+                '08-20': 'Day 1', '08-21': 'Day 2', '08-22': 'Day 3',
+                '08-23': 'Day 4', '08-24': 'Day 5', '08-25': 'Day 6',
+                '08-26': 'Day 7', '08-27': 'Day 8'
+            };
+            return map[mmdd] || '其他';
         }
 
         // --- 5. 重置功能 ---
@@ -1160,9 +1328,25 @@
             }
         }
 
-        // --- 6. 頁面初始化 ---
+        // --- 6. 回到最上方控制 ---
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backToTopBtn');
+            if (window.scrollY > 250) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // --- 7. 頁面初始化 ---
         window.addEventListener('DOMContentLoaded', () => {
-            // 恢復行程勾選狀態
             document.querySelectorAll('.timeline-item').forEach(item => {
                 const id = item.id.replace('item-', '');
                 if (localStorage.getItem(`sg_status-${id}`) === 'true') {
@@ -1175,7 +1359,6 @@
             const lastDay = localStorage.getItem('sg_selectedDay');
             if (lastDay) switchDay(parseInt(lastDay));
 
-            // 恢復準備清單勾選狀態
             document.querySelectorAll('.prep-checkbox').forEach(cb => {
                 if (localStorage.getItem(`sg_${cb.id}`) === 'true') {
                     cb.checked = true;
@@ -1183,7 +1366,6 @@
             });
             calculatePrepProgress();
 
-            // 恢復匯率
             const savedSGD = localStorage.getItem('sg_rate_sgd');
             const savedUSD = localStorage.getItem('sg_rate_usd');
             if (savedSGD) document.getElementById('rateSGD').value = savedSGD;
