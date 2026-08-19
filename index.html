@@ -30,11 +30,10 @@
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Poppins', 'Noto Sans TC', sans-serif; background-color: var(--light-bg); color: var(--text-main); line-height: 1.6; padding-bottom: 90px; }
         
-        /* 標題與導覽列 Sticky 層級修正 */
         header { 
             background: linear-gradient(135deg, #1e40af, #3b82f6); 
             color: white; 
-            padding: 20px 15px; 
+            padding: 15px 15px; 
             text-align: center; 
             border-bottom-left-radius: 20px; 
             border-bottom-right-radius: 20px; 
@@ -45,6 +44,8 @@
         }
         header h1 { font-size: 1.3rem; font-weight: 700; margin-bottom: 3px; letter-spacing: 0.5px; }
         header p { font-size: 0.82rem; opacity: 0.9; margin-bottom: 0; }
+
+        .api-config-box { display: none; }
         
         .day-nav { 
             display: flex; 
@@ -54,7 +55,7 @@
             gap: 8px; 
             background: var(--light-bg); 
             position: sticky; 
-            top: 72px; /* 銜接 header 高度 */
+            top: 65px; 
             z-index: 1010; 
             scrollbar-width: none; 
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
@@ -71,9 +72,26 @@
         .day-section.active { display: block; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .day-title-box { background-color: #1E293B; color: white; padding: 12px 15px; border-radius: 14px; margin-bottom: 15px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); }
+        .day-title-box { background-color: #1E293B; color: white; padding: 12px 15px; border-radius: 14px; margin-bottom: 15px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); position: relative; }
         .day-title-box h2 { font-size: 1.1rem; font-weight: 700; margin: 0; }
         .day-title-box p { font-size: 0.8rem; opacity: 0.85; margin-top: 2px; margin-bottom: 0; }
+        
+        .weather-badge {
+            position: absolute;
+            right: 15px;
+            top: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #FDE047;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
         
         .timeline { position: relative; padding-left: 20px; border-left: 2px dashed #CBD5E1; margin-left: 10px; }
         .timeline-item { position: relative; margin-bottom: 15px; }
@@ -84,7 +102,6 @@
         .card-title { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; line-height: 1.4; }
         .card-desc { font-size: 0.88rem; color: #475569; margin-bottom: 12px; }
         
-        /* 地鐵站名鮮明標示 Badge */
         .mrt-badge {
             display: inline-flex;
             align-items: center;
@@ -101,12 +118,25 @@
             transition: transform 0.15s ease, background-color 0.15s ease;
             vertical-align: middle;
         }
-        .mrt-badge:hover, .mrt-badge:focus {
-            background-color: #0369A1;
-            color: #FFFFFF !important;
-            transform: translateY(-1px);
-        }
+        .mrt-badge:hover, .mrt-badge:focus { background-color: #0369A1; color: #FFFFFF !important; transform: translateY(-1px); }
         .mrt-badge i { font-size: 0.75rem; }
+
+        /* 鮮明標示地鐵出口的樣式 */
+        .exit-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            background-color: #FEF08A;
+            color: #854D0E;
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 6px;
+            border: 1px solid #EAB308;
+            margin: 2px 2px;
+            box-shadow: 0 1px 3px rgba(234, 179, 8, 0.2);
+            vertical-align: middle;
+        }
 
         .transit-time-block { background-color: var(--transit-bg); border: 1px solid var(--transit-border); border-radius: 12px; padding: 10px 12px; margin: 12px 0 12px 10px; font-size: 0.83rem; color: var(--transit-text); line-height: 1.5; }
         .alert-block { background-color: var(--alert-bg); border: 1px solid var(--alert-border); border-radius: 12px; padding: 10px 12px; margin-top: 10px; font-size: 0.82rem; color: var(--alert-text); line-height: 1.5; }
@@ -142,7 +172,6 @@
         .phone-link:hover { text-decoration: underline; }
         .copyable-text { background-color: #F8FAFC; border: 1px solid #E2E8F0; padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; word-break: break-all; margin-bottom: 6px; color: #334155; }
 
-        /* 回到最上方按鈕 Floating Back to Top Button */
         #backToTopBtn {
             position: fixed;
             bottom: 75px;
@@ -164,13 +193,8 @@
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
         }
-        #backToTopBtn.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        #backToTopBtn:active {
-            transform: scale(0.9);
-        }
+        #backToTopBtn.show { opacity: 1; visibility: visible; }
+        #backToTopBtn:active { transform: scale(0.9); }
     </style>
 </head>
 <body>
@@ -178,6 +202,9 @@
     <header>
         <h1>🇸🇬 新加坡 & 迪士尼郵輪夢幻之旅</h1>
         <p>2026年8月20日 — 8月27日 (8天7夜)</p>
+        <div class="api-config-box">
+            <input type="password" id="openWeatherApiKey" value="Baa7021e3c19af863e7812c06c909cd6" />
+        </div>
     </header>
 
     <!-- 主行程頁面 Tab 區塊 -->
@@ -194,8 +221,9 @@
         
         <div class="container-custom">
             <!-- Day 1 區塊 -->
-            <div class="day-section active" id="daySection-1">
+            <div class="day-section active" id="daySection-1" data-date="2026-08-20">
                 <div class="day-title-box">
+                    <div class="weather-badge" id="weather-2026-08-20"><i class="fas fa-sun"></i> 27°C - 31°C</div>
                     <h2>Day 1 | 2026年8月20日 (四)</h2>
                     <p>抵達新加坡 ➔ 市區觀光與分組行程</p>
                 </div>
@@ -204,7 +232,7 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 09:05 - 13:00</span>
-                            <h3 class="card-title">香港國際機場 ✈️ 新加坡樟宜機場 (SQ899)</h3>
+                            <h3 class="card-title">香港國際機場 (HKG) ✈️ 新加坡樟宜機場 (Changi Airport - SQ899)</h3>
                             <p class="card-desc">搭乘<b>新加坡航空 SQ899 班機</b>前往新加坡。抵達樟宜機場 Terminal 2 後辦理入境手續與提取行李。</p>
                             
                             <div class="alert-block">
@@ -214,7 +242,7 @@
                             </div>
 
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Changi+Airport+Singapore" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 樟宜機場導航</a>
+                                <a href="https://maps.google.com/?q=Changi+Airport+Singapore" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 樟宜機場 (Changi Airport) 導航</a>
                                 <button class="btn-check" onclick="toggleComplete('1-0')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
@@ -223,7 +251,7 @@
                     <div class="transit-time-block">
                         <i class="fas fa-route me-1 text-primary"></i> <b>機場至酒店交通路線與車程：</b><br>
                         <b>地鐵路線（約 45–50 分鐘，車費約 SGD $2.20）：</b><br>
-                        由 <a class="mrt-badge" href="https://maps.google.com/?q=Changi+Airport+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Changi Airport 站 (CG2)</a> 出發 ➔ 搭綠線至 <a class="mrt-badge" href="https://maps.google.com/?q=Tanah+Merah+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Tanah Merah 站 (EW4)</a> 轉乘往市區方向 ➔ 於 <a class="mrt-badge" href="https://maps.google.com/?q=Maxwell+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Maxwell 站 (TE18)</a> 出站，步行約 3 分鐘即達酒店。<br>
+                        由 <a class="mrt-badge" href="https://maps.google.com/?q=Changi+Airport+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Changi Airport 站 (CG2)</a> 出發 ➔ 搭綠線至 <a class="mrt-badge" href="https://maps.google.com/?q=Tanah+Merah+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Tanah Merah 站 (EW4)</a> 轉乘往市區方向 ➔ 於 <a class="mrt-badge" href="https://maps.google.com/?q=Maxwell+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Maxwell 站 (TE18)</a> 出站 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit 2 (🛗升降機)</span>，步行約 3 分鐘即達酒店。<br>
                         <b>Grab / 計程車：</b> 約 25 分鐘，車費約 SGD $28–35。
                     </div>
 
@@ -246,13 +274,13 @@
                             <span class="time-tag"><i class="far fa-clock"></i> 15:30 - 18:00</span>
                             <h3 class="card-title">分組自由觀光行程</h3>
                             <p class="card-desc">
-                                <b>A 組：金沙酒店與濱海灣探索</b><br>
-                                步行 3 分鐘至 <a class="mrt-badge" href="https://maps.google.com/?q=Maxwell+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Maxwell 站 (TE18)</a> ➔ 搭乘棕線（約 6 分鐘，SGD $1.10）直達 <a class="mrt-badge" href="https://maps.google.com/?q=Bayfront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Bayfront 站 (TE16)</a>，出站即達金沙購物中心。<br><br>
+                                <b>A 組：金沙酒店與濱海灣探索 (Marina Bay Sands)</b><br>
+                                步行 3 分鐘至 <a class="mrt-badge" href="https://maps.google.com/?q=Maxwell+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Maxwell 站 (TE18)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit 2</span> ➔ 搭乘棕線（約 6 分鐘，SGD $1.10）直達 <a class="mrt-badge" href="https://maps.google.com/?q=Bayfront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Bayfront 站 (TE16)</a>，由 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit D (🛗連通金沙)</span> 出站即達金沙購物中心。<br><br>
                                 <b>B 組：Marina Square 購物巡禮</b><br>
-                                於 <a class="mrt-badge" href="https://maps.google.com/?q=Maxwell+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Maxwell 站 (TE18)</a> ➔ <a class="mrt-badge" href="https://maps.google.com/?q=Bayfront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Bayfront 站</a> 轉黃線至 <a class="mrt-badge" href="https://maps.google.com/?q=Promenade+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Promenade 站 (CC4)</a>（約 15 分鐘，SGD $1.30），出站步行 5 分鐘至 Marina Square。
+                                於 <a class="mrt-badge" href="https://maps.google.com/?q=Maxwell+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Maxwell 站 (TE18)</a> ➔ <a class="mrt-badge" href="https://maps.google.com/?q=Bayfront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Bayfront 站</a> 轉黃線至 <a class="mrt-badge" href="https://maps.google.com/?q=Promenade+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Promenade 站 (CC4)</a>（約 15 分鐘，SGD $1.30），經 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit A (🛗直達商場)</span> 出站步行 5 分鐘至 Marina Square。
                             </p>
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Marina+Bay+Sands" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 金沙地圖</a>
+                                <a href="https://maps.google.com/?q=Marina+Bay+Sands" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 金沙 (Marina Bay Sands)</a>
                                 <button class="btn-check" onclick="toggleComplete('1-2')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
@@ -262,8 +290,8 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 18:30 - 20:00</span>
-                            <h3 class="card-title">晚餐集合：同樂海鮮 (Marina Square)</h3>
-                            <p class="card-desc">（A組由金沙步行過橋約 15 分鐘或搭地鐵 1 站；B組於館內步行 2 分鐘）於 Marina Square 2樓「同樂海鮮」享用美味的新加坡海鮮晚宴。</p>
+                            <h3 class="card-title">晚餐集合：同樂海鮮 (TungLok Seafood - Marina Square)</h3>
+                            <p class="card-desc">（A組由金沙步行過橋約 15 分鐘或搭地鐵 1 站；B組於館內步行 2 分鐘）於 Marina Square 2樓「同樂海鮮 (TungLok Seafood)」享用美味的新加坡海鮮晚宴。</p>
                             
                             <div class="alert-block">
                                 <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 用餐注意事項</div>
@@ -271,7 +299,7 @@
                             </div>
 
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=TungLok+Seafood+Marina+Square" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 同樂海鮮導航</a>
+                                <a href="https://maps.google.com/?q=TungLok+Seafood+Marina+Square" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 同樂海鮮 (TungLok Seafood)</a>
                                 <button class="btn-check" onclick="toggleComplete('1-3')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
@@ -281,9 +309,9 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 20:30 - 21:00</span>
-                            <h3 class="card-title">回程返回酒店</h3>
+                            <h3 class="card-title">回程返回酒店 (Butternut Tree Hotel)</h3>
                             <p class="card-desc">
-                                由 Marina Square 步行約 6 分鐘至 <a class="mrt-badge" href="https://maps.google.com/?q=Esplanade+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Esplanade 站 (CC3)</a> ➔ 搭地鐵至 <a class="mrt-badge" href="https://maps.google.com/?q=Maxwell+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Maxwell 站 (TE18)</a>（車程約 12 分鐘，SGD $1.20），步行 3 分鐘返回 Butternut Tree Hotel。
+                                由 Marina Square 步行約 6 分鐘至 <a class="mrt-badge" href="https://maps.google.com/?q=Esplanade+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Esplanade 站 (CC3)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit A</span> ➔ 搭地鐵至 <a class="mrt-badge" href="https://maps.google.com/?q=Maxwell+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Maxwell 站 (TE18)</a>（車程約 12 分鐘，SGD $1.20），由 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit 2 (🛗升降機)</span> 出站步行 3 分鐘返回 Butternut Tree Hotel。
                             </p>
                             <div class="card-actions">
                                 <a href="https://maps.google.com/?q=Butternut+Tree+Hotel" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 返回酒店導航</a>
@@ -295,8 +323,9 @@
             </div>
 
             <!-- Day 2 區塊 -->
-            <div class="day-section" id="daySection-2">
+            <div class="day-section" id="daySection-2" data-date="2026-08-21">
                 <div class="day-title-box">
+                    <div class="weather-badge" id="weather-2026-08-21"><i class="fas fa-cloud-sun"></i> 26°C - 32°C</div>
                     <h2>Day 2 | 2026年8月21日 (五)</h2>
                     <p>海南雞早餐 ➔ 哈利波特展 ➔ Asian Food Hall ➔ 入住聖淘沙 ➔ 泳池休閒</p>
                 </div>
@@ -305,8 +334,8 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 09:40 - 11:30</span>
-                            <h3 class="card-title">Check-out ➔ 天天海南雞飯 ➔ 林志源牛肉乾</h3>
-                            <p class="card-desc">辦理退房手續後，步行 5–8 分鐘至麥士威熟食中心品嚐天天海南雞飯，並順道於牛車水選購林志源牛肉乾。</p>
+                            <h3 class="card-title">Check-out ➔ 天天海南雞飯 (Tian Tian Chicken Rice) ➔ 林志源肉乾 (Lim Chee Guan)</h3>
+                            <p class="card-desc">辦理退房手續後，步行 5–8 分鐘至麥士威熟食中心 (Maxwell Food Centre) 品嚐天天海南雞飯，並順道於牛車水 (Chinatown) 選購林志源牛肉乾。</p>
                             
                             <div class="alert-block">
                                 <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 營業時間與支付提醒</div>
@@ -315,23 +344,23 @@
                             </div>
 
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Tian+Tian+Hainanese+Chicken+Rice" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 天天海南雞飯</a>
+                                <a href="https://maps.google.com/?q=Tian+Tian+Hainanese+Chicken+Rice" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 天天海南雞飯 (Tian Tian)</a>
                                 <button class="btn-check" onclick="toggleComplete('2-0')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
                     </div>
 
                     <div class="transit-time-block">
-                        <i class="fas fa-route me-1 text-primary"></i> <b>前往聖淘沙交通路線與時間：</b><br>
-                        由牛車水步行約 5 分鐘至 <a class="mrt-badge" href="https://maps.google.com/?q=Chinatown+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Chinatown 站 (NE4)</a> 搭紫線 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> HarbourFront 站 (NE1)</a>（車程 6 分鐘，SGD $1.20）出站進入 VivoCity 怡豐城 3 樓 ➔ 轉乘 <a class="mrt-badge" href="https://maps.google.com/?q=VivoCity+Sentosa+Express" target="_blank"><i class="fas fa-train"></i> Sentosa Express 聖淘沙輕軌</a> 前往名勝世界 / Imbiah 站。
+                        <i class="fas fa-route me-1 text-primary"></i> <b>前往聖淘沙 (Sentosa) 交通路線與時間：</b><br>
+                        由牛車水步行約 5 分鐘至 <a class="mrt-badge" href="https://maps.google.com/?q=Chinatown+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Chinatown 站 (NE4)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit A/E</span> 搭紫線 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> HarbourFront 站 (NE1)</a>（車程 6 分鐘，SGD $1.20）經 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit E (🛗直達 VivoCity)</span> 出站進入 VivoCity 怡豐城 3 樓 ➔ 轉乘 <a class="mrt-badge" href="https://maps.google.com/?q=VivoCity+Sentosa+Express" target="_blank"><i class="fas fa-train"></i> Sentosa Express 聖淘沙輕軌</a> 前往 Resorts World / Imbiah 站。
                     </div>
 
                     <div class="timeline-item" id="item-2-1">
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 11:30 - 13:30</span>
-                            <h3 class="card-title">哈利波特展 Harry Potter Exhibition</h3>
-                            <p class="card-desc">沉浸式體驗魔法世界（已預訂門票 HKD$2,405.00），位於聖淘沙名勝世界展覽會場。</p>
+                            <h3 class="card-title">哈利波特展 (Harry Potter: Visions of Magic)</h3>
+                            <p class="card-desc">沉浸式體驗魔法世界（已預訂門票 HKD$2,405.00），位於聖淘沙名勝世界 (Resorts World Sentosa) 展覽會場。</p>
                             
                             <div class="alert-block">
                                 <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 入場提醒</div>
@@ -339,7 +368,7 @@
                             </div>
 
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Resorts+World+Sentosa" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 展覽地點導航</a>
+                                <a href="https://maps.google.com/?q=Resorts+World+Sentosa" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 聖淘沙名勝世界 (RWS)</a>
                                 <button class="btn-check" onclick="toggleComplete('2-1')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
@@ -371,7 +400,7 @@
                             </div>
 
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Village+Hotel+Sentosa" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 聖淘沙鄉村酒店</a>
+                                <a href="https://maps.google.com/?q=Village+Hotel+Sentosa" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 聖淘沙鄉村酒店 (Village Hotel)</a>
                                 <button class="btn-check" onclick="toggleComplete('2-3')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
@@ -381,7 +410,7 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 16:30 - 18:00</span>
-                            <h3 class="card-title">酒店泳池暢泳與度假休閒</h3>
+                            <h3 class="card-title">酒店泳池暢泳與度假休閒 (Village Hotel Pool)</h3>
                             <p class="card-desc">換上泳裝，享受聖淘沙鄉村酒店特色多層景觀泳池、水上設施與休閒時光。</p>
                             <div class="card-actions me-0 mt-3">
                                 <button class="btn-check w-100 py-2" onclick="toggleComplete('2-4')"><i class="fas fa-check me-2"></i> 完成泳池行程</button>
@@ -405,8 +434,9 @@
             </div>
 
             <!-- Day 3 區塊 -->
-            <div class="day-section" id="daySection-3">
+            <div class="day-section" id="daySection-3" data-date="2026-08-22">
                 <div class="day-title-box">
+                    <div class="weather-badge" id="weather-2026-08-22"><i class="fas fa-cloud-showers-heavy"></i> 25°C - 31°C</div>
                     <h2>Day 3 | 2026年8月22日 (六)</h2>
                     <p>水上樂園 ➔ 園內午餐 ➔ 天際線斜坡滑車 ➔ VivoCity 晚餐</p>
                 </div>
@@ -415,7 +445,7 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 09:40 - 13:00</span>
-                            <h3 class="card-title">冒險海灣水上樂園 Adventure Cove Waterpark</h3>
+                            <h3 class="card-title">冒險海灣水上樂園 (Adventure Cove Waterpark)</h3>
                             <p class="card-desc">暢玩滑水道與彩虹礁浮潛體驗（已預訂門票 HKD$1,273.00）。由聖淘沙鄉村酒店<b>步行約 10 分鐘</b>即達入口。</p>
                             
                             <div class="alert-block">
@@ -426,7 +456,7 @@
                             </div>
 
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Adventure+Cove+Waterpark" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 水上樂園導航</a>
+                                <a href="https://maps.google.com/?q=Adventure+Cove+Waterpark" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 水上樂園 (Adventure Cove)</a>
                                 <button class="btn-check" onclick="toggleComplete('3-0')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
@@ -436,7 +466,7 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 13:00 - 14:00</span>
-                            <h3 class="card-title">水上樂園園內午餐</h3>
+                            <h3 class="card-title">水上樂園園內午餐 (The Bay Restaurant)</h3>
                             <p class="card-desc">於水上樂園內餐廳（如 The Bay Restaurant）享用美味午餐，補充電力。</p>
                             <div class="card-actions me-0 mt-3">
                                 <button class="btn-check w-100 py-2" onclick="toggleComplete('3-1')"><i class="fas fa-check me-2"></i> 完成園內午餐</button>
@@ -448,7 +478,7 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 14:30 - 17:00</span>
-                            <h3 class="card-title">新加坡天際線斜坡滑車 Skyline Luge</h3>
+                            <h3 class="card-title">新加坡天際線斜坡滑車 (Skyline Luge Sentosa)</h3>
                             <p class="card-desc">離開水上樂園後前往 Imbiah 售票處。刺激有趣的斜坡滑車與空中吊椅體驗（已預訂門票 HKD$1,386.00）。</p>
                             
                             <div class="alert-block">
@@ -457,7 +487,7 @@
                             </div>
 
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Skyline+Luge+Sentosa" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 斜坡滑車導航</a>
+                                <a href="https://maps.google.com/?q=Skyline+Luge+Sentosa" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 斜坡滑車 (Skyline Luge)</a>
                                 <button class="btn-check" onclick="toggleComplete('3-2')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
@@ -465,15 +495,15 @@
 
                     <div class="transit-time-block">
                         <i class="fas fa-route me-1 text-primary"></i> <b>前往 VivoCity 交通：</b><br>
-                        由斜坡滑車終點/Imbiah 站搭乘 Sentosa Express 輕軌 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> VivoCity 站 (HarbourFront)</a>（車程約 6 分鐘，房客憑通行證免費）。
+                        由斜坡滑車終點/Imbiah 站搭乘 Sentosa Express 輕軌 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> VivoCity 站 (HarbourFront)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit E (🛗直達商場)</span>（車程約 6 分鐘，房客憑通行證免費）。
                     </div>
 
                     <div class="timeline-item" id="item-3-3">
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 17:30 - 20:00</span>
-                            <h3 class="card-title">VivoCity 購物與晚餐 (如松發肉骨茶)</h3>
-                            <p class="card-desc">於 VivoCity 商場逛街，並享用豐盛晚餐（可選擇 2 樓松發肉骨茶或其他精選美食）。</p>
+                            <h3 class="card-title">VivoCity 購物與晚餐 (如 Song Fa Bak Kut Teh 松發肉骨茶)</h3>
+                            <p class="card-desc">於 VivoCity 商場逛街，並享用豐盛晚餐（可選擇 2 樓松發肉骨茶 Song Fa Bak Kut Teh 或其他精選美食）。</p>
                             
                             <div class="alert-block">
                                 <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 排隊攻略</div>
@@ -491,7 +521,7 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 20:30</span>
-                            <h3 class="card-title">返回聖淘沙鄉村酒店</h3>
+                            <h3 class="card-title">返回聖淘沙鄉村酒店 (Village Hotel Sentosa)</h3>
                             <p class="card-desc">
                                 於 VivoCity 3樓搭乘 Sentosa Express 輕軌 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=Imbiah+Station+Sentosa" target="_blank"><i class="fas fa-subway"></i> Imbiah 站</a> 下車（車程約 6 分鐘），步行 3 分鐘回酒店休息。
                             </p>
@@ -505,8 +535,9 @@
             </div>
 
             <!-- Day 4 區塊 -->
-            <div class="day-section" id="daySection-4">
+            <div class="day-section" id="daySection-4" data-date="2026-08-23">
                 <div class="day-title-box">
+                    <div class="weather-badge" id="weather-2026-08-23"><i class="fas fa-sun"></i> 27°C - 32°C</div>
                     <h2>Day 4 | 2026年8月23日 (日)</h2>
                     <p>聖淘沙香格里拉度假 ➔ VivoCity 購物與晚餐</p>
                 </div>
@@ -515,13 +546,13 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 10:00 - 10:30</span>
-                            <h3 class="card-title">聖淘沙鄉村酒店 ➔ 香格里拉 Rasa Sentosa</h3>
+                            <h3 class="card-title">聖淘沙鄉村酒店 ➔ 香格里拉 (Shangri-La Rasa Sentosa)</h3>
                             <p class="card-desc">
                                 <b>免費島內巴士（車程約 15–20 分鐘）：</b> 於酒店旁巴士站搭乘 Sentosa Bus A 或 C ➔ 至西樂索海灘 (Siloso Beach / Shangri-La) 下車（免費）。<br>
                                 <b>Grab / 計程車：</b> 車程約 10 分鐘，車費約 SGD $10.00。
                             </p>
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Shangri-La+Rasa+Sentosa+Singapore" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 香格里拉導航</a>
+                                <a href="https://maps.google.com/?q=Shangri-La+Rasa+Sentosa+Singapore" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 香格里拉 (Shangri-La)</a>
                                 <button class="btn-check" onclick="toggleComplete('4-0')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
@@ -531,7 +562,7 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 10:30 - 17:00</span>
-                            <h3 class="card-title">度假村休閒活動 & 海灘漫步</h3>
+                            <h3 class="card-title">度假村休閒活動 & 海灘漫步 (Siloso Beach)</h3>
                             <p class="card-desc">享用香格里拉獨家水上設施、泳池滑水道、私人海灘與兒童水上樂園區。</p>
                             
                             <div class="alert-block">
@@ -548,7 +579,7 @@
 
                     <div class="transit-time-block">
                         <i class="fas fa-route me-1 text-primary"></i> <b>香格里拉前往 VivoCity 交通路線與時間：</b><br>
-                        <b>方案 A（免費巴士 + 輕軌，約 20 分鐘）：</b> 於香格里拉門口搭乘 Sentosa Bus A ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=Beach+Station+Sentosa" target="_blank"><i class="fas fa-subway"></i> Beach 站</a> 轉乘 Sentosa Express 輕軌 ➔ 直達 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> VivoCity 站 (HarbourFront)</a>（憑酒店通行證免費）。<br>
+                        <b>方案 A（免費巴士 + 輕軌，約 20 分鐘）：</b> 於香格里拉門口搭乘 Sentosa Bus A ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=Beach+Station+Sentosa" target="_blank"><i class="fas fa-subway"></i> Beach 站</a> 轉乘 Sentosa Express 輕軌 ➔ 直達 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> VivoCity 站 (HarbourFront)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit E (🛗直達商場)</span>（憑酒店通行證免費）。<br>
                         <b>方案 B（Grab / 計程車）：</b> 約 10 分鐘，車費約 SGD $10–12。
                     </div>
 
@@ -556,12 +587,12 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 17:30 - 20:00</span>
-                            <h3 class="card-title">VivoCity 購物與晚餐 (如無招牌海鮮 / 美食廣場)</h3>
+                            <h3 class="card-title">VivoCity 購物與晚餐 (如 No Signboard Seafood 無招牌海鮮)</h3>
                             <p class="card-desc">前往新加坡最大的購物中心 VivoCity 怡豐城進行購物巡禮，並於館內特色餐廳享用豐盛晚餐。</p>
                             
                             <div class="alert-block">
                                 <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 用餐與購物提醒</div>
-                                <b>多元餐飲選擇：</b> 可選擇 VivoCity 內的「無招牌海鮮」、大食代 (Food Republic) 或豐富的南洋風味餐飲。<br>
+                                <b>多元餐飲選擇：</b> 可選擇 VivoCity 內的「無招牌海鮮 (No Signboard Seafood)」、大食代 (Food Republic) 或豐富的南洋風味餐飲。<br>
                                 <b>退稅服務：</b> 若於商場購物單筆消費滿 SGD $100，記得出示護照索取 eTRS 電子退稅單。
                             </div>
 
@@ -576,7 +607,7 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 20:30</span>
-                            <h3 class="card-title">返回香格里拉 Rasa Sentosa</h3>
+                            <h3 class="card-title">返回香格里拉 (Shangri-La Rasa Sentosa)</h3>
                             <p class="card-desc">
                                 <b>方案 A（輕軌 + 巴士）：</b> 於 VivoCity 3樓搭乘 Sentosa Express 輕軌至 Beach 站 ➔ 轉乘 Sentosa Bus A 返回香格里拉大堂。<br>
                                 <b>方案 B（Grab / 計程車）：</b> 直達香格里拉酒店大堂（車程約 10 分鐘，SGD $10–12）。
@@ -591,8 +622,9 @@
             </div>
 
             <!-- Day 5 區塊 -->
-            <div class="day-section" id="daySection-5">
+            <div class="day-section" id="daySection-5" data-date="2026-08-24">
                 <div class="day-title-box">
+                    <div class="weather-badge" id="weather-2026-08-24"><i class="fas fa-cloud-sun"></i> 26°C - 31°C</div>
                     <h2>Day 5 | 2026年8月24日 (一)</h2>
                     <p>登上迪士尼郵輪 Disney Cruise Line</p>
                 </div>
@@ -601,16 +633,16 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 09:00 - 10:00</span>
-                            <h3 class="card-title">香格里拉 ➔ Marina Bay Cruise Centre</h3>
+                            <h3 class="card-title">香格里拉 ➔ 濱海灣郵輪中心 (Marina Bay Cruise Centre Singapore - MBCCS)</h3>
                             <p class="card-desc"><b>專屬穿梭巴士（車程約 25–30 分鐘）：</b> 酒店大堂集合，直達濱海灣郵輪中心（已預訂含在費用內 HKD$1,287.00）。</p>
                             
                             <div class="transit-time-block">
                                 <i class="fas fa-subway me-1 text-primary"></i> <b>替代公共交通備案（車程約 45 分鐘，SGD $2.10）：</b><br>
-                                搭輕軌出 VivoCity ➔ 轉紫線至 <a class="mrt-badge" href="https://maps.google.com/?q=Chinatown+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Chinatown 站</a> ➔ 轉濱海市區線或紅線至 <a class="mrt-badge" href="https://maps.google.com/?q=Marina+South+Pier+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Marina South Pier 站 (NS28)</a>，出站步行約 8 分鐘即達碼頭。
+                                搭輕軌出 VivoCity ➔ 轉紫線至 <a class="mrt-badge" href="https://maps.google.com/?q=Chinatown+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Chinatown 站</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit A/E</span> ➔ 轉濱海市區線或紅線至 <a class="mrt-badge" href="https://maps.google.com/?q=Marina+South+Pier+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Marina South Pier 站 (NS28)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit B (🛗升降機)</span>，出站步行約 8 分鐘即達碼頭。
                             </div>
 
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Marina+Bay+Cruise+Centre+Singapore" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 郵輪碼頭導航</a>
+                                <a href="https://maps.google.com/?q=Marina+Bay+Cruise+Centre+Singapore" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 郵輪碼頭 (MBCCS)</a>
                                 <button class="btn-check" onclick="toggleComplete('5-0')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
@@ -620,7 +652,7 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 11:30起</span>
-                            <h3 class="card-title">辦理登船手續 & 展開迪士尼夢幻郵輪之旅</h3>
+                            <h3 class="card-title">辦理登船手續 & 展開迪士尼夢幻郵輪之旅 (Disney Cruise Line)</h3>
                             <p class="card-desc">登上迪士尼郵輪！享用自助午餐、迪士尼明星見面會、百老匯級歌舞劇與甲板滑水道。</p>
                             
                             <div class="alert-block" style="background-color: #FEF2F2; border-color: #FCA5A5; color: #991B1B;">
@@ -639,17 +671,18 @@
             </div>
 
             <!-- Day 6-7 區塊 -->
-            <div class="day-section" id="daySection-6">
+            <div class="day-section" id="daySection-6" data-date="2026-08-25">
                 <div class="day-title-box">
+                    <div class="weather-badge" id="weather-2026-08-25"><i class="fas fa-water"></i> 海上晴朗</div>
                     <h2>Day 6 - Day 7 | 2026/08/25 - 08/26</h2>
-                    <p>迪士尼郵輪海上巡航假期</p>
+                    <p>迪士尼郵輪海上巡航假期 (Disney Cruise Line at Sea)</p>
                 </div>
                 <div class="timeline">
                     <div class="timeline-item" id="item-6-0">
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 全天</span>
-                            <h3 class="card-title">迪士尼郵輪海上夢幻體驗</h3>
+                            <h3 class="card-title">迪士尼郵輪海上夢幻體驗 (Disney Cruise Line)</h3>
                             <p class="card-desc">
                                 • 暢享主題餐廳美味佳餚（輪換餐廳 Rotational Dining）<br>
                                 • 迪士尼劇院原創歌舞劇與夜間海盜派對煙火秀<br>
@@ -671,8 +704,9 @@
             </div>
 
             <!-- Day 8 區塊 -->
-            <div class="day-section" id="daySection-8">
+            <div class="day-section" id="daySection-8" data-date="2026-08-27">
                 <div class="day-title-box">
+                    <div class="weather-badge" id="weather-2026-08-27"><i class="fas fa-sun"></i> 27°C - 31°C</div>
                     <h2>Day 8 | 2026年8月27日 (四)</h2>
                     <p>國家美術館兒童探索 ➔ 星耀樟宜 ➔ 返港</p>
                 </div>
@@ -682,16 +716,16 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 10:30 - 11:00</span>
-                            <h3 class="card-title">郵輪碼頭 ➔ 國家美術館 (National Gallery)</h3>
+                            <h3 class="card-title">郵輪碼頭 ➔ 新加坡國家美術館 (National Gallery Singapore)</h3>
                             <p class="card-desc">離船登岸並提取行李後，搭乘 <b>Grab / 計程車</b> 前往國家美術館（車程約 15–20 分鐘，車費約 SGD $8–10）。</p>
                             
                             <div class="transit-time-block">
                                 <i class="fas fa-subway me-1 text-primary"></i> <b>地鐵備案（車程約 20 分鐘，車費約 SGD $1.40）：</b><br>
-                                於 <a class="mrt-badge" href="https://maps.google.com/?q=Marina+South+Pier+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Marina South Pier 站 (NS28)</a> 搭紅線 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=City+Hall+MRT+Station" target="_blank"><i class="fas fa-subway"></i> City Hall 站 (NS25/EW13)</a> 出站，經地下道或地面步行約 5 分鐘抵達國家美術館。
+                                於 <a class="mrt-badge" href="https://maps.google.com/?q=Marina+South+Pier+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Marina South Pier 站 (NS28)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit B</span> 搭紅線 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=City+Hall+MRT+Station" target="_blank"><i class="fas fa-subway"></i> City Hall 站 (NS25/EW13)</a> 出站 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit B (🛗扶手電梯)</span>，經地下道或地面步行約 5 分鐘抵達國家美術館。
                             </div>
 
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=National+Gallery+Singapore" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 國家美術館導航</a>
+                                <a href="https://maps.google.com/?q=National+Gallery+Singapore" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 國家美術館 (National Gallery)</a>
                                 <button class="btn-check" onclick="toggleComplete('8-0')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
@@ -701,7 +735,7 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 11:00 - 13:00</span>
-                            <h3 class="card-title">Keppel Centre for Art Education (館內步行)</h3>
+                            <h3 class="card-title">Keppel Centre for Art Education (吉寶美術教育中心)</h3>
                             <p class="card-desc">專為兒童設計的藝術教育中心！小孩可暢玩互動式藝術展覽、參與手作工作坊與多媒體體驗（美術館營業時間為 10:00 AM 開門）。</p>
                             
                             <div class="alert-block">
@@ -733,16 +767,16 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 13:30 - 14:00</span>
-                            <h3 class="card-title">前往樟宜機場 (Grab 車程約 25 分鐘)</h3>
+                            <h3 class="card-title">前往樟宜機場 (Changi Airport - Grab 車程約 25 分鐘)</h3>
                             <p class="card-desc">搭乘 <b>Grab / 計程車</b> 直達樟宜機場 Terminal 2 / Jewel（車程約 25 分鐘，車費約 SGD $30.00 左右）。</p>
                             
                             <div class="transit-time-block">
                                 <i class="fas fa-subway me-1 text-primary"></i> <b>地鐵備案（車程約 40 分鐘，SGD $2.00）：</b><br>
-                                於 <a class="mrt-badge" href="https://maps.google.com/?q=City+Hall+MRT+Station" target="_blank"><i class="fas fa-subway"></i> City Hall 站</a> 搭綠線 ➔ <a class="mrt-badge" href="https://maps.google.com/?q=Tanah+Merah+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Tanah Merah 站</a> 轉乘 ➔ <a class="mrt-badge" href="https://maps.google.com/?q=Changi+Airport+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Changi Airport 站 (CG2)</a>。
+                                於 <a class="mrt-badge" href="https://maps.google.com/?q=City+Hall+MRT+Station" target="_blank"><i class="fas fa-subway"></i> City Hall 站</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit B</span> 搭綠線 ➔ <a class="mrt-badge" href="https://maps.google.com/?q=Tanah+Merah+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Tanah Merah 站</a> 轉乘 ➔ <a class="mrt-badge" href="https://maps.google.com/?q=Changi+Airport+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Changi Airport 站 (CG2)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit A/B (連通航廈與Jewel)</span>。
                             </div>
 
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Changi+Airport+Jewel" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 樟宜機場導航</a>
+                                <a href="https://maps.google.com/?q=Changi+Airport+Jewel" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 樟宜機場 (Changi Airport)</a>
                                 <button class="btn-check" onclick="toggleComplete('8-3')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
@@ -752,8 +786,8 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 15:00 - 18:30</span>
-                            <h3 class="card-title">Jewel 樟宜：雨漩渦瀑布、Canopy Park、購物、晚餐</h3>
-                            <p class="card-desc">辦理預辦登機寄存行李，打卡資生堂森林谷與雨漩渦巨型瀑布、暢玩 Canopy Park 頂樓星空花園、最後購物與享用晚餐。</p>
+                            <h3 class="card-title">Jewel 樟宜：雨漩渦瀑布 (Rain Vortex)、Canopy Park、購物、晚餐</h3>
+                            <p class="card-desc">辦理預辦登機寄存行李，打卡資生堂森林谷與雨漩渦巨型瀑布 (HSBC Rain Vortex)、暢玩 Canopy Park 頂樓星空花園、最後購物與享用晚餐。</p>
                             
                             <div class="alert-block">
                                 <div class="alert-block-title"><i class="fas fa-exclamation-triangle"></i> 機場 Early Check-In 與退稅提醒</div>
@@ -762,7 +796,7 @@
                             </div>
 
                             <div class="card-actions">
-                                <a href="https://maps.google.com/?q=Jewel+Changi+Airport" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> Jewel 導航</a>
+                                <a href="https://maps.google.com/?q=Jewel+Changi+Airport" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 星耀樟宜 (Jewel)</a>
                                 <button class="btn-check" onclick="toggleComplete('8-4')"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
@@ -772,7 +806,7 @@
                         <div class="timeline-badge"></div>
                         <div class="card-custom">
                             <span class="time-tag"><i class="far fa-clock"></i> 19:00</span>
-                            <h3 class="card-title">登機返港 ✈️ (SQ898)</h3>
+                            <h3 class="card-title">登機返港 ✈️ (Singapore Airlines - SQ898)</h3>
                             <p class="card-desc">搭乘<b>新加坡航空 SQ898 班機 (19:00 起飛)</b> 順利返回香港，結束 8 天 7 夜精彩的新加坡與迪士尼郵輪之旅！</p>
                             <div class="card-actions me-0 mt-3">
                                 <button class="btn-check w-100 py-2" onclick="toggleComplete('8-5')"><i class="fas fa-check me-2"></i> 順利抵港</button>
@@ -810,7 +844,7 @@
                 </div>
 
                 <div class="p-3 bg-light rounded-3 border text-center">
-                    <div class="small text-muted mb-1">總開支折合 (HKD)</div>
+                    <div class="small text-muted mb-1">整個行程總開支折合 (HKD)</div>
                     <div class="h3 fw-bold text-danger mb-0" id="grandTotalHKD">HKD $0.00</div>
                     <div class="small text-muted mt-2 d-flex justify-content-around">
                         <span>HKD: <b id="subTotalHKD">$0</b></span>
@@ -820,8 +854,8 @@
                 </div>
 
                 <div class="mt-3 text-center">
-                    <button class="btn btn-outline-primary btn-sm rounded-pill" onclick="loadPresetExpenses()">
-                        <i class="fas fa-magic me-1"></i> 載入行程已預訂之固定開支
+                    <button class="btn btn-outline-primary btn-sm rounded-pill" onclick="loadPresetExpenses(false)">
+                        <i class="fas fa-magic me-1"></i> 重新載入/同步預設固定開支
                     </button>
                 </div>
             </div>
@@ -862,8 +896,8 @@
                             
                             <div class="py-1">
                                 <span class="quick-tag" onclick="fillQuickTag('Grab 計程車')">🚕 Grab</span>
-                                <span class="quick-tag" onclick="fillQuickTag('同樂海鮮')">🦀 同樂海鮮</span>
-                                <span class="quick-tag" onclick="fillQuickTag('松發肉骨茶')">🍲 肉骨茶</span>
+                                <span class="quick-tag" onclick="fillQuickTag('同樂海鮮 (TungLok)')">🦀 同樂海鮮</span>
+                                <span class="quick-tag" onclick="fillQuickTag('松發肉骨茶 (Song Fa)')">🍲 肉骨茶</span>
                                 <span class="quick-tag" onclick="fillQuickTag('美術館 Café')">☕ 美術館Café</span>
                                 <span class="quick-tag" onclick="fillQuickTag('Jewel 購物')">🛍️ Jewel</span>
                             </div>
@@ -1078,8 +1112,61 @@
         </button>
     </div>
 
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
-        // --- 1. 分頁切換邏輯 ---
+        const DEFAULT_API_KEY = "Baa7021e3c19af863e7812c06c909cd6";
+
+        const dayDateMap = {
+            1: { filter: 'Day 1', dateVal: '2026-08-20|Day 1' },
+            2: { filter: 'Day 2', dateVal: '2026-08-21|Day 2' },
+            3: { filter: 'Day 3', dateVal: '2026-08-22|Day 3' },
+            4: { filter: 'Day 4', dateVal: '2026-08-23|Day 4' },
+            5: { filter: 'Day 5', dateVal: '2026-08-24|Day 5' },
+            6: { filter: 'Day 6', dateVal: '2026-08-25|Day 6' },
+            8: { filter: 'Day 8', dateVal: '2026-08-27|Day 8' }
+        };
+
+        async function fetchRealtimeWeather(apiKey) {
+            const keyToUse = apiKey || DEFAULT_API_KEY;
+            if(!keyToUse) return;
+            try {
+                const url = `https://api.openweathermap.org/data/2.5/forecast?q=Singapore&units=metric&appid=${keyToUse}&lang=zh_tw`;
+                const res = await fetch(url);
+                if (!res.ok) throw new Error("API 請求失敗");
+                const data = await res.json();
+                
+                const dailyWeather = {};
+                data.list.forEach(item => {
+                    const dateStr = item.dt_txt.split(' ')[0];
+                    if(!dailyWeather[dateStr]) {
+                        dailyWeather[dateStr] = {
+                            minTemp: item.main.temp_min,
+                            maxTemp: item.main.temp_max,
+                            icon: item.weather[0].icon,
+                            desc: item.weather[0].description
+                        };
+                    } else {
+                        dailyWeather[dateStr].minTemp = Math.min(dailyWeather[dateStr].minTemp, item.main.temp_min);
+                        dailyWeather[dateStr].maxTemp = Math.max(dailyWeather[dateStr].maxTemp, item.main.temp_max);
+                    }
+                });
+
+                document.querySelectorAll('.day-section').forEach(sec => {
+                    const secDate = sec.getAttribute('data-date');
+                    const badge = sec.querySelector('.weather-badge');
+                    if(badge && dailyWeather[secDate]) {
+                        const info = dailyWeather[secDate];
+                        const iconUrl = `https://openweathermap.org/img/wn/${info.icon}.png`;
+                        badge.innerHTML = `<img src="${iconUrl}" width="22" height="22" style="vertical-align:middle;"> ${Math.round(info.minTemp)}°C - ${Math.round(info.maxTemp)}°C`;
+                    }
+                });
+            } catch (err) {
+                console.error("更新天氣失敗:", err);
+            }
+        }
+
         function switchMainTab(tabName) {
             document.querySelectorAll('.main-tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.bottom-bar .bar-item').forEach(el => el.classList.remove('active'));
@@ -1092,6 +1179,7 @@
             } else if (tabName === 'accounting') {
                 document.getElementById('tab-accounting').classList.add('active');
                 document.getElementById('navBtn-accounting').classList.add('active');
+                syncDayToAccounting();
                 updateCalculations();
             } else if (tabName === 'preparation') {
                 document.getElementById('tab-preparation').classList.add('active');
@@ -1101,7 +1189,17 @@
             window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
-        // --- 2. 每日行程切換與完成勾選 ---
+        function syncDayToAccounting() {
+            const lastDay = parseInt(localStorage.getItem('sg_selectedDay') || 1);
+            const mapping = dayDateMap[lastDay] || dayDateMap[1];
+            
+            const filterSelect = document.getElementById('filterDaySelect');
+            const expDateSelect = document.getElementById('expDate');
+            
+            if (filterSelect) filterSelect.value = mapping.filter;
+            if (expDateSelect) expDateSelect.value = mapping.dateVal;
+        }
+
         function switchDay(dayNum) {
             if (!document.getElementById('tab-itinerary').classList.contains('active')) return;
             
@@ -1135,7 +1233,6 @@
             }
         }
 
-        // --- 3. 重點提示物品進度 ---
         function calculatePrepProgress() {
             const checkboxes = document.querySelectorAll('.prep-checkbox');
             let checkedCount = 0;
@@ -1152,7 +1249,6 @@
             }
         }
 
-        // --- 4. 開支紀錄模組 ---
         function getExpenses() {
             return JSON.parse(localStorage.getItem('sg_expenses_list')) || [];
         }
@@ -1167,7 +1263,7 @@
 
         function addExpense(e) {
             e.preventDefault();
-            const rawVal = document.getElementById('expDate').value; // "2026-08-20|Day 1"
+            const rawVal = document.getElementById('expDate').value; 
             const [fullDate, dayLabel] = rawVal.split('|');
             
             const category = document.getElementById('expCategory').value;
@@ -1181,8 +1277,8 @@
             const records = getExpenses();
             records.push({
                 id: Date.now().toString(),
-                date: fullDate.substring(5), // "08-20"
-                dayLabel: dayLabel,          // "Day 1"
+                date: fullDate.substring(5), 
+                dayLabel: dayLabel,          
                 category: category,
                 name: name,
                 currency: currency,
@@ -1202,36 +1298,37 @@
             updateCalculations();
         }
 
-        // 預載固定已知洗費
-        function loadPresetExpenses() {
-            if (confirm('是否自動載入行程表中的預訂固定開支（機票、酒店、門票、郵輪相關費與車資預估）？')) {
-                const presets = [
-                    { id: 'p1', date: '08-20', dayLabel: 'Day 1', category: '機票車資', name: '新航 SQ899/898 機票', currency: 'HKD', amount: 17441.00 },
-                    { id: 'p2', date: '08-20', dayLabel: 'Day 1', category: '飯店住宿', name: 'Butternut Tree Hotel 住宿', currency: 'HKD', amount: 1998.15 },
-                    { id: 'p3', date: '08-21', dayLabel: 'Day 2', category: '飯店住宿', name: '聖淘沙鄉村酒店住宿', currency: 'HKD', amount: 8933.51 },
-                    { id: 'p4', date: '08-21', dayLabel: 'Day 2', category: '景點門票', name: '哈利波特展門票', currency: 'HKD', amount: 2405.00 },
-                    { id: 'p5', date: '08-22', dayLabel: 'Day 3', category: '景點門票', name: '天際線斜坡滑車門票', currency: 'HKD', amount: 1386.00 },
-                    { id: 'p6', date: '08-22', dayLabel: 'Day 3', category: '景點門票', name: '冒險海灣水上樂園門票', currency: 'HKD', amount: 1273.00 },
-                    { id: 'p7', date: '08-23', dayLabel: 'Day 4', category: '飯店住宿', name: '聖淘沙香格里拉住宿', currency: 'HKD', amount: 11186.00 },
-                    { id: 'p8', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪船票', currency: 'HKD', amount: 46042.00 },
-                    { id: 'p9', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪穿梭巴士', currency: 'HKD', amount: 1287.00 },
-                    { id: 'p10', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪相片 Package', currency: 'USD', amount: 170.00 },
-                    { id: 'p11', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪小費 Gratuities', currency: 'USD', amount: 336.00 },
-                    { id: 'p12', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪午餐費用', currency: 'USD', amount: 275.00 },
-                    { id: 'p13', date: '08-27', dayLabel: 'Day 8', category: '交通車資', name: '碼頭 ➔ 國家美術館 (Grab)', currency: 'SGD', amount: 10.00 },
-                    { id: 'p14', date: '08-27', dayLabel: 'Day 8', category: '交通車資', name: '國家美術館 ➔ 機場 (Grab)', currency: 'SGD', amount: 30.00 }
-                ];
-
-                let current = getExpenses();
-                const currentIds = current.map(x => x.id);
-                presets.forEach(p => {
-                    if (!currentIds.includes(p.id)) {
-                        current.push(p);
-                    }
-                });
-                saveExpenses(current);
-                updateCalculations();
+        function loadPresetExpenses(isAutoMode = false) {
+            if (!isAutoMode) {
+                if (!confirm('是否重新同步並補齊行程表中的預訂固定開支（機票、酒店、門票、郵輪相關費）？')) {
+                    return;
+                }
             }
+
+            const presets = [
+                { id: 'p1', date: '08-20', dayLabel: 'Day 1', category: '機票車資', name: '新航 SQ899/898 機票', currency: 'HKD', amount: 17441.00 },
+                { id: 'p2', date: '08-20', dayLabel: 'Day 1', category: '飯店住宿', name: 'Butternut Tree Hotel 住宿', currency: 'HKD', amount: 1998.15 },
+                { id: 'p3', date: '08-21', dayLabel: 'Day 2', category: '飯店住宿', name: '聖淘沙鄉村酒店住宿', currency: 'HKD', amount: 8933.51 },
+                { id: 'p4', date: '08-21', dayLabel: 'Day 2', category: '景點門票', name: '哈利波特展門票', currency: 'HKD', amount: 2405.00 },
+                { id: 'p5', date: '08-22', dayLabel: 'Day 3', category: '景點門票', name: '天際線斜坡滑車門票', currency: 'HKD', amount: 1386.00 },
+                { id: 'p6', date: '08-22', dayLabel: 'Day 3', category: '景點門票', name: '冒險海灣水上樂園門票', currency: 'HKD', amount: 1273.00 },
+                { id: 'p7', date: '08-23', dayLabel: 'Day 4', category: '飯店住宿', name: '聖淘沙香格里拉住宿', currency: 'HKD', amount: 11186.00 },
+                { id: 'p8', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪船票', currency: 'HKD', amount: 46042.00 },
+                { id: 'p9', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪穿梭巴士', currency: 'HKD', amount: 1287.00 },
+                { id: 'p10', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪相片 Package', currency: 'USD', amount: 170.00 },
+                { id: 'p11', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪小費 Gratuities', currency: 'USD', amount: 336.00 },
+                { id: 'p12', date: '08-24', dayLabel: 'Day 5', category: '郵輪相關', name: '迪士尼郵輪午餐費用', currency: 'USD', amount: 275.00 }
+            ];
+
+            let current = getExpenses();
+            const currentIds = current.map(x => x.id);
+            presets.forEach(p => {
+                if (!currentIds.includes(p.id)) {
+                    current.push(p);
+                }
+            });
+            saveExpenses(current);
+            updateCalculations();
         }
 
         function updateCalculations() {
@@ -1243,7 +1340,8 @@
 
             const selectedFilter = document.getElementById('filterDaySelect').value;
             const records = getExpenses();
-            let sumHKD = 0, sumSGD = 0, sumUSD = 0;
+            
+            let totalHKD = 0, totalSGD = 0, totalUSD = 0;
 
             const historyBody = document.getElementById('historyTableBody');
             historyBody.innerHTML = '';
@@ -1253,15 +1351,15 @@
             records.forEach(item => {
                 const itemDay = item.dayLabel || fallbackDayLabel(item.date);
 
+                if (item.currency === 'HKD') totalHKD += item.amount;
+                else if (item.currency === 'SGD') totalSGD += item.amount;
+                else if (item.currency === 'USD') totalUSD += item.amount;
+
                 if (selectedFilter !== 'ALL' && itemDay !== selectedFilter) {
                     return;
                 }
 
                 filteredCount++;
-
-                if (item.currency === 'HKD') sumHKD += item.amount;
-                else if (item.currency === 'SGD') sumSGD += item.amount;
-                else if (item.currency === 'USD') sumUSD += item.amount;
 
                 let badgeClass = 'badge-hkd';
                 if (item.currency === 'SGD') badgeClass = 'badge-sgd';
@@ -1283,12 +1381,12 @@
                 historyBody.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-3">此天數目前尚無任何消費紀錄！</td></tr>`;
             }
 
-            const grandTotal = sumHKD + (sumSGD * rateSGD) + (sumUSD * rateUSD);
+            const grandTotal = totalHKD + (totalSGD * rateSGD) + (totalUSD * rateUSD);
 
             document.getElementById('grandTotalHKD').innerText = `HKD $${grandTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-            document.getElementById('subTotalHKD').innerText = `$${sumHKD.toLocaleString()}`;
-            document.getElementById('subTotalSGD').innerText = `S$${sumSGD.toLocaleString()}`;
-            document.getElementById('subTotalUSD').innerText = `$${sumUSD.toLocaleString()}`;
+            document.getElementById('subTotalHKD').innerText = `$${totalHKD.toLocaleString()}`;
+            document.getElementById('subTotalSGD').innerText = `S$${totalSGD.toLocaleString()}`;
+            document.getElementById('subTotalUSD').innerText = `$${totalUSD.toLocaleString()}`;
         }
 
         function fallbackDayLabel(mmdd) {
@@ -1300,7 +1398,6 @@
             return map[mmdd] || '其他';
         }
 
-        // --- 5. 重置功能 ---
         function handleResetAction() {
             if (document.getElementById('tab-accounting').classList.contains('active')) {
                 if (confirm('確定要清空所有開支紀錄嗎？')) {
@@ -1328,7 +1425,6 @@
             }
         }
 
-        // --- 6. 回到最上方控制 ---
         window.addEventListener('scroll', () => {
             const btn = document.getElementById('backToTopBtn');
             if (window.scrollY > 250) {
@@ -1345,7 +1441,6 @@
             });
         }
 
-        // --- 7. 頁面初始化 ---
         window.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.timeline-item').forEach(item => {
                 const id = item.id.replace('item-', '');
@@ -1371,7 +1466,14 @@
             if (savedSGD) document.getElementById('rateSGD').value = savedSGD;
             if (savedUSD) document.getElementById('rateUSD').value = savedUSD;
 
-            updateCalculations();
+            fetchRealtimeWeather(DEFAULT_API_KEY);
+
+            const existingExpenses = getExpenses();
+            if (!existingExpenses || existingExpenses.length === 0) {
+                loadPresetExpenses(true);
+            } else {
+                updateCalculations();
+            }
         });
     </script>
 </body>
