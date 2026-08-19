@@ -72,25 +72,40 @@
         .day-section.active { display: block; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .day-title-box { background-color: #1E293B; color: white; padding: 12px 15px; border-radius: 14px; margin-bottom: 15px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); position: relative; }
-        .day-title-box h2 { font-size: 1.1rem; font-weight: 700; margin: 0; }
-        .day-title-box p { font-size: 0.8rem; opacity: 0.85; margin-top: 2px; margin-bottom: 0; }
+        /* 解決天氣資訊與標題文字錯位重疊的樣式改進 */
+        .day-title-box { 
+            background-color: #1E293B; 
+            color: white; 
+            padding: 12px 15px; 
+            border-radius: 14px; 
+            margin-bottom: 15px; 
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1); 
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .day-title-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+        .day-title-box h2 { font-size: 1.1rem; font-weight: 700; margin: 0; white-space: nowrap; }
+        .day-title-box p { font-size: 0.8rem; opacity: 0.85; margin: 0; line-height: 1.3; }
         
         .weather-badge {
-            position: absolute;
-            right: 15px;
-            top: 12px;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(4px);
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.78rem;
             font-weight: 600;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             color: #FDE047;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            white-space: nowrap;
         }
         
         .timeline { position: relative; padding-left: 20px; border-left: 2px dashed #CBD5E1; margin-left: 10px; }
@@ -223,8 +238,10 @@
             <!-- Day 1 區塊 -->
             <div class="day-section active" id="daySection-1" data-date="2026-08-20">
                 <div class="day-title-box">
-                    <div class="weather-badge" id="weather-2026-08-20"><i class="fas fa-sun"></i> 27°C - 31°C</div>
-                    <h2>Day 1 | 2026年8月20日 (四)</h2>
+                    <div class="day-title-header">
+                        <h2>DAY1 8/20 (四)</h2>
+                        <div class="weather-badge" id="weather-2026-08-20"><i class="fas fa-sun"></i> 27°C - 31°C</div>
+                    </div>
                     <p>抵達新加坡 ➔ 市區觀光與分組行程</p>
                 </div>
                 <div class="timeline">
@@ -275,9 +292,9 @@
                             <h3 class="card-title">分組自由觀光行程</h3>
                             <p class="card-desc">
                                 <b>A 組：金沙酒店與濱海灣探索 (Marina Bay Sands)</b><br>
-                                步行 3 分鐘至 <a class="mrt-badge" href="https://maps.google.com/?q=Maxwell+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Maxwell 站 (TE18)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit 2</span> ➔ 搭乘棕線（約 6 分鐘，SGD $1.10）直達 <a class="mrt-badge" href="https://maps.google.com/?q=Bayfront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Bayfront 站 (TE16)</a>，由 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit D (🛗連通金沙)</span> 出站即達金沙購物中心。<br><br>
+                                由 <a class="mrt-badge" href="https://maps.google.com/?q=Maxwell+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Maxwell 站 (TE18)</a> ➔ 搭乘棕線（約 6 分鐘，SGD $1.10）直達 <a class="mrt-badge" href="https://maps.google.com/?q=Bayfront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Bayfront 站 (TE16)</a>，由 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit D (🛗連通金沙)</span> 出站即達金沙購物中心。<br><br>
                                 <b>B 組：Marina Square 購物巡禮</b><br>
-                                於 <a class="mrt-badge" href="https://maps.google.com/?q=Maxwell+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Maxwell 站 (TE18)</a> ➔ <a class="mrt-badge" href="https://maps.google.com/?q=Bayfront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Bayfront 站</a> 轉黃線至 <a class="mrt-badge" href="https://maps.google.com/?q=Promenade+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Promenade 站 (CC4)</a>（約 15 分鐘，SGD $1.30），經 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit A (🛗直達商場)</span> 出站步行 5 分鐘至 Marina Square。
+                                搭地鐵至 <a class="mrt-badge" href="https://maps.google.com/?q=Promenade+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Promenade 站 (CC4)</a>（約 15 分鐘，SGD $1.30），經 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit A (🛗直達商場)</span> 出站步行 5 分鐘至 Marina Square。
                             </p>
                             <div class="card-actions">
                                 <a href="https://maps.google.com/?q=Marina+Bay+Sands" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 金沙 (Marina Bay Sands)</a>
@@ -311,7 +328,7 @@
                             <span class="time-tag"><i class="far fa-clock"></i> 20:30 - 21:00</span>
                             <h3 class="card-title">回程返回酒店 (Butternut Tree Hotel)</h3>
                             <p class="card-desc">
-                                由 Marina Square 步行約 6 分鐘至 <a class="mrt-badge" href="https://maps.google.com/?q=Esplanade+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Esplanade 站 (CC3)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit A</span> ➔ 搭地鐵至 <a class="mrt-badge" href="https://maps.google.com/?q=Maxwell+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Maxwell 站 (TE18)</a>（車程約 12 分鐘，SGD $1.20），由 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit 2 (🛗升降機)</span> 出站步行 3 分鐘返回 Butternut Tree Hotel。
+                                由 Marina Square 步行至地鐵站 ➔ 搭乘地鐵至 <a class="mrt-badge" href="https://maps.google.com/?q=Maxwell+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Maxwell 站 (TE18)</a>（車程約 12 分鐘，SGD $1.20），由 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit 2 (🛗升降機)</span> 出站步行 3 分鐘返回 Butternut Tree Hotel。
                             </p>
                             <div class="card-actions">
                                 <a href="https://maps.google.com/?q=Butternut+Tree+Hotel" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 返回酒店導航</a>
@@ -325,8 +342,10 @@
             <!-- Day 2 區塊 -->
             <div class="day-section" id="daySection-2" data-date="2026-08-21">
                 <div class="day-title-box">
-                    <div class="weather-badge" id="weather-2026-08-21"><i class="fas fa-cloud-sun"></i> 26°C - 32°C</div>
-                    <h2>Day 2 | 2026年8月21日 (五)</h2>
+                    <div class="day-title-header">
+                        <h2>DAY2 8/21 (五)</h2>
+                        <div class="weather-badge" id="weather-2026-08-21"><i class="fas fa-cloud-sun"></i> 26°C - 32°C</div>
+                    </div>
                     <p>海南雞早餐 ➔ 哈利波特展 ➔ Asian Food Hall ➔ 入住聖淘沙 ➔ 泳池休閒</p>
                 </div>
                 <div class="timeline">
@@ -352,7 +371,7 @@
 
                     <div class="transit-time-block">
                         <i class="fas fa-route me-1 text-primary"></i> <b>前往聖淘沙 (Sentosa) 交通路線與時間：</b><br>
-                        由牛車水步行約 5 分鐘至 <a class="mrt-badge" href="https://maps.google.com/?q=Chinatown+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Chinatown 站 (NE4)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit A/E</span> 搭紫線 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> HarbourFront 站 (NE1)</a>（車程 6 分鐘，SGD $1.20）經 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit E (🛗直達 VivoCity)</span> 出站進入 VivoCity 怡豐城 3 樓 ➔ 轉乘 <a class="mrt-badge" href="https://maps.google.com/?q=VivoCity+Sentosa+Express" target="_blank"><i class="fas fa-train"></i> Sentosa Express 聖淘沙輕軌</a> 前往 Resorts World / Imbiah 站。
+                        由牛車水搭紫線 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> HarbourFront 站 (NE1)</a>（車程 6 分鐘，SGD $1.20）經 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit E (🛗直達 VivoCity)</span> 出站進入 VivoCity 怡豐城 3 樓 ➔ 轉乘 <a class="mrt-badge" href="https://maps.google.com/?q=VivoCity+Sentosa+Express" target="_blank"><i class="fas fa-train"></i> Sentosa Express 聖淘沙輕軌</a> 前往 Resorts World / Imbiah 站。
                     </div>
 
                     <div class="timeline-item" id="item-2-1">
@@ -436,8 +455,10 @@
             <!-- Day 3 區塊 -->
             <div class="day-section" id="daySection-3" data-date="2026-08-22">
                 <div class="day-title-box">
-                    <div class="weather-badge" id="weather-2026-08-22"><i class="fas fa-cloud-showers-heavy"></i> 25°C - 31°C</div>
-                    <h2>Day 3 | 2026年8月22日 (六)</h2>
+                    <div class="day-title-header">
+                        <h2>DAY3 8/22 (六)</h2>
+                        <div class="weather-badge" id="weather-2026-08-22"><i class="fas fa-cloud-showers-heavy"></i> 25°C - 31°C</div>
+                    </div>
                     <p>水上樂園 ➔ 園內午餐 ➔ 天際線斜坡滑車 ➔ VivoCity 晚餐</p>
                 </div>
                 <div class="timeline">
@@ -495,7 +516,7 @@
 
                     <div class="transit-time-block">
                         <i class="fas fa-route me-1 text-primary"></i> <b>前往 VivoCity 交通：</b><br>
-                        由斜坡滑車終點/Imbiah 站搭乘 Sentosa Express 輕軌 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> VivoCity 站 (HarbourFront)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit E (🛗直達商場)</span>（車程約 6 分鐘，房客憑通行證免費）。
+                        搭乘 Sentosa Express 輕軌 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> VivoCity 站 (HarbourFront)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit E (🛗直達商場)</span>（車程約 6 分鐘，房客憑通行證免費）。
                     </div>
 
                     <div class="timeline-item" id="item-3-3">
@@ -523,7 +544,7 @@
                             <span class="time-tag"><i class="far fa-clock"></i> 20:30</span>
                             <h3 class="card-title">返回聖淘沙鄉村酒店 (Village Hotel Sentosa)</h3>
                             <p class="card-desc">
-                                於 VivoCity 3樓搭乘 Sentosa Express 輕軌 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=Imbiah+Station+Sentosa" target="_blank"><i class="fas fa-subway"></i> Imbiah 站</a> 下車（車程約 6 分鐘），步行 3 分鐘回酒店休息。
+                                搭乘 Sentosa Express 輕軌 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=Imbiah+Station+Sentosa" target="_blank"><i class="fas fa-subway"></i> Imbiah 站</a> 下車（車程約 6 分鐘），步行 3 分鐘回酒店休息。
                             </p>
                             <div class="card-actions">
                                 <a href="https://maps.google.com/?q=Village+Hotel+Sentosa" target="_blank" class="btn-map"><i class="fas fa-map-marker-alt"></i> 返回酒店導航</a>
@@ -537,8 +558,10 @@
             <!-- Day 4 區塊 -->
             <div class="day-section" id="daySection-4" data-date="2026-08-23">
                 <div class="day-title-box">
-                    <div class="weather-badge" id="weather-2026-08-23"><i class="fas fa-sun"></i> 27°C - 32°C</div>
-                    <h2>Day 4 | 2026年8月23日 (日)</h2>
+                    <div class="day-title-header">
+                        <h2>DAY4 8/23 (日)</h2>
+                        <div class="weather-badge" id="weather-2026-08-23"><i class="fas fa-sun"></i> 27°C - 32°C</div>
+                    </div>
                     <p>聖淘沙香格里拉度假 ➔ VivoCity 購物與晚餐</p>
                 </div>
                 <div class="timeline">
@@ -579,7 +602,7 @@
 
                     <div class="transit-time-block">
                         <i class="fas fa-route me-1 text-primary"></i> <b>香格里拉前往 VivoCity 交通路線與時間：</b><br>
-                        <b>方案 A（免費巴士 + 輕軌，約 20 分鐘）：</b> 於香格里拉門口搭乘 Sentosa Bus A ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=Beach+Station+Sentosa" target="_blank"><i class="fas fa-subway"></i> Beach 站</a> 轉乘 Sentosa Express 輕軌 ➔ 直達 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> VivoCity 站 (HarbourFront)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit E (🛗直達商場)</span>（憑酒店通行證免費）。<br>
+                        <b>方案 A（免費巴士 + 輕軌，約 20 分鐘）：</b> 搭乘 Sentosa Bus A ➔ 轉乘 Sentosa Express 輕軌 ➔ 直達 <a class="mrt-badge" href="https://maps.google.com/?q=HarbourFront+MRT+Station" target="_blank"><i class="fas fa-subway"></i> VivoCity 站 (HarbourFront)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit E (🛗直達商場)</span>（憑酒店通行證免費）。<br>
                         <b>方案 B（Grab / 計程車）：</b> 約 10 分鐘，車費約 SGD $10–12。
                     </div>
 
@@ -609,7 +632,7 @@
                             <span class="time-tag"><i class="far fa-clock"></i> 20:30</span>
                             <h3 class="card-title">返回香格里拉 (Shangri-La Rasa Sentosa)</h3>
                             <p class="card-desc">
-                                <b>方案 A（輕軌 + 巴士）：</b> 於 VivoCity 3樓搭乘 Sentosa Express 輕軌至 Beach 站 ➔ 轉乘 Sentosa Bus A 返回香格里拉大堂。<br>
+                                <b>方案 A（輕軌 + 巴士）：</b> 搭乘 Sentosa Express 輕軌至 Beach 站 ➔ 轉乘 Sentosa Bus A 返回香格里拉大堂。<br>
                                 <b>方案 B（Grab / 計程車）：</b> 直達香格里拉酒店大堂（車程約 10 分鐘，SGD $10–12）。
                             </p>
                             <div class="card-actions">
@@ -624,8 +647,10 @@
             <!-- Day 5 區塊 -->
             <div class="day-section" id="daySection-5" data-date="2026-08-24">
                 <div class="day-title-box">
-                    <div class="weather-badge" id="weather-2026-08-24"><i class="fas fa-cloud-sun"></i> 26°C - 31°C</div>
-                    <h2>Day 5 | 2026年8月24日 (一)</h2>
+                    <div class="day-title-header">
+                        <h2>DAY5 8/24 (一)</h2>
+                        <div class="weather-badge" id="weather-2026-08-24"><i class="fas fa-cloud-sun"></i> 26°C - 31°C</div>
+                    </div>
                     <p>登上迪士尼郵輪 Disney Cruise Line</p>
                 </div>
                 <div class="timeline">
@@ -638,7 +663,7 @@
                             
                             <div class="transit-time-block">
                                 <i class="fas fa-subway me-1 text-primary"></i> <b>替代公共交通備案（車程約 45 分鐘，SGD $2.10）：</b><br>
-                                搭輕軌出 VivoCity ➔ 轉紫線至 <a class="mrt-badge" href="https://maps.google.com/?q=Chinatown+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Chinatown 站</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit A/E</span> ➔ 轉濱海市區線或紅線至 <a class="mrt-badge" href="https://maps.google.com/?q=Marina+South+Pier+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Marina South Pier 站 (NS28)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit B (🛗升降機)</span>，出站步行約 8 分鐘即達碼頭。
+                                搭輕軌出 VivoCity ➔ 轉乘地鐵至 <a class="mrt-badge" href="https://maps.google.com/?q=Marina+South+Pier+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Marina South Pier 站 (NS28)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit B (🛗升降機)</span>，出站步行約 8 分鐘即達碼頭。
                             </div>
 
                             <div class="card-actions">
@@ -673,8 +698,10 @@
             <!-- Day 6-7 區塊 -->
             <div class="day-section" id="daySection-6" data-date="2026-08-25">
                 <div class="day-title-box">
-                    <div class="weather-badge" id="weather-2026-08-25"><i class="fas fa-water"></i> 海上晴朗</div>
-                    <h2>Day 6 - Day 7 | 2026/08/25 - 08/26</h2>
+                    <div class="day-title-header">
+                        <h2>DAY6-7 8/25 - 8/26</h2>
+                        <div class="weather-badge" id="weather-2026-08-25"><i class="fas fa-water"></i> 海上晴朗</div>
+                    </div>
                     <p>迪士尼郵輪海上巡航假期 (Disney Cruise Line at Sea)</p>
                 </div>
                 <div class="timeline">
@@ -706,8 +733,10 @@
             <!-- Day 8 區塊 -->
             <div class="day-section" id="daySection-8" data-date="2026-08-27">
                 <div class="day-title-box">
-                    <div class="weather-badge" id="weather-2026-08-27"><i class="fas fa-sun"></i> 27°C - 31°C</div>
-                    <h2>Day 8 | 2026年8月27日 (四)</h2>
+                    <div class="day-title-header">
+                        <h2>DAY8 8/27 (四)</h2>
+                        <div class="weather-badge" id="weather-2026-08-27"><i class="fas fa-sun"></i> 27°C - 31°C</div>
+                    </div>
                     <p>國家美術館兒童探索 ➔ 星耀樟宜 ➔ 返港</p>
                 </div>
                 <div class="timeline">
@@ -721,7 +750,7 @@
                             
                             <div class="transit-time-block">
                                 <i class="fas fa-subway me-1 text-primary"></i> <b>地鐵備案（車程約 20 分鐘，車費約 SGD $1.40）：</b><br>
-                                於 <a class="mrt-badge" href="https://maps.google.com/?q=Marina+South+Pier+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Marina South Pier 站 (NS28)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit B</span> 搭紅線 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=City+Hall+MRT+Station" target="_blank"><i class="fas fa-subway"></i> City Hall 站 (NS25/EW13)</a> 出站 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit B (🛗扶手電梯)</span>，經地下道或地面步行約 5 分鐘抵達國家美術館。
+                                搭地鐵紅線 ➔ 至 <a class="mrt-badge" href="https://maps.google.com/?q=City+Hall+MRT+Station" target="_blank"><i class="fas fa-subway"></i> City Hall 站 (NS25/EW13)</a> 出站 <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit B (🛗扶手電梯)</span>，經地下道或地面步行約 5 分鐘抵達國家美術館。
                             </div>
 
                             <div class="card-actions">
@@ -772,7 +801,7 @@
                             
                             <div class="transit-time-block">
                                 <i class="fas fa-subway me-1 text-primary"></i> <b>地鐵備案（車程約 40 分鐘，SGD $2.00）：</b><br>
-                                於 <a class="mrt-badge" href="https://maps.google.com/?q=City+Hall+MRT+Station" target="_blank"><i class="fas fa-subway"></i> City Hall 站</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit B</span> 搭綠線 ➔ <a class="mrt-badge" href="https://maps.google.com/?q=Tanah+Merah+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Tanah Merah 站</a> 轉乘 ➔ <a class="mrt-badge" href="https://maps.google.com/?q=Changi+Airport+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Changi Airport 站 (CG2)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit A/B (連通航廈與Jewel)</span>。
+                                搭綠線至 Tanah Merah 轉乘 ➔ 直達 <a class="mrt-badge" href="https://maps.google.com/?q=Changi+Airport+MRT+Station" target="_blank"><i class="fas fa-subway"></i> Changi Airport 站 (CG2)</a> <span class="exit-badge"><i class="fas fa-door-open me-1"></i>Exit A/B (連通航廈與Jewel)</span>。
                             </div>
 
                             <div class="card-actions">
@@ -868,14 +897,14 @@
                         <div class="col-6">
                             <label class="form-label small text-muted mb-1">日期天數</label>
                             <select id="expDate" class="form-select form-select-sm" required>
-                                <option value="2026-08-20|Day 1">8/20 (四) Day 1</option>
-                                <option value="2026-08-21|Day 2">8/21 (五) Day 2</option>
-                                <option value="2026-08-22|Day 3">8/22 (六) Day 3</option>
-                                <option value="2026-08-23|Day 4">8/23 (日) Day 4</option>
-                                <option value="2026-08-24|Day 5">8/24 (一) Day 5</option>
-                                <option value="2026-08-25|Day 6">8/25 (二) Day 6</option>
-                                <option value="2026-08-26|Day 7">8/26 (三) Day 7</option>
-                                <option value="2026-08-27|Day 8">8/27 (四) Day 8</option>
+                                <option value="2026-08-20|Day 1">DAY 1 (8/20)</option>
+                                <option value="2026-08-21|Day 2">DAY 2 (8/21)</option>
+                                <option value="2026-08-22|Day 3">DAY 3 (8/22)</option>
+                                <option value="2026-08-23|Day 4">DAY 4 (8/23)</option>
+                                <option value="2026-08-24|Day 5">DAY 5 (8/24)</option>
+                                <option value="2026-08-25|Day 6">DAY 6 (8/25)</option>
+                                <option value="2026-08-26|Day 7">DAY 7 (8/26)</option>
+                                <option value="2026-08-27|Day 8">DAY 8 (8/27)</option>
                             </select>
                         </div>
                         <div class="col-6">
@@ -1159,7 +1188,7 @@
                     if(badge && dailyWeather[secDate]) {
                         const info = dailyWeather[secDate];
                         const iconUrl = `https://openweathermap.org/img/wn/${info.icon}.png`;
-                        badge.innerHTML = `<img src="${iconUrl}" width="22" height="22" style="vertical-align:middle;"> ${Math.round(info.minTemp)}°C - ${Math.round(info.maxTemp)}°C`;
+                        badge.innerHTML = `<img src="${iconUrl}" width="20" height="20" style="vertical-align:middle;"> ${Math.round(info.minTemp)}°C - ${Math.round(info.maxTemp)}°C`;
                     }
                 });
             } catch (err) {
